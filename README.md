@@ -21,8 +21,11 @@ I have written a C# program to do this with ImageMagick and ClosedXML to generat
 ### Round 1
 - Updated program to do the color thing.  So basically, on a line it gets the count of colors, then when it changes mark the count for it on a column for that row in the excel.
 - The run is pretty fast, but it uses a lot of memory.
-- Big ol' spreadsheet of numbers.
-
-### Round 2
+- Big ol' spreadsheet of numbers.  Switched to text files.
+- Round 1 folder - output with char counts to strings...
 - Checked to make sure that the characters amount to something?
 - Ok, there was a lot of data and I needed to go to bed.  More to come???
+
+### Round 2
+- Going to try color counts in seperate counters.
+- This is something I still have in progress.
