@@ -28,4 +28,6 @@ I have written a C# program to do this with ImageMagick and ClosedXML to generat
 
 ### Round 2
 - Going to try color counts in seperate counters.
-- This is something I still have in progress.
+- The colors are in seperate counters on the serial occurence within the file.
+- This is in the round 2 folder.
+- Though I do find it interesting that there are a lot of small numbers and ones in the file.  I do wonder if there really could be some binary actually embedded within the file?

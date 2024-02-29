@@ -61,58 +61,47 @@ namespace LiberPrimusAnalysisTool
 
                     var pixels = imageFromFile.GetPixels();
                     string currentColor = string.Empty;
-
-                    List<string> colors = new List<string>();
+                    int pixelCounter = 0;
+                    List<ColorArray> colorList = new List<ColorArray>();
 
                     Console.WriteLine($"Document: {file} and Pixel Colors Count By Color");
                     foreach (Pixel pixel in pixels)
                     {
-                        if (!colors.Any(x => x == pixel.ToColor().ToHexString()))
+                        if (!colorList.Any(x => x.Color == pixel.ToColor().ToHexString()))
                         {
-                            colors.Add(pixel.ToColor().ToHexString());
+                            colorList.Add(new ColorArray(pixel.ToColor().ToHexString()));
                         }
                     }
 
-                    Console.WriteLine($"Document: {file} and Processing Pixel Colors Count By Color");
-                    bool record = true;
-                    int pixelCounter = 1;
-                    StringBuilder pixelCounterString = new StringBuilder();
-                    foreach (var color in colors)
+                    Console.WriteLine($"Document: {file} and Processing Pixel Colors Count By Color");                                        
+                    foreach (Pixel pixel in pixels)
                     {
-                        Console.WriteLine($"Document: {file} and Processing {color}");
-                        pixelCounterString.Append($"{color}: ");
-
-                        foreach (Pixel pixel in pixels)
+                        if (pixel.ToColor().ToHexString() != currentColor)
                         {
-                            if (pixel.ToColor().ToHexString() != currentColor)
+                            if (!string.IsNullOrEmpty(currentColor) && !string.IsNullOrWhiteSpace(currentColor))
                             {
-                                currentColor = pixel.ToColor().ToHexString();
-
-                                if (pixel.ToColor().ToHexString() == color)
-                                {
-                                    pixelCounter = 1;
-                                    record = true;
-                                }
-                                else
-                                {
-                                    if (record)
-                                    {
-                                        pixelCounterString.Append($"{pixelCounter} ");
-                                        record = false;
-                                    }
-                                }
+                                colorList.First(x => x.Color == currentColor).Lengths.Add(pixelCounter);
                             }
-                            else
-                            {
-                                if (pixel.ToColor().ToHexString() == color)
-                                {
-                                    pixelCounter++;
-                                    record = true;
-                                }
-                            }
+                            
+                            currentColor = pixel.ToColor().ToHexString();
+                            pixelCounter = 1;
                         }
+                        else
+                        {
+                            pixelCounter++;
+                        }
+                    }
 
-                        contents.Add(pixelCounterString.ToString());
+                    colorList.First(x => x.Color == currentColor).Lengths.Add(pixelCounter);
+
+                    Console.WriteLine($"Document: {file} and Converting To Text");
+                    foreach (var color in colorList)
+                    {
+                        contents.Add(color.ToNumArraySpaced());
+                        contents.Add(color.ToNumArrayNonSpaced());
+                        contents.Add(color.ToGemetriaString());
+                        contents.Add(color.ToCharArray());
+                        contents.Add("");
                     }
 
                     Console.WriteLine($"Document: {file}.round2.txt Writing file");
@@ -226,110 +215,6 @@ namespace LiberPrimusAnalysisTool
                 }
             }
             return stringBuilder.ToString();
-        }
-
-        /// <summary>
-        /// Froms the gematria.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        private static string FromGematria(int value)
-        {
-            string retval = string.Empty;
-            switch(value)
-            {
-                case 2:
-                    retval = "F";
-                    break;
-                case 3:
-                    retval = "U";
-                    break;
-                case 5:
-                    retval = "TH";
-                    break;
-                case 7:
-                    retval = "O";
-                    break;
-                case 11:
-                    retval = "R";
-                    break;
-                case 13:
-                    retval = "K";
-                    break;
-                case 17:
-                    retval = "G";
-                    break;
-                case 19:
-                    retval = "W";
-                    break;
-                case 23:
-                    retval = "H";
-                    break;
-                case 29:
-                    retval = "N";
-                    break;
-                case 31:
-                    retval = "I";
-                    break;
-                case 37:
-                    retval = "J";
-                    break;
-                case 41:
-                    retval = "EO";
-                    break;
-                case 43:
-                    retval = "P";
-                    break;
-                case 47:
-                    retval = "X";
-                    break;
-                case 53:
-                    retval = "Z";
-                    break;
-                case 59:
-                    retval = "T";
-                    break;
-                case 61:
-                    retval = "B";
-                    break;
-                case 67:
-                    retval = "E";
-                    break;
-                case 71:
-                    retval = "M";
-                    break;
-                case 73:
-                    retval = "L";
-                    break;
-                case 79:
-                    retval = "ING";
-                    break;
-                case 83:
-                    retval = "OE";
-                    break;
-                case 89:
-                    retval = "D";
-                    break;
-                case 97:
-                    retval = "A";
-                    break;
-                case 101:
-                    retval = "AE";
-                    break;
-                case 103:
-                    retval = "Y";
-                    break;
-                case 107:
-                    retval = "IA";
-                    break;
-                case 109:
-                    retval = "EA";
-                    break;
-                default:
-                    break;
-            }
-
-            return retval;
         }
     }
 }
