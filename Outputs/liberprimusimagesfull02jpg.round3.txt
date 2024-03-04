@@ -1,0 +1,767 @@
+Channels 3
+Height 3600
+Width 2400
+Comment Text: 
+Format: Jpeg
+Density X: 0
+Density Y: 0
+Density Units: Undefined
+Label: 
+Signature: ca863f3d971e2165fcfccf4017faf265a71d854c008f8f7c5520e0a6e9521899
+Total Colors: 251 - Is Prime: True
+No Exif data
+
+
+Color: #FFFFFF - 8602435 - Is Prime: False - Number of contiguous instances: 5792 - Is that prime: False
+PRIMES: 3 2 2 2 11 2 2 2377 2 2381 2 2377 2 2377 3 2 5 2 5 2 2 3 2 3 2 2 2 2 2 2 2 2 37 2 2 2 3 2 3 2 2 2 3 2 3 2 2 2 5 2 2 2 2 2 2 3 2 2 2 2 2 3 2 2 2 3 2 2 2 5 3 3 2 2 2 3 2 17 2 2 2 19 2 2 2 2 17 2 2 2 17 2 3 19 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 3 2 3 2 2 3 3 2 2 2 2 2 2 2 2 3 2 2 2 3 2 2 2 2 2 2 3 3 2 3 2 2 19 2 3 3 17 2 3 17 2 5 2 19 2 2 2 3 17 2 3 2 3 2 3 2 17 2 2 2 2 2 2 89 2 1759 89 2 2 1759 89 2 2 2 3 2 2 2 3 2 2 2 89 2 3 3 89 2 2 3 2 2 2 2 2 89 2 2 2 2 3 5 2 2 3 3 2 3 11 3 2 5 2 3 2 2 2 2 3 19 2 2 2 5 2 11 2 2 2 2 3 2 2 2 11 2 3 2 3 2 89 2 2 2 2 2 2 2 19 2 11 3 2 3 2 2 2 2 2 3 2 2 2 3 3 19 2 89 2 3 2 2 3 3 2 2 3 3 2 2 3 3 3 3 2 17 3 5 17 3 2 2 2 2 2 19 3 19 89 2 11 2 17 17 2 2 17 2 3 2 2 5 3 2 97 2 19 3 2 3 3 2 19 3 3 97 2 2 2 2 3 3 2 2 2 2 19 3 2 3 2 3 5 3 2 2 19 3 2 89 1753 97 3 2 3 2 2 3 2 2 2 2 3 2 89 3 2 2 2 3 2 2 2 2 5 2 19 3 2 2 3 19 2 2 3 2 3 3 3 2 2 2 2 2 2 3 3 89 97 2 2 2 2 19 2 2 2 3 3 2 3 2 2 2 2 2 3 2 3 3 97 17 17 3 2 3 2 19 2 19 2 2 3 113 2 17 2 3 3 17 17 2 2 3 113 17 17 3 2 2 3 2 19 19 3 2 2 3 3 113 3 2 17 2 2 3 2 3 17 19 3 3 113 2 2 3 2 3 3 2 19 2 3 97 3 2 3 2 17 19 2 5 2 11 3 113 3 97 2 2 2 3 2 2 2 3 17 17 3 17 2 2 2 2 3 113 2 2 2 3 2 2 17 3 2 3 2 3 2 97 17 2 3 2 17 3 3 2 2 3 113 2 97 3 17 41 2 3 2 17 3 3 3 97 17 41 2 3 19 3 2 11 3 2 97 3 2 3 17 2 3 2 2 11 3 17 2 3 5 19 11 3 3 2 2 2 3 2 2 17 2 2 2 11 3 97 2 2 3 2 17 2 3 113 97 2 2 43 2 3 2 3 3 3 97 2 3 2 2 3 43 17 2 3 2 113 2 97 2 2 13 2 2 3 41 2 3 3 113 2 2 3 41 2 2 3 43 11 3 3 113 3 97 2 2 41 2 3 3 17 2 3 2 3 41 2 2 3 2 2 3 2 97 3 2 2 2 3 2 3 113 2 97 2 3 2 41 2 3 2 3 3 113 97 3 13 2 2 3 3 17 2 2 11 3 2 11 2 41 2 3 2 17 3 3 89 2 11 2 3 2 43 2 11 3 2 2 2 43 2 3 2 2 11 3 89 2 3 2 2 3 43 11 2 3 89 2 2 43 2 3 2 2 3 2 2 2 2 2 3 2 17 13 2 11 3 3 2 11 5 2 3 2 41 2 2 2 3 2 2 2 3 41 19 5 2 3 2 3 2 2 19 2 3 2 3 2 19 17 2 3 11 3 2 3 2 2 2 2 3 2 2 17 17 5 2 2 3 3 17 2 19 3 2 2 3 2 19 17 3 2 2 11 3 2 2 2 3 2 3 17 2 3 1759 2 2 2 2 19 2 2 2 3 2 2 2 2 3 2 17 2 2 2 3 19 5 3 3 2 2 2 3 2 17 2 2 3 1759 2 2 17 2 2 2 3 3 2 17 3 2 3 2 2 19 5 2 2 2 3 2 2 17 17 2 3 2 3 17 3 2 3 2 2 2 3 2 2 3 3 2 13 17 2 3 2 2 3 2 3 2 2 2 2 5 2 3 2 17 7 3 2 3 2 2 17 3 2 19 3 2 2 3 2 5 2 17 19 5 3 2 3 3 2 3 2 3 2 2 19 2 2 3 2 3 19 5 2 2 2 2 3 3 2 11 17 3 2 3 2 3 3 2 19 2 2 2 3 2 2 2 2 17 19 2 2 2 11 3 2 2 2 2 2 3 2 17 17 2 2 3 3 2 2 2 2 3 2 3 3 2 17 2 2 3 19 3 2 2 2 3 17 2 19 3 2 2 2 3 2 2 3 2 2 17 2 2 2 3 3 17 2 3 2 2 2 17 2 2 3 2 17 2 2 19 3 3 2 5 2 17 2 2 3 3 2 19 3 3 2 2 17 2 5 3 2 3 2 2 2 19 3 2 3 3 1789 29 2 3 2 3 7 3 2 3 2 3 3 5 2 2 2 2 2 3 2 2 2 2 3 2 2 2 3 2 2 2 2 2 11 3 3 5 2 3 2 2 2 2 2 2 11 1787 2 2 2 3 2 29 3 2 3 3 5 3 2 2 3 3 3 2 3 113 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 7 2 2 2 2 5 5 5 2 2 1787 2 2 2 2 2 3 3 2 2 11 2 2 2 2 2 2 2 11 13 3 2 2 2 2 2 3 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 13 2 2 5 2 3 13 3 7 2 2 3 2 3 3 2 3 2 2 13 2 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2383 3 2 2 3 2 3 2377 2 2 2 2 2377 2 2 2 11 2 2 2 2377 2 2 3 2 2 2 2 5 2 3 2267 2 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 103 2267 19 2 11 2 3 2 2 11 3 3 29 2 3 2 2 2 3 2 3 2 2 2 3 17 2 2 3 2 2 2 2 2 2 2 2 2 2 2 3 19 2 2 3 2 3 2 3 2 2 2 2 29 3 2 3 2 2 2 2 2 3 2 11 2 2 2 3 17 2 2 3 2 2 2 2 2 3 3 19 2 2 3 7 2 2 3 3 19 2 2 2 2 3 3 5 2 2 11 3 2 2 2 2 2 2 2 3 2 2 2 2 3 3 2 2 2 2 3 2 3 2 2 2 3 2 2 2 2 2 2 11 2 31 2 2 3 2 2 2 2 31 5 2 2 3 2 2 31 2 2 2 31 2 2 31 2 2 3 2 31 3 2 2 31 2 31 3 31 2 2 31 2 2 2 31 2 2 13 2 31 2 3 2 2 2 5 3 31 3 2 2 2 2 3 2 5 31 2 2 2 2 2 3 3 2 3 2 2 3 2 31 2 2 2 2 2 2 3 3 2 2 2 2 3 2 2 31 2 2 3 2 31 2 17 2 31 17 2 31 2 3 3 31 3 17 2 3 31 2 2 31 2 3 31 2 31 2 2 31 3 2 31 3 2 31 2 2 2 31 2 2 2 2 31 2 2 2 2 31 2 2 2 31 23 2 31 2 2 31 2 31 2 31 2 2 2 31 3 2 2 31 3 2 31 29 2 2 2 31 3 3 2 31 2 2 41 2 2 2 43 2 43 2 2 23 2 41 2 2 41 2 2 3 2 23 3 2 2 2 23 2 2 2 3 17 2 2 2 13 2 17 2 19 2 2 19 2 2 2 2 2 2 2 2 2 2 2 2 2 2 17 2 2 2 17 2 11 2 2 2 2 19 2 2 23 2 2 11 17 2 2 2 3 11 3 3 3 2 2 2 2 3 2 3 2 2 5 2 3 2 2 3 2 2 3 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 23 2 2 2 2 3 2 3 2 23 2 2 2 3 2 2 3 2 23 2 2 2 2 2 2 2 3 2 2 2 2297 2 2 2 2 2 2 43 2 2 3 3 2 2 2 2297 5 3 41 2 2 5 3 2 2 3 5 2 2 7 3 2 2 2 2 2 5 3 3 5 2 2 3 
+
+Color: #FDFDFD - 1384 - Is Prime: False - Number of contiguous instances: 1279 - Is that prime: True
+PRIMES: 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 
+
+Color: #FCFCFC - 895 - Is Prime: False - Number of contiguous instances: 854 - Is that prime: False
+PRIMES: 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+Color: #FEFEFE - 3991 - Is Prime: False - Number of contiguous instances: 3298 - Is that prime: False
+PRIMES: 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 3 2 2 2 2 2 2 2 2 5 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 3 2 3 2 5 2 2 3 2 2 2 2 2 2 2 2 2 2 3 3 2 2 2 2 2 2 2 2 2 2 3 2 3 2 3 2 2 3 2 2 2 2 3 2 2 2 3 2 2 2 2 2 2 2 2 3 2 3 2 2 2 2 2 2 3 2 2 5 2 2 2 2 2 2 2 2 2 2 3 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 3 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 3 2 2 
+
+Color: #FAFAFA - 354 - Is Prime: False - Number of contiguous instances: 353 - Is that prime: True
+PRIMES: 2 
+
+Color: #FBFBFB - 597 - Is Prime: False - Number of contiguous instances: 579 - Is that prime: False
+PRIMES: 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+Color: #F8F8F8 - 105 - Is Prime: False - Number of contiguous instances: 104 - Is that prime: False
+PRIMES: 2 
+
+Color: #CECECE - 21 - Is Prime: False - Number of contiguous instances: 21 - Is that prime: False
+PRIMES: 
+
+Color: #4A4A4A - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #424242 - 63 - Is Prime: False - Number of contiguous instances: 63 - Is that prime: False
+PRIMES: 
+
+Color: #454545 - 194 - Is Prime: False - Number of contiguous instances: 134 - Is that prime: False
+PRIMES: 2 
+
+Color: #474747 - 31 - Is Prime: True - Number of contiguous instances: 31 - Is that prime: True
+PRIMES: 
+
+Color: #444444 - 345 - Is Prime: False - Number of contiguous instances: 313 - Is that prime: True
+PRIMES: 2 2 2 
+
+Color: #D3D3D3 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #BBBBBB - 743 - Is Prime: True - Number of contiguous instances: 662 - Is that prime: False
+PRIMES: 2 
+
+Color: #000000 - 19680 - Is Prime: False - Number of contiguous instances: 4713 - Is that prime: False
+PRIMES: 2 2 2 2 3 2 3 2 2 3 2 2 2 2 2 2 3 2 2 2 3 2 2 5 2 2 2 2 2 2 3 2 2 37 3 2 2 2 2 3 3 3 2 2 2 2 2 3 3 3 2 3 3 3 11 2 2 2 2 5 11 2 2 3 2 5 2 2 2 2 2 3 2 2 2 2 2 2 3 2 2 5 3 2 2 2 3 3 2 3 2 2 2 3 3 2 2 2 5 3 2 3 2 2 2 5 2 5 2 2 2 2 2 2 2 2 2 2 2 2 3 5 2 2 11 2 3 3 2 2 3 2 2 3 3 2 2 2 2 2 2 2 2 3 2 2 2 3 2 3 3 5 3 2 2 2 2 2 2 2 2 3 3 2 3 2 2 2 2 2 2 3 2 3 3 2 3 2 2 2 2 2 2 3 3 11 2 2 2 3 2 3 2 3 3 2 3 7 5 2 2 2 2 2 7 3 2 5 7 2 3 2 2 2 2 2 2 3 2 3 2 2 2 2 2 2 2 2 3 5 2 3 2 2 11 3 3 3 2 2 3 2 3 3 2 2 2 2 2 2 2 2 3 3 3 2 11 2 2 2 2 2 2 2 3 2 3 2 2 2 2 2 2 2 5 3 2 2 3 2 2 2 3 2 2 2 2 2 2 2 3 2 2 11 2 2 5 2 2 3 2 2 2 2 3 2 3 2 3 3 2 2 3 2 2 11 5 2 2 2 3 3 3 2 2 2 2 2 2 13 2 2 11 2 2 2 5 2 3 2 3 3 2 3 2 2 2 2 2 2 2 2 2 2 3 3 2 2 2 2 2 2 2 11 2 3 2 3 2 2 11 2 2 3 2 2 2 3 2 11 2 2 3 2 2 2 5 2 2 2 2 11 2 2 2 2 3 2 2 5 2 2 2 2 11 2 11 13 3 2 2 2 2 3 3 11 2 2 2 2 11 2 2 2 3 2 2 2 2 2 11 2 2 5 3 2 2 2 3 2 2 11 2 2 3 11 3 2 2 11 3 5 2 2 2 2 3 2 5 2 11 3 2 2 11 3 3 2 2 5 2 2 2 2 11 2 2 5 2 2 2 11 3 2 2 2 2 2 3 2 3 3 2 11 5 2 2 3 2 2 5 2 2 2 5 2 2 2 11 2 3 2 2 3 3 3 37 2 2 3 11 11 2 2 2 2 3 11 2 2 11 2 2 3 2 2 3 3 3 11 2 2 2 3 11 3 3 3 2 3 2 2 11 2 2 3 2 3 2 3 2 3 3 2 11 3 3 2 2 2 2 2 2 3 3 2 2 2 3 3 3 5 2 3 3 11 11 2 2 2 2 3 3 2 11 7 11 3 3 5 3 3 2 3 3 3 2 11 3 3 2 11 11 2 2 2 3 3 3 2 2 2 2 3 3 2 2 3 3 2 3 2 2 3 2 3 3 2 2 2 3 2 3 2 2 2 2 3 3 2 2 2 2 2 2 2 3 2 2 3 3 2 2 2 2 2 3 3 3 11 2 3 2 2 2 3 2 3 3 2 2 2 3 2 2 3 2 3 3 3 2 2 3 2 2 2 2 3 3 3 3 2 5 2 5 2 3 3 3 17 11 2 2 3 2 2 3 3 3 17 2 2 3 13 2 5 2 3 3 3 11 17 2 2 2 2 2 3 3 3 2 2 2 2 3 5 2 3 3 3 3 2 2 2 2 2 13 2 2 3 2 3 2 2 2 3 3 3 2 2 3 3 2 2 3 2 3 2 2 3 5 3 3 3 5 2 17 2 5 2 2 2 2 2 7 2 11 2 3 3 2 2 2 2 3 2 2 5 2 2 2 3 2 5 3 11 3 3 3 2 2 2 11 2 2 2 2 2 3 2 2 3 2 2 2 2 2 3 3 2 7 7 2 2 2 3 3 3 3 3 5 5 3 2 3 3 3 2 2 2 3 3 3 2 3 2 3 3 2 3 2 2 2 2 2 2 5 13 3 3 11 3 5 7 3 2 11 7 2 2 3 2 2 2 2 3 3 3 5 3 2 2 2 2 2 3 3 3 2 5 3 11 2 11 3 3 3 2 2 2 3 3 2 2 2 2 3 3 2 2 3 2 2 5 2 3 11 2 3 2 3 3 3 11 2 3 3 2 3 3 5 2 2 3 5 2 3 2 2 2 3 2 3 3 2 2 2 2 3 3 2 2 2 2 5 3 2 3 2 3 3 3 3 2 2 3 3 2 2 2 2 2 3 11 2 3 2 2 2 5 2 2 3 2 2 2 3 2 3 2 3 2 2 3 2 3 2 2 2 2 2 3 3 2 2 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 3 2 2 2 3 3 3 2 17 2 3 3 2 2 2 3 3 2 2 2 17 2 3 3 2 2 3 3 19 2 3 2 3 3 3 2 2 2 17 2 3 3 2 2 19 3 3 2 11 2 2 2 3 3 3 3 2 2 5 3 2 2 2 2 3 2 2 3 3 3 2 3 11 3 3 3 2 3 3 2 11 2 2 2 3 3 2 2 2 11 3 3 2 2 2 3 3 2 3 11 3 3 3 2 13 3 3 2 11 11 3 3 2 11 3 3 11 3 3 11 5 11 3 3 3 2 3 2 2 11 3 3 2 2 2 3 11 2 11 3 3 3 2 11 3 2 11 3 3 3 2 3 3 11 3 3 2 2 11 3 3 3 3 2 11 3 3 2 3 11 3 3 2 2 2 2 2 11 3 3 2 2 7 2 11 3 3 2 2 2 2 11 3 3 2 2 3 11 3 3 3 2 2 2 2 2 7 11 3 3 2 5 2 3 2 3 3 11 3 3 2 3 3 3 11 3 3 2 3 3 3 11 3 3 7 2 2 2 3 3 11 3 3 2 3 2 3 3 11 3 3 2 2 3 3 3 11 3 3 2 3 2 2 2 3 3 11 3 3 2 2 2 3 3 11 3 3 5 3 3 11 3 2 2 3 3 11 2 2 11 2 3 3 3 11 2 2 2 2 2 2 3 3 11 2 2 3 3 3 3 11 3 3 3 3 3 11 2 2 3 2 2 3 3 11 2 2 3 3 11 11 2 2 3 3 11 7 11 3 2 3 3 11 2 3 3 11 2 2 2 2 3 3 11 3 3 3 3 11 2 2 3 3 11 2 3 2 2 2 2 3 3 11 2 11 7 2 3 3 11 2 2 3 2 2 3 3 11 2 3 3 11 2 2 3 2 2 3 3 11 2 3 2 2 2 2 2 3 3 11 2 3 2 3 3 3 11 2 2 2 3 3 11 2 3 2 3 2 2 3 3 11 3 3 2 2 3 3 11 2 2 2 2 2 3 3 2 2 3 2 3 3 11 2 2 2 19 2 3 17 5 3 3 11 2 2 2 3 2 3 19 3 3 11 2 19 2 2 2 3 3 11 2 3 2 3 2 2 2 17 2 3 3 11 2 2 17 2 17 3 3 11 5 19 2 2 3 3 11 2 17 3 3 11 2 17 17 2 2 2 2 
+
+Color: #010101 - 2894 - Is Prime: False - Number of contiguous instances: 2489 - Is that prime: False
+PRIMES: 2 3 2 2 2 2 3 2 2 2 2 3 2 2 2 5 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 2 2 2 2 2 3 2 3 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 3 3 2 2 2 2 2 3 3 2 2 2 2 2 2 3 2 2 2 2 5 2 2 3 2 2 3 3 2 2 3 2 3 2 2 2 2 2 3 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 3 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 3 2 3 2 2 2 2 3 2 2 2 2 2 2 3 2 2 2 5 2 2 2 2 2 2 2 2 2 5 2 2 2 2 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 3 3 3 2 2 3 2 2 2 2 3 2 2 3 3 3 2 2 2 2 3 2 2 2 2 2 2 2 2 
+
+Color: #020202 - 1243 - Is Prime: False - Number of contiguous instances: 1148 - Is that prime: False
+PRIMES: 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 3 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+Color: #B9B9B9 - 29 - Is Prime: True - Number of contiguous instances: 27 - Is that prime: False
+PRIMES: 3 
+
+Color: #BABABA - 38 - Is Prime: False - Number of contiguous instances: 31 - Is that prime: True
+PRIMES: 
+
+Color: #B7B7B7 - 17 - Is Prime: True - Number of contiguous instances: 17 - Is that prime: True
+PRIMES: 
+
+Color: #040404 - 469 - Is Prime: False - Number of contiguous instances: 458 - Is that prime: False
+PRIMES: 2 2 2 2 2 2 2 2 2 2 2 
+
+Color: #BEBEBE - 22 - Is Prime: False - Number of contiguous instances: 22 - Is that prime: False
+PRIMES: 
+
+Color: #F9F9F9 - 227 - Is Prime: True - Number of contiguous instances: 226 - Is that prime: False
+PRIMES: 2 
+
+Color: #F6F6F6 - 22 - Is Prime: False - Number of contiguous instances: 22 - Is that prime: False
+PRIMES: 
+
+Color: #DFDFDF - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #B4B4B4 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #A1A1A1 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #7A7A7A - 25 - Is Prime: False - Number of contiguous instances: 25 - Is that prime: False
+PRIMES: 
+
+Color: #727272 - 20 - Is Prime: False - Number of contiguous instances: 20 - Is that prime: False
+PRIMES: 
+
+Color: #434343 - 167 - Is Prime: True - Number of contiguous instances: 162 - Is that prime: False
+PRIMES: 2 2 3 2 
+
+Color: #3F3F3F - 20 - Is Prime: False - Number of contiguous instances: 20 - Is that prime: False
+PRIMES: 
+
+Color: #3D3D3D - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #484848 - 22 - Is Prime: False - Number of contiguous instances: 22 - Is that prime: False
+PRIMES: 
+
+Color: #717171 - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #808080 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #888888 - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #BFBFBF - 18 - Is Prime: False - Number of contiguous instances: 18 - Is that prime: False
+PRIMES: 
+
+Color: #C8C8C8 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #DADADA - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #9D9D9D - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #757575 - 41 - Is Prime: True - Number of contiguous instances: 41 - Is that prime: True
+PRIMES: 
+
+Color: #050505 - 309 - Is Prime: False - Number of contiguous instances: 299 - Is that prime: False
+PRIMES: 2 2 3 2 2 2 2 2 2 
+
+Color: #030303 - 767 - Is Prime: False - Number of contiguous instances: 730 - Is that prime: False
+PRIMES: 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+Color: #303030 - 18 - Is Prime: False - Number of contiguous instances: 18 - Is that prime: False
+PRIMES: 
+
+Color: #555555 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #8C8C8C - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #BCBCBC - 43 - Is Prime: True - Number of contiguous instances: 42 - Is that prime: False
+PRIMES: 2 
+
+Color: #F0F0F0 - 17 - Is Prime: True - Number of contiguous instances: 17 - Is that prime: True
+PRIMES: 
+
+Color: #ACACAC - 15 - Is Prime: False - Number of contiguous instances: 15 - Is that prime: False
+PRIMES: 
+
+Color: #646464 - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #212121 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #8D8D8D - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #D1D1D1 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #545454 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #767676 - 122 - Is Prime: False - Number of contiguous instances: 118 - Is that prime: False
+PRIMES: 2 2 2 2 
+
+Color: #9A9A9A - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #585858 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #262626 - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #747474 - 35 - Is Prime: False - Number of contiguous instances: 35 - Is that prime: False
+PRIMES: 
+
+Color: #CACACA - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #DEDEDE - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #777777 - 219 - Is Prime: False - Number of contiguous instances: 219 - Is that prime: False
+PRIMES: 
+
+Color: #121212 - 28 - Is Prime: False - Number of contiguous instances: 28 - Is that prime: False
+PRIMES: 
+
+Color: #060606 - 181 - Is Prime: True - Number of contiguous instances: 179 - Is that prime: True
+PRIMES: 2 2 
+
+Color: #2F2F2F - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #979797 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #EFEFEF - 22 - Is Prime: False - Number of contiguous instances: 22 - Is that prime: False
+PRIMES: 
+
+Color: #0F0F0F - 20 - Is Prime: False - Number of contiguous instances: 20 - Is that prime: False
+PRIMES: 
+
+Color: #BDBDBD - 22 - Is Prime: False - Number of contiguous instances: 22 - Is that prime: False
+PRIMES: 
+
+Color: #070707 - 104 - Is Prime: False - Number of contiguous instances: 104 - Is that prime: False
+PRIMES: 
+
+Color: #0E0E0E - 20 - Is Prime: False - Number of contiguous instances: 20 - Is that prime: False
+PRIMES: 
+
+Color: #EBEBEB - 24 - Is Prime: False - Number of contiguous instances: 24 - Is that prime: False
+PRIMES: 
+
+Color: #464646 - 44 - Is Prime: False - Number of contiguous instances: 40 - Is that prime: False
+PRIMES: 2 2 3 
+
+Color: #6A6A6A - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #ECECEC - 23 - Is Prime: True - Number of contiguous instances: 23 - Is that prime: True
+PRIMES: 
+
+Color: #161616 - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #797979 - 43 - Is Prime: True - Number of contiguous instances: 43 - Is that prime: True
+PRIMES: 
+
+Color: #F3F3F3 - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #626262 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #272727 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #AEAEAE - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #A8A8A8 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #0C0C0C - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #535353 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #A6A6A6 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #141414 - 23 - Is Prime: True - Number of contiguous instances: 23 - Is that prime: True
+PRIMES: 
+
+Color: #787878 - 33 - Is Prime: False - Number of contiguous instances: 33 - Is that prime: False
+PRIMES: 
+
+Color: #080808 - 47 - Is Prime: True - Number of contiguous instances: 47 - Is that prime: True
+PRIMES: 
+
+Color: #3E3E3E - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #7D7D7D - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #C2C2C2 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #B8B8B8 - 26 - Is Prime: False - Number of contiguous instances: 26 - Is that prime: False
+PRIMES: 
+
+Color: #ABABAB - 21 - Is Prime: False - Number of contiguous instances: 21 - Is that prime: False
+PRIMES: 
+
+Color: #111111 - 24 - Is Prime: False - Number of contiguous instances: 24 - Is that prime: False
+PRIMES: 
+
+Color: #333333 - 15 - Is Prime: False - Number of contiguous instances: 15 - Is that prime: False
+PRIMES: 
+
+Color: #AFAFAF - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #E5E5E5 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #989898 - 18 - Is Prime: False - Number of contiguous instances: 18 - Is that prime: False
+PRIMES: 
+
+Color: #F1F1F1 - 17 - Is Prime: True - Number of contiguous instances: 17 - Is that prime: True
+PRIMES: 
+
+Color: #595959 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #DBDBDB - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #C1C1C1 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #C0C0C0 - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #202020 - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #868686 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #F4F4F4 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #959595 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #B6B6B6 - 17 - Is Prime: True - Number of contiguous instances: 17 - Is that prime: True
+PRIMES: 
+
+Color: #DDDDDD - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #9B9B9B - 17 - Is Prime: True - Number of contiguous instances: 17 - Is that prime: True
+PRIMES: 
+
+Color: #1B1B1B - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #3B3B3B - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #F2F2F2 - 17 - Is Prime: True - Number of contiguous instances: 17 - Is that prime: True
+PRIMES: 
+
+Color: #8B8B8B - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #101010 - 21 - Is Prime: False - Number of contiguous instances: 21 - Is that prime: False
+PRIMES: 
+
+Color: #D0D0D0 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #0B0B0B - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #575757 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #DCDCDC - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #343434 - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #EDEDED - 21 - Is Prime: False - Number of contiguous instances: 21 - Is that prime: False
+PRIMES: 
+
+Color: #636363 - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #F7F7F7 - 46 - Is Prime: False - Number of contiguous instances: 46 - Is that prime: False
+PRIMES: 
+
+Color: #0D0D0D - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #4C4C4C - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #F5F5F5 - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #CCCCCC - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #CDCDCD - 21 - Is Prime: False - Number of contiguous instances: 21 - Is that prime: False
+PRIMES: 
+
+Color: #A0A0A0 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #8A8A8A - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #666666 - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #363636 - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #282828 - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #C7C7C7 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #878787 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #242424 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #404040 - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #E1E1E1 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #232323 - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #9C9C9C - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #EAEAEA - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #8E8E8E - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #2C2C2C - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #D5D5D5 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #6E6E6E - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #323232 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #4D4D4D - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #686868 - 16 - Is Prime: False - Number of contiguous instances: 16 - Is that prime: False
+PRIMES: 
+
+Color: #C9C9C9 - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #656565 - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #5D5D5D - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #7E7E7E - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #838383 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #4B4B4B - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #737373 - 19 - Is Prime: True - Number of contiguous instances: 19 - Is that prime: True
+PRIMES: 
+
+Color: #A9A9A9 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #525252 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #7C7C7C - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #131313 - 14 - Is Prime: False - Number of contiguous instances: 14 - Is that prime: False
+PRIMES: 
+
+Color: #090909 - 26 - Is Prime: False - Number of contiguous instances: 26 - Is that prime: False
+PRIMES: 
+
+Color: #414141 - 26 - Is Prime: False - Number of contiguous instances: 26 - Is that prime: False
+PRIMES: 
+
+Color: #858585 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #D8D8D8 - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #494949 - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #B1B1B1 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #313131 - 13 - Is Prime: True - Number of contiguous instances: 13 - Is that prime: True
+PRIMES: 
+
+Color: #D2D2D2 - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #353535 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #EEEEEE - 30 - Is Prime: False - Number of contiguous instances: 30 - Is that prime: False
+PRIMES: 
+
+Color: #222222 - 18 - Is Prime: False - Number of contiguous instances: 18 - Is that prime: False
+PRIMES: 
+
+Color: #373737 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #E9E9E9 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #1E1E1E - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #7B7B7B - 24 - Is Prime: False - Number of contiguous instances: 24 - Is that prime: False
+PRIMES: 
+
+Color: #949494 - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #5C5C5C - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #D6D6D6 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #676767 - 21 - Is Prime: False - Number of contiguous instances: 21 - Is that prime: False
+PRIMES: 
+
+Color: #E0E0E0 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #E8E8E8 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #0A0A0A - 15 - Is Prime: False - Number of contiguous instances: 15 - Is that prime: False
+PRIMES: 
+
+Color: #171717 - 9 - Is Prime: False - Number of contiguous instances: 9 - Is that prime: False
+PRIMES: 
+
+Color: #CBCBCB - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #696969 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #B0B0B0 - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #2D2D2D - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #D7D7D7 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #565656 - 12 - Is Prime: False - Number of contiguous instances: 12 - Is that prime: False
+PRIMES: 
+
+Color: #151515 - 15 - Is Prime: False - Number of contiguous instances: 15 - Is that prime: False
+PRIMES: 
+
+Color: #AAAAAA - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #CFCFCF - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #2E2E2E - 8 - Is Prime: False - Number of contiguous instances: 8 - Is that prime: False
+PRIMES: 
+
+Color: #969696 - 10 - Is Prime: False - Number of contiguous instances: 10 - Is that prime: False
+PRIMES: 
+
+Color: #999999 - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #A7A7A7 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #3A3A3A - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #191919 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #1F1F1F - 5 - Is Prime: True - Number of contiguous instances: 5 - Is that prime: True
+PRIMES: 
+
+Color: #B3B3B3 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #252525 - 11 - Is Prime: True - Number of contiguous instances: 11 - Is that prime: True
+PRIMES: 
+
+Color: #E2E2E2 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #181818 - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #9F9F9F - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #1D1D1D - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #393939 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #A4A4A4 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #B5B5B5 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #9E9E9E - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #A3A3A3 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #6B6B6B - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #515151 - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #616161 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #898989 - 7 - Is Prime: True - Number of contiguous instances: 7 - Is that prime: True
+PRIMES: 
+
+Color: #3C3C3C - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #4E4E4E - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #6D6D6D - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #5E5E5E - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #C4C4C4 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #606060 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #5A5A5A - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #A5A5A5 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #4F4F4F - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #C6C6C6 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #C3C3C3 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #6F6F6F - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #828282 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #7F7F7F - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #E7E7E7 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #707070 - 6 - Is Prime: False - Number of contiguous instances: 6 - Is that prime: False
+PRIMES: 
+
+Color: #909090 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #6C6C6C - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #848484 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #292929 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #1C1C1C - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #383838 - 4 - Is Prime: False - Number of contiguous instances: 4 - Is that prime: False
+PRIMES: 
+
+Color: #D4D4D4 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #E6E6E6 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #C5C5C5 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #939393 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #E3E3E3 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #5B5B5B - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #D9D9D9 - 3 - Is Prime: True - Number of contiguous instances: 3 - Is that prime: True
+PRIMES: 
+
+Color: #919191 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #818181 - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #2B2B2B - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #ADADAD - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #929292 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #1A1A1A - 2 - Is Prime: True - Number of contiguous instances: 2 - Is that prime: True
+PRIMES: 
+
+Color: #B2B2B2 - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
+Color: #5F5F5F - 1 - Is Prime: False - Number of contiguous instances: 1 - Is that prime: False
+PRIMES: 
+
