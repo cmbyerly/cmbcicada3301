@@ -12,7 +12,7 @@ namespace LiberPrimusAnalysisTool
         /// Defines the entry point of the application.
         /// </summary>
         /// <param name="args">The arguments.</param>
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             FileUtilities.RemovePreviousRuns();
 
@@ -38,27 +38,30 @@ namespace LiberPrimusAnalysisTool
                     case "0":
                         dontExit = false;
                         break;
+
                     case "1":
                         ColorCountText.RunMe();
                         break;
+
                     case "2":
                         ColorBreakDownText.RunMe();
                         break;
+
                     case "3":
                         ColorReport.RunMe();
                         break;
+
                     case "9999":
                         ColorReport.RunMe();
                         ColorCountText.RunMe();
                         ColorBreakDownText.RunMe();
                         break;
+
                     default:
                         Console.WriteLine("Not a valid choice.");
                         break;
                 }
             }
         }
-
-        
     }
 }

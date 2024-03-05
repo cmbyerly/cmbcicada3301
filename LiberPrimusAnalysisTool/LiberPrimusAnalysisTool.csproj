@@ -14,9 +14,22 @@
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-HDRI-AnyCPU" Version="13.6.0" />
     <PackageReference Include="Magick.NET.Core" Version="13.6.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AppSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AppSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Update="liber-primus__images--full\00.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

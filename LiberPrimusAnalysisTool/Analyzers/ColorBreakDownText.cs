@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using LiberPrimusAnalysisTool.Entity.Old;
 using LiberPrimusAnalysisTool.Utility;
 
 namespace LiberPrimusAnalysisTool.Analyzers

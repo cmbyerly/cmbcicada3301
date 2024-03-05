@@ -1,7 +1,8 @@
-﻿using LiberPrimusAnalysisTool.Utility.Math;
+﻿using LiberPrimusAnalysisTool.Utility;
+using LiberPrimusAnalysisTool.Utility.Math;
 using System.Text;
 
-namespace LiberPrimusAnalysisTool.Utility
+namespace LiberPrimusAnalysisTool.Entity.Old
 {
     /// <summary>
     /// ColorArray - Gets the color counts in a list.
@@ -123,7 +124,7 @@ namespace LiberPrimusAnalysisTool.Utility
         /// <returns></returns>
         public string ToPrimeArray()
         {
-            return $"PRIMES: {StringUtilities.StringArrayPrimes(this.ToNumArraySpaced())}";
+            return $"PRIMES: {StringUtilities.StringArrayPrimes(ToNumArraySpaced())}";
         }
     }
 }

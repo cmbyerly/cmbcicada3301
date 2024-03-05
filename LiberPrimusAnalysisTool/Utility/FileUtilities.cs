@@ -20,7 +20,6 @@
         /// </summary>
         public static void RemovePreviousRuns()
         {
-
             if (!Directory.Exists($"{System.Environment.CurrentDirectory}/output"))
             {
                 Directory.CreateDirectory($"{System.Environment.CurrentDirectory}/output");
