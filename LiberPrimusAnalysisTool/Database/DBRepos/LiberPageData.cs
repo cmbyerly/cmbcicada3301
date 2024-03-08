@@ -2,18 +2,18 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace LiberPrimusAnalysisTool.Database
+namespace LiberPrimusAnalysisTool.Database.DBRepos
 {
     /// <summary>
     /// This is for manipulating liber primus page data.
     /// </summary>
-    public class LiberPageData
+    public class LiberPageData : ILiberPageData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LiberPageData"/> class.
         /// </summary>
-        public LiberPageData() 
-        {    
+        public LiberPageData()
+        {
         }
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace LiberPrimusAnalysisTool.Database
         /// </summary>
         /// <param name="liberPage">The liber page.</param>
         /// <returns></returns>
-        private int InsertLiberPage(LiberPage liberPage)
+        public int InsertLiberPage(LiberPage liberPage)
         {
             int retval = 0;
 
-            using(SqlConnection conn = new SqlConnection())
-            using(SqlCommand cmd = conn.CreateCommand())
+            using (SqlConnection conn = new SqlConnection())
+            using (SqlCommand cmd = conn.CreateCommand())
             {
                 conn.Open();
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -107,7 +107,7 @@ namespace LiberPrimusAnalysisTool.Database
         /// </summary>
         /// <param name="liberPage">The liber page.</param>
         /// <returns></returns>
-        private int UpdateLiberPage(LiberPage liberPage)
+        public int UpdateLiberPage(LiberPage liberPage)
         {
             int retval = 0;
 
@@ -179,6 +179,5 @@ namespace LiberPrimusAnalysisTool.Database
 
             return retval;
         }
-
     }
 }
