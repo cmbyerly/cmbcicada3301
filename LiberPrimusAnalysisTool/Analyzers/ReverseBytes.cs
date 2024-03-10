@@ -66,7 +66,6 @@ namespace LiberPrimusAnalysisTool.Analyzers
                 var reversedByteArray = byteArray.Reverse().ToArray();
 
                 StringBuilder reverseBuilder = new StringBuilder();
-                StringBuilder reverseUTF16Array = new StringBuilder();
 
                 LoggingUtility.Log($"Reversed byte array for {file}");
 
@@ -83,14 +82,12 @@ namespace LiberPrimusAnalysisTool.Analyzers
                         var reversedBin = Convert.ToString(Convert.ToInt32(reversedByteArray[i].ToString()), 2).PadLeft(7, '0');
                         var character = _characterRepo.CharacterByBin($"{reversedBin}", "ASCII");
                         reverseBuilder.Append(character);
-                        reverseUTF16Array.Append(Convert.ToChar(reversedByteArray[i]));
                         LoggingUtility.Log($"Byte {i} is different - rev value is {reversedByteArray[i].ToString()}");
                         AnsiConsole.MarkupLine($"[lime]ASCII Character is {character}.[/]");
                     }
                 }
 
                 File.AppendAllLines($"./output/{selecttion}-reversed.txt", new string[] { reverseBuilder.ToString() });
-                File.AppendAllLines($"./output/{selecttion}-reversed.txt", new string[] { reverseUTF16Array.ToString() });
 
                 AnsiConsole.MarkupLine("[yellow]CHECK OUTPUT DIRECTORY.[/]");
                 AnsiConsole.MarkupLine("[yellow]Press any key to continue.[/]");
