@@ -75,7 +75,7 @@ namespace LiberPrimusAnalysisTool.Analyzers
 
                 LoggingUtility.Log("Comparing Bytes");
 
-                for (int i = 0;i < byteArray.Length; i++)
+                for (int i = 0; i < byteArray.Length; i++)
                 {
                     if (byteArray[i] != reversedByteArray[i])
                     {
