@@ -7,7 +7,7 @@ using System.Text;
 namespace LiberPrimusAnalysisTool.Analyzers
 {
     /// <summary>
-    /// ColorBreakDownText
+    /// ReverseBytes - Reverses the bytes of an image and compares the bytes
     /// </summary>
     public class ReverseBytes
     {
