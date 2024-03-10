@@ -65,8 +65,8 @@ namespace LiberPrimusAnalysisTool.Analyzers
                 var byteArray = File.ReadAllBytes(file);
                 var reversedByteArray = byteArray.Reverse().ToArray();
 
-                StringBuilder regularArray = new StringBuilder();
-                StringBuilder reversedArray = new StringBuilder();
+                StringBuilder reverseBuilder = new StringBuilder();
+                StringBuilder reverseUTF16Array = new StringBuilder();
 
                 LoggingUtility.Log($"Reversed byte array for {file}");
 
@@ -80,14 +80,17 @@ namespace LiberPrimusAnalysisTool.Analyzers
                 {
                     if (byteArray[i] != reversedByteArray[i])
                     {
-                        regularArray.Append(_characterRepo.GetCharacterByDecimal(Convert.ToInt32(byteArray[i].ToString()), "ANSI"));
-                        reversedArray.Append(_characterRepo.GetCharacterByDecimal(Convert.ToInt32(reversedByteArray[i].ToString()), "ANSI"));
-                        LoggingUtility.Log($"Byte {i} is different");
+                        var reversedBin = Convert.ToString(Convert.ToInt32(reversedByteArray[i].ToString()), 2).PadLeft(7, '0');
+                        var character = _characterRepo.CharacterByBin($"{reversedBin}", "ASCII");
+                        reverseBuilder.Append(character);
+                        reverseUTF16Array.Append(Convert.ToChar(reversedByteArray[i]));
+                        LoggingUtility.Log($"Byte {i} is different - rev value is {reversedByteArray[i].ToString()}");
+                        AnsiConsole.MarkupLine($"[lime]ASCII Character is {character}.[/]");
                     }
                 }
 
-                File.AppendAllLines($"./output/{selecttion}-reversed.txt", new string[] { regularArray.ToString() });
-                File.AppendAllLines($"./output/{selecttion}-reversed.txt", new string[] { reversedArray.ToString() });
+                File.AppendAllLines($"./output/{selecttion}-reversed.txt", new string[] { reverseBuilder.ToString() });
+                File.AppendAllLines($"./output/{selecttion}-reversed.txt", new string[] { reverseUTF16Array.ToString() });
 
                 AnsiConsole.MarkupLine("[yellow]CHECK OUTPUT DIRECTORY.[/]");
                 AnsiConsole.MarkupLine("[yellow]Press any key to continue.[/]");
