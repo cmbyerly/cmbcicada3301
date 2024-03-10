@@ -89,6 +89,14 @@ namespace LiberPrimusAnalysisTool.Database.Contexts
         public DbSet<TOTIENT_SET> TOTIENT_SET { get; set; }
 
         /// <summary>
+        /// Gets or sets the code set tables.
+        /// </summary>
+        /// <value>
+        /// The code set tables.
+        /// </value>
+        public DbSet<CODE_SET_TABLES> CODE_SET_TABLES { get; set; }
+
+        /// <summary>
         /// Override this method to configure the database (and other options) to be used for this context.
         /// This method is called for each instance of the context that is created.
         /// The base implementation does nothing.

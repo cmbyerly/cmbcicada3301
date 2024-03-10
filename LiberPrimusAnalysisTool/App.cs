@@ -1,5 +1,7 @@
 ﻿using LiberPrimusAnalysisTool.Analyzers;
 using LiberPrimusAnalysisTool.Utility;
+using MediatR;
+using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool
 {
@@ -9,10 +11,17 @@ namespace LiberPrimusAnalysisTool
     public class App
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="App"/> class.
+        /// The mediator
         /// </summary>
-        public App()
+        private readonly IMediator _mediator;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App" /> class.
+        /// </summary>
+        /// <param name="mediator">The mediator.</param>
+        public App(IMediator mediator)
         {
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -28,17 +37,30 @@ namespace LiberPrimusAnalysisTool
             while (dontExit)
             {
                 Console.Clear();
-                Console.WriteLine("THIS TOOL REMOVES OUTPUT BETWEEN RUNS!!!");
-                Console.WriteLine("Running Liber Primus Analysis Tool");
-                Console.WriteLine("Enter the test number you want to perform.");
-                Console.WriteLine("0: Exit Program");
-                Console.WriteLine("1: Round 1 Test");
-                Console.WriteLine("2: Round 2 Test");
-                Console.WriteLine("3: Color Report");
-                Console.WriteLine("9999: All Tests");
+                AnsiConsole.MarkupLine("[red]THIS TOOL REMOVES OUTPUT BETWEEN RUNS!!![/]");
+                AnsiConsole.MarkupLine("[red]THE DATABASE MUST BE RUNNING!!![/]");
+                AnsiConsole.MarkupLine(string.Empty);
+                AnsiConsole.MarkupLine("[green]Running Liber Primus Analysis Tool[/]");
+                AnsiConsole.MarkupLine("[green]Enter the test number you want to perform.[/]");
 
-                Console.Write("Choice: ");
-                var choice = Console.ReadLine();
+                var selecttion = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .Title("[green]Please select test to run[/]?")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
+                    .AddChoices(new[] {
+                        "0: Exit Program",
+                        "1: Round 1 Test (output folder)",
+                        "2: Round 2 Test (output folder)",
+                        "3: Color Report (output folder)",
+                        "4: Reverse Bytes (output folder)",
+                        "9999: All Tests",
+                    }));
+
+                var choice = selecttion.Split(":")[0];
+
+                // Echo the fruit back to the terminal
+                AnsiConsole.WriteLine($"Selected test: {selecttion}");
 
                 switch (choice.Trim())
                 {
@@ -47,25 +69,29 @@ namespace LiberPrimusAnalysisTool
                         break;
 
                     case "1":
-                        ColorCountText.RunMe();
+                        _mediator.Publish(new ColorCountText.Command()).Wait();
                         break;
 
                     case "2":
-                        ColorBreakDownText.RunMe();
+                        _mediator.Publish(new ColorBreakDownText.Command()).Wait();
                         break;
 
                     case "3":
-                        ColorReport.RunMe();
+                        _mediator.Publish(new ColorReport.Command()).Wait();
+                        break;
+
+                    case "4":
+                        _mediator.Publish(new ReverseBytes.Command()).Wait();
                         break;
 
                     case "9999":
-                        ColorReport.RunMe();
-                        ColorCountText.RunMe();
-                        ColorBreakDownText.RunMe();
+                        _mediator.Publish(new ColorCountText.Command()).Wait();
+                        _mediator.Publish(new ColorBreakDownText.Command()).Wait();
+                        _mediator.Publish(new ColorBreakDownText.Command()).Wait();
                         break;
 
                     default:
-                        Console.WriteLine("Not a valid choice.");
+                        AnsiConsole.Markup("[red]Not a valid choice.[/]");
                         break;
                 }
             }

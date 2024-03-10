@@ -27,7 +27,7 @@ namespace LiberPrimusAnalysisTool.Database.DBRepos
         /// <returns></returns>
         public string GetDatabaseConnectionString()
         {
-            return $"Server={_configuration["DBServer"]};Database={_configuration["DBName"]};User Id={_configuration["DBUser"]};Password={_configuration["DBPassword"]};";
+            return $"Server={_configuration["DBServer"]};Database={_configuration["DBName"]};User Id={_configuration["DBUser"]};Password={_configuration["DBPassword"]};Encrypt=True;TrustServerCertificate=True";
         }
     }
 }

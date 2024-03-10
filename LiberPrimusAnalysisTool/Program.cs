@@ -1,7 +1,9 @@
-﻿using LiberPrimusAnalysisTool.Database.DBRepos;
+﻿using LiberPrimusAnalysisTool.Database.DBInterfaces;
+using LiberPrimusAnalysisTool.Database.DBRepos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool
 {
@@ -30,7 +32,7 @@ namespace LiberPrimusAnalysisTool
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                AnsiConsole.MarkupLine($"[red]{e.Message}[/]");
             }
         }
 
@@ -44,6 +46,9 @@ namespace LiberPrimusAnalysisTool
                 })
                 .ConfigureServices((_, services) =>
                 {
+                    // Mediatr
+                    services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(App).Assembly));
+
                     // Database services
                     services.AddSingleton<IDatabaseConnectionUtils, DatabaseConnectionUtils>();
                     services.AddSingleton<IPixelInfoData, PixelInfoData>();
@@ -53,6 +58,7 @@ namespace LiberPrimusAnalysisTool
                     services.AddSingleton<ILiberColorInfoData, LiberColorInfoData>();
                     services.AddSingleton<ILiberColorData, LiberColorData>();
                     services.AddSingleton<ILiberColorData, LiberColorData>();
+                    services.AddSingleton<ICharacterRepo, CharacterRepo>();
 
                     // The application singleton
                     services.AddSingleton<App>();

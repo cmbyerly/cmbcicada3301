@@ -17,6 +17,7 @@ I have written a C# program to do this with ImageMagick to generate the files wi
 - I know a lot of the solvers use Python, but I just prefer C# since I use it most of the time.
 
 # Table Schema
+CODE_SET_TABLES - This is the table the with ASCII and ANSI sets for quicker lookup.
 
 # Color Counts
 - Looping through the files and getting the count of a certain color and then it will change color, get the number, etc.
@@ -45,4 +46,5 @@ I have written a C# program to do this with ImageMagick to generate the files wi
 
 ### Revision 4
 - Changing out the text files for a SQL Server.
-- The text files are just too large and numerous to look through cleanly.  I can do this better with a database.
+- The text files are just too large and numerous to look through cleanly.  I can do this better with a database (in progress).
+- Added reverse bytes test after looking at the 05 image in a hex editor.

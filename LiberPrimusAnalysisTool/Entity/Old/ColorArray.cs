@@ -1,4 +1,5 @@
-﻿using LiberPrimusAnalysisTool.Utility;
+﻿using LiberPrimusAnalysisTool.Database.DBInterfaces;
+using LiberPrimusAnalysisTool.Utility;
 using LiberPrimusAnalysisTool.Utility.Math;
 using System.Text;
 
@@ -87,15 +88,36 @@ namespace LiberPrimusAnalysisTool.Entity.Old
         /// Converts to char array.
         /// </summary>
         /// <returns></returns>
-        public string ToCharArray()
+        public string ToASCIICharArray(ICharacterRepo characterRepo)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"UCHR {Color}: ");
+            sb.Append($"ASCII {Color}: ");
             foreach (var item in Lengths)
             {
                 try
                 {
-                    sb.Append(char.ConvertFromUtf32(item));
+                    sb.Append(characterRepo.GetCharacterByDecimal(item, "ASCII"));
+                }
+                catch { }
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Converts to ansichararray.
+        /// </summary>
+        /// <param name="characterRepo">The character repo.</param>
+        /// <returns></returns>
+        public string ToANSICharArray(ICharacterRepo characterRepo)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"ANSI {Color}: ");
+            foreach (var item in Lengths)
+            {
+                try
+                {
+                    sb.Append(characterRepo.GetCharacterByDecimal(item, "ANSI"));
                 }
                 catch { }
             }
