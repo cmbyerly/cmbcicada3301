@@ -37,7 +37,7 @@ namespace LiberPrimusAnalysisTool
             while (dontExit)
             {
                 Console.Clear();
-                AnsiConsole.MarkupLine("[red]THIS TOOL REMOVES OUTPUT BETWEEN RUNS!!![/]");
+                AnsiConsole.MarkupLine("[red]THIS TOOL REMOVES OUTPUT BETWEEN EXECUTIONS!!![/]");
                 AnsiConsole.MarkupLine("[red]THE DATABASE MUST BE RUNNING!!![/]");
                 AnsiConsole.MarkupLine(string.Empty);
                 AnsiConsole.MarkupLine("[green]Running Liber Primus Analysis Tool[/]");
@@ -50,10 +50,11 @@ namespace LiberPrimusAnalysisTool
                     .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
                     .AddChoices(new[] {
                         "0: Exit Program",
-                        "1: Round 1 Test (output folder)",
-                        "2: Round 2 Test (output folder)",
-                        "3: Color Report (output folder)",
-                        "4: Reverse Bytes (output folder)",
+                        "1: Index Liber Primus Pages",
+                        "96: Round 1 Test (output folder)",
+                        "97: Round 2 Test (output folder)",
+                        "98: Color Report (output folder)",
+                        "99: Reverse Bytes (output folder)",
                         "9999: All Tests",
                     }));
 
@@ -69,18 +70,22 @@ namespace LiberPrimusAnalysisTool
                         break;
 
                     case "1":
+                        _mediator.Publish(new IndexPages.Command()).Wait();
+                        break;
+
+                    case "96":
                         _mediator.Publish(new ColorCountText.Command()).Wait();
                         break;
 
-                    case "2":
+                    case "97":
                         _mediator.Publish(new ColorBreakDownText.Command()).Wait();
                         break;
 
-                    case "3":
+                    case "98":
                         _mediator.Publish(new ColorReport.Command()).Wait();
                         break;
 
-                    case "4":
+                    case "99":
                         _mediator.Publish(new ReverseBytes.Command()).Wait();
                         break;
 

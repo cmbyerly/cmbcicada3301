@@ -27,5 +27,12 @@ namespace LiberPrimusAnalysisTool.Database.DBRepos
         /// <param name="liberPage">The liber page.</param>
         /// <returns></returns>
         int UpdateLiberPage(LiberPage liberPage);
+
+        /// <summary>
+        /// Gets the liber page.
+        /// </summary>
+        /// <param name="pageName">Name of the page.</param>
+        /// <returns></returns>
+        LiberPage GetLiberPage(string pageName);
     }
 }

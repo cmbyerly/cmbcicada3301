@@ -8,6 +8,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="LiberPage"/> class.
         /// </summary>
+        public LiberPage()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LiberPage"/> class.
+        /// </summary>
         /// <param name="pageName">Name of the page.</param>
         /// <param name="pageSig">The page sig.</param>
         /// <param name="totalColors">The total colors.</param>

@@ -1,6 +1,7 @@
-﻿using LiberPrimusAnalysisTool.Entity;
+﻿using LiberPrimusAnalysisTool.Database.Contexts;
+using LiberPrimusAnalysisTool.Database.DBEntity;
+using LiberPrimusAnalysisTool.Entity;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace LiberPrimusAnalysisTool.Database.DBRepos
 {
@@ -9,11 +10,14 @@ namespace LiberPrimusAnalysisTool.Database.DBRepos
     /// </summary>
     public class LiberPageData : ILiberPageData
     {
+        private readonly IDatabaseConnectionUtils _databaseConnectionUtils;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LiberPageData"/> class.
         /// </summary>
-        public LiberPageData()
+        public LiberPageData(IDatabaseConnectionUtils databaseConnectionUtils)
         {
+            _databaseConnectionUtils = databaseConnectionUtils;
         }
 
         /// <summary>
@@ -23,7 +27,8 @@ namespace LiberPrimusAnalysisTool.Database.DBRepos
         /// <returns></returns>
         public int UpsertLiberPage(LiberPage liberPage)
         {
-            if (liberPage.Id == null)
+            var page = GetLiberPage(liberPage.PageName);
+            if (page == null || page.Id == null)
             {
                 return InsertLiberPage(liberPage);
             }
@@ -42,63 +47,21 @@ namespace LiberPrimusAnalysisTool.Database.DBRepos
         {
             int retval = 0;
 
-            using (SqlConnection conn = new SqlConnection())
-            using (SqlCommand cmd = conn.CreateCommand())
+            using (var context = new LiberContext(_databaseConnectionUtils))
             {
-                conn.Open();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "[dbo].[usp_LIBER_PAGEInsert]";
-
-                SqlParameter parameterPageName = new()
+                var liberPageEntity = new LIBER_PAGE
                 {
-                    ParameterName = "@LIBER_PAGE_NAME",
-                    SqlDbType = SqlDbType.NVarChar,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
+                    LIBER_PAGE_NAME = liberPage.PageName,
+                    LIBER_PAGE_SIG = liberPage.PageSig,
+                    LIBER_PAGE_TOTAL_COLORS = liberPage.TotalColors,
+                    LIBER_PAGE_HEIGHT = liberPage.Height,
+                    LIBER_PAGE_WIDTH = liberPage.Width
                 };
-                cmd.Parameters.Add(parameterPageName);
 
-                SqlParameter parameterSig = new()
-                {
-                    ParameterName = "@LIBER_PAGE_SIG",
-                    SqlDbType = SqlDbType.NVarChar,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterSig);
-
-                SqlParameter parameterTotalColors = new()
-                {
-                    ParameterName = "@LIBER_PAGE_TOTAL_COLORS",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterTotalColors);
-
-                SqlParameter parameterHeight = new()
-                {
-                    ParameterName = "@LIBER_PAGE_HEIGHT",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterHeight);
-
-                SqlParameter parameterWidth = new()
-                {
-                    ParameterName = "@LIBER_PAGE_WIDTH",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterWidth);
-
-                retval = (int)cmd.ExecuteScalar();
-
-                conn.Close();
+                context.LIBER_PAGE.Add(liberPageEntity);
+                retval = context.SaveChanges();
             }
-
+            
             return retval;
         }
 
@@ -111,70 +74,48 @@ namespace LiberPrimusAnalysisTool.Database.DBRepos
         {
             int retval = 0;
 
-            using (SqlConnection conn = new SqlConnection())
-            using (SqlCommand cmd = conn.CreateCommand())
+            using (var context = new LiberContext(_databaseConnectionUtils))
             {
-                conn.Open();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "[dbo].[usp_LIBER_COLORUpdate]";
+                var liberPageEntity = context.LIBER_PAGE.Where(x => x.LIBER_PAGE_NAME == liberPage.PageName).First();
 
-                SqlParameter parameterId = new()
+                liberPageEntity.LIBER_PAGE_NAME = liberPage.PageName;
+                liberPageEntity.LIBER_PAGE_SIG = liberPage.PageSig;
+                liberPageEntity.LIBER_PAGE_TOTAL_COLORS = liberPage.TotalColors;
+                liberPageEntity.LIBER_PAGE_HEIGHT = liberPage.Height;
+                liberPageEntity.LIBER_PAGE_WIDTH = liberPage.Width;
+
+                context.LIBER_PAGE.Add(liberPageEntity);
+                retval = context.SaveChanges();
+            }
+
+            return retval;
+        }
+
+        /// <summary>
+        /// Gets the liber page.
+        /// </summary>
+        /// <param name="pageName">Name of the page.</param>
+        /// <returns></returns>
+        public LiberPage GetLiberPage(string pageName)
+        {
+            LiberPage retval = null;
+
+            using (var context = new LiberContext(_databaseConnectionUtils))
+            {
+                var liberPageEntity = context.LIBER_PAGE.Where(x => x.LIBER_PAGE_NAME == pageName).FirstOrDefault();
+
+                if (liberPageEntity != null)
                 {
-                    ParameterName = "@LIBER_PAGE_ID",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.Id
-                };
-                cmd.Parameters.Add(parameterId);
-
-                SqlParameter parameterPageName = new()
-                {
-                    ParameterName = "@LIBER_PAGE_NAME",
-                    SqlDbType = SqlDbType.NVarChar,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterPageName);
-
-                SqlParameter parameterSig = new()
-                {
-                    ParameterName = "@LIBER_PAGE_SIG",
-                    SqlDbType = SqlDbType.NVarChar,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterSig);
-
-                SqlParameter parameterTotalColors = new()
-                {
-                    ParameterName = "@LIBER_PAGE_TOTAL_COLORS",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterTotalColors);
-
-                SqlParameter parameterHeight = new()
-                {
-                    ParameterName = "@LIBER_PAGE_HEIGHT",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterHeight);
-
-                SqlParameter parameterWidth = new()
-                {
-                    ParameterName = "@LIBER_PAGE_WIDTH",
-                    SqlDbType = SqlDbType.Int,
-                    Direction = ParameterDirection.Input,
-                    Value = liberPage.PageName
-                };
-                cmd.Parameters.Add(parameterWidth);
-
-                retval = (int)cmd.ExecuteScalar();
-
-                conn.Close();
+                    retval = new LiberPage
+                    {
+                        Id = liberPageEntity.LIBER_PAGE_ID,
+                        PageName = liberPageEntity.LIBER_PAGE_NAME,
+                        PageSig = liberPageEntity.LIBER_PAGE_SIG,
+                        TotalColors = liberPageEntity.LIBER_PAGE_TOTAL_COLORS,
+                        Height = liberPageEntity.LIBER_PAGE_HEIGHT,
+                        Width = liberPageEntity.LIBER_PAGE_WIDTH
+                    };
+                }
             }
 
             return retval;
