@@ -1,4 +1,5 @@
 ﻿using LiberPrimusAnalysisTool.Analyzers;
+using LiberPrimusAnalysisTool.Commands;
 using LiberPrimusAnalysisTool.Utility;
 using MediatR;
 using Spectre.Console;
@@ -51,6 +52,7 @@ namespace LiberPrimusAnalysisTool
                     .AddChoices(new[] {
                         "0: Exit Program",
                         "1: Index Liber Primus Pages",
+                        "2: Index Liber Primus Page Colors",
                         "96: Round 1 Test (output folder)",
                         "97: Round 2 Test (output folder)",
                         "98: Color Report (output folder)",
@@ -71,6 +73,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "1":
                         _mediator.Publish(new IndexPages.Command()).Wait();
+                        break;
+
+                    case "2":
+                        _mediator.Publish(new IndexColors.Command()).Wait();
                         break;
 
                     case "96":

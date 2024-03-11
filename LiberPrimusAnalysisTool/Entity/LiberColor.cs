@@ -5,25 +5,9 @@
     /// </summary>
     public class LiberColor
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LiberColor"/> class.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        public LiberColor(string name)
+        public LiberColor()
         {
-            Id = null;
-            Name = name;
-        }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LiberColor"/> class.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="name">The name.</param>
-        public LiberColor(long id, string name)
-        {
-            Id = id;
-            Name = name;
         }
 
         /// <summary>
@@ -32,14 +16,25 @@
         /// <value>
         /// The identifier.
         /// </value>
-        public long? Id { get; set; }
+        public long? LiberColorId { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the hexadecimal.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The hexadecimal.
         /// </value>
-        public string Name { get; set; }
+        public string LiberColorHex { get; set; }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return LiberColorHex;
+        }
     }
 }

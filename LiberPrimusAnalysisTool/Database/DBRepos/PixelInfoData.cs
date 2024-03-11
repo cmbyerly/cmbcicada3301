@@ -6,5 +6,6 @@
     /// <seealso cref="LiberPrimusAnalysisTool.Database.DBRepos.IPixelInfoData" />
     public class PixelInfoData : IPixelInfoData
     {
+        
     }
 }

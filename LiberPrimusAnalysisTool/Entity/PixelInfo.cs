@@ -8,6 +8,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PixelInfo"/> class.
         /// </summary>
+        public PixelInfo()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PixelInfo"/> class.
+        /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
         /// <param name="channels">The channels.</param>
