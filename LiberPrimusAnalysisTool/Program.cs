@@ -1,5 +1,6 @@
-﻿using LiberPrimusAnalysisTool.Database.DBInterfaces;
-using LiberPrimusAnalysisTool.Database.DBRepos;
+﻿using LiberPrimusAnalysisTool.Application.Queries;
+using LiberPrimusAnalysisTool.Utility.Character;
+using LiberPrimusAnalysisTool.Utility.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,18 +48,11 @@ namespace LiberPrimusAnalysisTool
                 .ConfigureServices((_, services) =>
                 {
                     // Mediatr
-                    services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(App).Assembly));
+                    services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPages).Assembly));
 
-                    // Database services
-                    services.AddSingleton<IDatabaseConnectionUtils, DatabaseConnectionUtils>();
-                    services.AddSingleton<IPixelInfoData, PixelInfoData>();
-                    services.AddSingleton<ILineOrientationData, LineOrientationData>();
-                    services.AddSingleton<ILineColorInfoData, LineColorInfoData>();
-                    services.AddSingleton<ILiberPageData, LiberPageData>();
-                    services.AddSingleton<ILiberColorInfoData, LiberColorInfoData>();
-                    services.AddSingleton<ILiberColorData, LiberColorData>();
-                    services.AddSingleton<ILiberColorData, LiberColorData>();
+                    // Quick and dirty services
                     services.AddSingleton<ICharacterRepo, CharacterRepo>();
+                    services.AddSingleton<ILoggingUtility, LoggingUtility>();
 
                     // The application singleton
                     services.AddSingleton<App>();

@@ -1,6 +1,4 @@
-﻿using LiberPrimusAnalysisTool.Analyzers;
-using LiberPrimusAnalysisTool.Commands;
-using LiberPrimusAnalysisTool.Utility;
+﻿using LiberPrimusAnalysisTool.Application.Commands;
 using MediatR;
 using Spectre.Console;
 
@@ -31,39 +29,34 @@ namespace LiberPrimusAnalysisTool
         /// <param name="args">The arguments.</param>
         public void Run(string[] args)
         {
-            FileUtilities.RemovePreviousRuns();
-
             var dontExit = true;
 
             while (dontExit)
             {
                 Console.Clear();
-                AnsiConsole.MarkupLine("[red]THIS TOOL REMOVES OUTPUT BETWEEN EXECUTIONS!!![/]");
-                AnsiConsole.MarkupLine("[red]THE DATABASE MUST BE RUNNING!!![/]");
+                AnsiConsole.MarkupLine("[red]THE ELASTIC STACK MUST BE RUNNING!!![/]");
                 AnsiConsole.MarkupLine(string.Empty);
                 AnsiConsole.MarkupLine("[green]Running Liber Primus Analysis Tool[/]");
-                AnsiConsole.MarkupLine("[green]Enter the test number you want to perform.[/]");
 
                 var selecttion = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
-                    .Title("[green]Please select test to run[/]?")
+                    .Title("[green]Please select analysis to run[/]:")
                     .PageSize(10)
                     .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
                     .AddChoices(new[] {
                         "0: Exit Program",
-                        "1: Index Liber Primus Pages",
-                        "2: Index Liber Primus Page Colors",
-                        "96: Round 1 Test (output folder)",
-                        "97: Round 2 Test (output folder)",
-                        "98: Color Report (output folder)",
-                        "99: Reverse Bytes (output folder)",
+                        "1: Color Count Line (Kibana - Index: colorcounttext)",
+                        "2: Color Counts in File (Kibana - Index: colorbreakdowntext)",
+                        "3: Color Report (Kibana - Index: colorreport)",
+                        "4: Reverse Bytes (output folder)",
+                        "5: Index Pages (Kibana - Index: pageindex)",
                         "9999: All Tests",
                     }));
 
                 var choice = selecttion.Split(":")[0];
 
                 // Echo the fruit back to the terminal
-                AnsiConsole.WriteLine($"Selected test: {selecttion}");
+                AnsiConsole.WriteLine($"Selected - {selecttion}");
 
                 switch (choice.Trim())
                 {
@@ -72,33 +65,30 @@ namespace LiberPrimusAnalysisTool
                         break;
 
                     case "1":
-                        _mediator.Publish(new IndexPages.Command()).Wait();
+                        _mediator.Publish(new ColorCountText.Command()).Wait();
                         break;
 
                     case "2":
-                        _mediator.Publish(new IndexColors.Command()).Wait();
-                        break;
-
-                    case "96":
-                        _mediator.Publish(new ColorCountText.Command()).Wait();
-                        break;
-
-                    case "97":
                         _mediator.Publish(new ColorBreakDownText.Command()).Wait();
                         break;
 
-                    case "98":
+                    case "3":
                         _mediator.Publish(new ColorReport.Command()).Wait();
                         break;
 
-                    case "99":
+                    case "4":
                         _mediator.Publish(new ReverseBytes.Command()).Wait();
                         break;
 
+                    case "5":
+                        _mediator.Publish(new IndexPages.Command()).Wait();
+                        break;
+
                     case "9999":
+                        _mediator.Publish(new IndexPages.Command()).Wait();
                         _mediator.Publish(new ColorCountText.Command()).Wait();
                         _mediator.Publish(new ColorBreakDownText.Command()).Wait();
-                        _mediator.Publish(new ColorBreakDownText.Command()).Wait();
+                        _mediator.Publish(new ColorReport.Command()).Wait();
                         break;
 
                     default:
