@@ -72,7 +72,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var files = await _mediator.Send(new GetPages.Command());
+                var files = await _mediator.Send(new GetPages.Command(true));
 
                 Parallel.ForEach(files, file =>
                 {

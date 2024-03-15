@@ -3,7 +3,6 @@ using LiberPrimusAnalysisTool.Entity;
 using LiberPrimusAnalysisTool.Utility.Logging;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Nest;
 
 namespace LiberPrimusAnalysisTool.Application.Queries
 {
@@ -18,6 +17,22 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <seealso cref="MediatR.IRequest" />
         public class Command : MediatR.IRequest<IEnumerable<LiberPage>>
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Command"/> class.
+            /// </summary>
+            /// <param name="includeImageData">if set to <c>true</c> [include image data].</param>
+            public Command(bool includeImageData)
+            {
+                IncludeImageData = includeImageData;
+            }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [include image data].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [include image data]; otherwise, <c>false</c>.
+            /// </value>
+            public bool IncludeImageData { get; set; }
         }
 
         /// <summary>
@@ -63,16 +78,30 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                 {
                     await _loggingUtility.Log($"Processing {pageId}");
                     var file = files.Where(x => x.Contains(pageId)).First();
-                    using (var imageFromFile = new MagickImage(file))
+
+                    if (request.IncludeImageData)
+                    {
+                        using (var imageFromFile = new MagickImage(file))
+                        {
+                            var page = new LiberPage
+                            {
+                                FileName = file,
+                                PageName = pageId,
+                                PageSig = imageFromFile.Signature,
+                                TotalColors = imageFromFile.TotalColors,
+                                Height = imageFromFile.Height,
+                                Width = imageFromFile.Width
+                            };
+
+                            pages.Add(page);
+                        }
+                    }
+                    else
                     {
                         var page = new LiberPage
                         {
                             FileName = file,
-                            PageName = pageId,
-                            PageSig = imageFromFile.Signature,
-                            TotalColors = imageFromFile.TotalColors,
-                            Height = imageFromFile.Height,
-                            Width = imageFromFile.Width
+                            PageName = pageId
                         };
 
                         pages.Add(page);

@@ -1,5 +1,4 @@
-﻿using ImageMagick;
-using LiberPrimusAnalysisTool.Application.Queries;
+﻿using LiberPrimusAnalysisTool.Application.Queries;
 using LiberPrimusAnalysisTool.Entity;
 using LiberPrimusAnalysisTool.Utility.Character;
 using LiberPrimusAnalysisTool.Utility.Logging;
@@ -72,15 +71,15 @@ namespace LiberPrimusAnalysisTool.Application.Commands
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var files = await _mediator.Send(new GetPages.Command());
+                var files = await _mediator.Send(new GetPages.Command(true));
 
-                Parallel.ForEach(files, async file =>
+                foreach (var file in files)
                 {
-                    var colors =await _mediator.Send(new GetPageColors.Command { PageId = file.PageName });
+                    var colors = await _mediator.Send(new GetPageColors.Command { PageId = file.PageName });
                     file.Colors = colors.ToList();
                     await _loggingUtility.Log($"Processing {file}");
                     _elasticClient.IndexDocument<LiberPage>(file);
-                });
+                };
             }
         }
     }

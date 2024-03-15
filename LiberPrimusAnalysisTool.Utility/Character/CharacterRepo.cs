@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Utility.Character
 {
@@ -23,6 +19,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         public CharacterRepo()
         {
             #region ANSI
+
             _asciiAnsiItems = new List<Tuple<string, string, int, string>>();
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "<NUL>", 0, "0000000"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "<SOH>", 1, "0000001"));
@@ -58,7 +55,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "<US>", 31, "0011111"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", " ", 32, "0100000"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "!", 33, "0100001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "\"",34,"0100010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "\"", 34, "0100010"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "#", 35, "0100011"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "$", 36, "0100100"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "%", 37, "0100101"));
@@ -116,7 +113,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "Y", 89, "1011001"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "Z", 90, "1011010"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "[", 91, "1011011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "\\",92,"1011100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "\\", 92, "1011100"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "]", 93, "1011101"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "^", 94, "1011110"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ASCII", "_", 95, "1011111"));
@@ -186,7 +183,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "<US>", 31, "00011111"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", " ", 32, "00100000"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "!", 33, "00100001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "\"",34,"00100010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "\"", 34, "00100010"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "#", 35, "00100011"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "$", 36, "00100100"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "%", 37, "00100101"));
@@ -244,7 +241,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Y", 89, "01011001"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Z", 90, "01011010"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "[", 91, "01011011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "\\",92,"01011100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "\\", 92, "01011100"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "]", 93, "01011101"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "^", 94, "01011110"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "_", 95, "01011111"));
@@ -282,133 +279,134 @@ namespace LiberPrimusAnalysisTool.Utility.Character
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "<DEL>", 127, "01111111"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 128, "10000000"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 129, "10000001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 130, "10000010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 131, "10000011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 132, "10000100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 133, "10000101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 134, "10000110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 135, "10000111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 136, "10001000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 137, "10001001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 138, "10001010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 139, "10001011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 140, "10001100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "‚", 130, "10000010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ƒ", 131, "10000011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "„", 132, "10000100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "…", 133, "10000101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "†", 134, "10000110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "‡", 135, "10000111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ˆ", 136, "10001000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "‰", 137, "10001001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Š", 138, "10001010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "‹", 139, "10001011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Œ", 140, "10001100"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 141, "10001101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 142, "10001110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ž", 142, "10001110"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 143, "10001111"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 144, "10010000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 145, "10010001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 146, "10010010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 147, "10010011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 148, "10010100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 149, "10010101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 150, "10010110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 151, "10010111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 152, "10011000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 153, "10011001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 154, "10011010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 155, "10011011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 156, "10011100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "‘", 145, "10010001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "’", 146, "10010010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "“", 147, "10010011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "”", 148, "10010100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "•", 149, "10010101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "–", 150, "10010110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "—", 151, "10010111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "˜", 152, "10011000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "™", 153, "10011001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "š", 154, "10011010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "›", 155, "10011011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "œ", 156, "10011100"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 157, "10011101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 158, "10011110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 159, "10011111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ž", 158, "10011110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ÿ", 159, "10011111"));
             _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 160, "10100000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 161, "10100001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 162, "10100010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 163, "10100011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 164, "10100100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 165, "10100101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 166, "10100110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 167, "10100111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 168, "10101000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 169, "10101001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 170, "10101010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 171, "10101011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 172, "10101100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 173, "10101101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 174, "10101110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 175, "10101111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 176, "10110000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 177, "10110001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 178, "10110010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 179, "10110011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 180, "10110100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 181, "10110101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 182, "10110110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 183, "10110111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 184, "10111000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 185, "10111001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 186, "10111010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 187, "10111011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 188, "10111100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 189, "10111101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 190, "10111110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 191, "10111111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 192, "11000000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 193, "11000001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 194, "11000010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 195, "11000011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 196, "11000100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 197, "11000101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 198, "11000110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 199, "11000111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 200, "11001000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 201, "11001001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 202, "11001010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 203, "11001011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 204, "11001100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 205, "11001101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 206, "11001110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 207, "11001111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 208, "11010000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 209, "11010001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 210, "11010010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 211, "11010011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 212, "11010100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 213, "11010101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 214, "11010110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 215, "11010111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 216, "11011000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 217, "11011001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 218, "11011010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 219, "11011011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 220, "11011100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 221, "11011101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 222, "11011110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 223, "11011111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 224, "11100000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 225, "11100001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 226, "11100010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 227, "11100011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 228, "11100100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 229, "11100101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 230, "11100110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 231, "11100111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 232, "11101000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 233, "11101001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 234, "11101010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 235, "11101011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 236, "11101100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 237, "11101101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 238, "11101110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 239, "11101111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 240, "11110000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 241, "11110001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 242, "11110010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 243, "11110011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 244, "11110100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 245, "11110101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 246, "11110110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 247, "11110111"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 248, "11111000"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 249, "11111001"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 250, "11111010"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 251, "11111011"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 252, "11111100"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 253, "11111101"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 254, "11111110"));
-            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "�", 255, "11111111"));
-            #endregion
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¡", 161, "10100001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¢", 162, "10100010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "£", 163, "10100011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¤", 164, "10100100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¥", 165, "10100101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¦", 166, "10100110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "§", 167, "10100111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¨", 168, "10101000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "©", 169, "10101001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ª", 170, "10101010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "«", 171, "10101011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¬", 172, "10101100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "", 173, "10101101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "®", 174, "10101110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¯", 175, "10101111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "°", 176, "10110000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "±", 177, "10110001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "²", 178, "10110010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "³", 179, "10110011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "´", 180, "10110100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "µ", 181, "10110101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¶", 182, "10110110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "·", 183, "10110111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¸", 184, "10111000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¹", 185, "10111001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "º", 186, "10111010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "»", 187, "10111011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¼", 188, "10111100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "½", 189, "10111101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¾", 190, "10111110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "¿", 191, "10111111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "v", 192, "11000000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Á", 193, "11000001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Â", 194, "11000010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ã", 195, "11000011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ä", 196, "11000100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Å", 197, "11000101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Æ", 198, "11000110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ç", 199, "11000111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "È", 200, "11001000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "É", 201, "11001001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ê", 202, "11001010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ë", 203, "11001011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ì", 204, "11001100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Í", 205, "11001101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Î", 206, "11001110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ï", 207, "11001111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ð", 208, "11010000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ñ", 209, "11010001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ò", 210, "11010010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ó", 211, "11010011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ô", 212, "11010100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Õ", 213, "11010101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ö", 214, "11010110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "×", 215, "11010111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ø", 216, "11011000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ù", 217, "11011001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ú", 218, "11011010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Û", 219, "11011011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ü", 220, "11011100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Ý", 221, "11011101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "Þ", 222, "11011110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ß", 223, "11011111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "à", 224, "11100000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "á", 225, "11100001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "â", 226, "11100010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ã", 227, "11100011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ä", 228, "11100100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "å", 229, "11100101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "æ", 230, "11100110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ç", 231, "11100111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "è", 232, "11101000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "é", 233, "11101001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ê", 234, "11101010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ë", 235, "11101011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ì", 236, "11101100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "í", 237, "11101101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "î", 238, "11101110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ï", 239, "11101111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ð", 240, "11110000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ñ", 241, "11110001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ò", 242, "11110010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ó", 243, "11110011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ô", 244, "11110100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "õ", 245, "11110101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ö", 246, "11110110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "÷", 247, "11110111"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ø", 248, "11111000"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ù", 249, "11111001"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ú", 250, "11111010"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "û", 251, "11111011"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ü", 252, "11111100"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ý", 253, "11111101"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "þ", 254, "11111110"));
+            _asciiAnsiItems.Add(new Tuple<string, string, int, string>("ANSI", "ÿ", 255, "11111111"));
+
+            #endregion ANSI
         }
 
         /// <summary>
@@ -418,7 +416,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string GetANSICharFromBin(string bin)
         {
-            return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+            return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
         }
 
         /// <summary>
@@ -426,9 +424,14 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// </summary>
         /// <param name="dec">The decimal.</param>
         /// <returns></returns>
-        public string GetANSICharFromDec(int dec)
+        public string GetANSICharFromDec(int dec, bool includeControlCharacters)
         {
-            return _asciiAnsiItems.Where(x => x.Item3 == dec && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+            var value = _asciiAnsiItems.Where(x => x.Item3 == dec && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+            if (value != null && value.StartsWith("<") && value.EndsWith(">") && !includeControlCharacters)
+            {
+                return string.Empty;
+            }
+            return value;
         }
 
         /// <summary>
@@ -438,7 +441,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string GetASCIICharFromBin(string bin)
         {
-            return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+            return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
         }
 
         /// <summary>
@@ -448,7 +451,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string GetASCIICharFromDec(int dec)
         {
-            return _asciiAnsiItems.Where(x => x.Item3 == dec && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+            return _asciiAnsiItems.Where(x => x.Item3 == dec && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
         }
     }
 }

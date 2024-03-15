@@ -49,11 +49,12 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
-            /// <param name="liberPageData">The liber page data.</param>
-            /// <param name="liberColorData">The liber color data.</param>
+            /// <param name="loggingUtility">The logging utility.</param>
+            /// <param name="mediator">The mediator.</param>
             public Handler(ILoggingUtility loggingUtility, IMediator mediator)
             {
                 _loggingUtility = loggingUtility;
+                _mediator = mediator;
             }
 
             /// <summary>
@@ -67,8 +68,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries
 
                 var page = await _mediator.Send(new GetPageData.Command { PageId = request.PageId });
 
-                await _loggingUtility.Log($"Processing {page.FileName}");
-                
+                await _loggingUtility.Log($"Getting colors for {page.FileName}");
+
                 using (var imageFromFile = new MagickImage(page.FileName))
                 {
                     var pixels = imageFromFile.GetPixels();
@@ -81,7 +82,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                             LiberColorHex = color
                         };
 
-                        await _loggingUtility.Log($"Processing: {request.PageId} - Getting: {liberColor}");
+                        await _loggingUtility.Log($"Processing: {page} - Getting: {liberColor}");
                     }
                 }
 

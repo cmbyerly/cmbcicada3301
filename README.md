@@ -45,3 +45,16 @@ I have written a C# program to do this with ImageMagick to generate the files wi
 - Changing out the text files for ELK.
 - The text files are just too large and numerous to look through cleanly.  I can do this better with discover (in progress).
 - Added reverse bytes test after looking at the 05 image in a hex editor.
+- No longer flush output directory.
+
+### Revision 5
+- Working on other algos.
+
+# TODO
+- LSB Algorithms (x and y) (7-bit, 8-bit) (gt0 and all)
+- Color isolation algo
+- Winnowing algo (totient?, fibonacci, prime)
+- Shedding circumference algo / w LSB (see above)
+- Totient Series Utility
+- Fibonacci Series Utility
+- BPCS?

@@ -17,7 +17,7 @@
         /// </summary>
         /// <param name="dec">The decimal.</param>
         /// <returns></returns>
-        string GetANSICharFromDec(int dec);
+        string GetANSICharFromDec(int dec, bool includeControlCharacters);
 
         /// <summary>
         /// Gets the ASCII character from bin.

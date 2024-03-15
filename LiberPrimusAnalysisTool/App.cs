@@ -50,6 +50,7 @@ namespace LiberPrimusAnalysisTool
                         "3: Color Report (Kibana - Index: colorreport)",
                         "4: Reverse Bytes (output folder)",
                         "5: Index Pages (Kibana - Index: pageindex)",
+                        "6: RBG To Chars (output folder)",
                         "9999: All Tests",
                     }));
 
@@ -82,6 +83,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "5":
                         _mediator.Publish(new IndexPages.Command()).Wait();
+                        break;
+
+                    case "6":
+                        _mediator.Publish(new RgbIndex.Command()).Wait();
                         break;
 
                     case "9999":
