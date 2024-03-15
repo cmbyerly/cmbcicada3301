@@ -91,9 +91,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands
                         foreach (Pixel pixel in pixels)
                         {
                             System.Drawing.Color color = ColorTranslator.FromHtml(pixel.ToColor().ToHexString().ToUpper());
-                            rgbIndex.AddR(_characterRepo.GetANSICharFromDec(color.R, includeControlCharacters));
-                            rgbIndex.AddG(_characterRepo.GetANSICharFromDec(color.G, includeControlCharacters));
-                            rgbIndex.AddB(_characterRepo.GetANSICharFromDec(color.B, includeControlCharacters));
+                            rgbIndex.AddR(_characterRepo.GetASCIICharFromDec(color.R, includeControlCharacters));
+                            rgbIndex.AddG(_characterRepo.GetASCIICharFromDec(color.G, includeControlCharacters));
+                            rgbIndex.AddB(_characterRepo.GetASCIICharFromDec(color.B, includeControlCharacters));
                         }
 
                         AnsiConsole.WriteLine($"Red Text: {rgbIndex.R}");

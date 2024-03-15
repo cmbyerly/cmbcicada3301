@@ -31,6 +31,6 @@
         /// </summary>
         /// <param name="dec">The decimal.</param>
         /// <returns></returns>
-        string GetASCIICharFromDec(int dec);
+        string GetASCIICharFromDec(int dec, bool includeControlCharacters);
     }
 }

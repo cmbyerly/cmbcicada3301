@@ -124,7 +124,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands
                             {
                                 try
                                 {
-                                    asciiSb.Append(_characterRepo.GetASCIICharFromDec(item));
+                                    asciiSb.Append(_characterRepo.GetASCIICharFromDec(item, true));
                                 }
                                 catch { }
                             }

@@ -449,9 +449,14 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// </summary>
         /// <param name="dec">The decimal.</param>
         /// <returns></returns>
-        public string GetASCIICharFromDec(int dec)
+        public string GetASCIICharFromDec(int dec, bool includeControlCharacters)
         {
-            return _asciiAnsiItems.Where(x => x.Item3 == dec && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+            var value = _asciiAnsiItems.Where(x => x.Item3 == dec && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+            if (value != null && value.StartsWith("<") && value.EndsWith(">") && !includeControlCharacters)
+            {
+                return string.Empty;
+            }
+            return value;
         }
     }
 }
