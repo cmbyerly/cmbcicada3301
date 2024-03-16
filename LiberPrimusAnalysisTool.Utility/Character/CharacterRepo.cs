@@ -416,7 +416,14 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string GetANSICharFromBin(string bin)
         {
-            return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+            if (_asciiAnsiItems.Any(x => x.Item4 == bin && x.Item1 == "ANSI"))
+            {
+                return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -441,7 +448,14 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string GetASCIICharFromBin(string bin)
         {
-            return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+            if (_asciiAnsiItems.Any(x => x.Item4 == bin && x.Item1 == "ASCII"))
+            {
+                return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -466,7 +480,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string GetCharacterFromGematriaValue(int value)
         {
-            string retval = string.Empty;
+            string retval;
             switch (value)
             {
                 case 2:

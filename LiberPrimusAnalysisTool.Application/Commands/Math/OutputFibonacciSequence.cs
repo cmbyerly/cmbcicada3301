@@ -1,19 +1,19 @@
-﻿using LiberPrimusAnalysisTool.Application.Queries;
+﻿using LiberPrimusAnalysisTool.Application.Queries.Math;
 using MediatR;
 using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Math
 {
     /// <summary>
-    /// Output Prime Sequence
+    /// Output Fibonacci Sequence
     /// </summary>
-    public class OutputPrimeSequence
+    public class OutputFibonacciSequence
     {
         /// <summary>
-        ///
+        /// Command
         /// </summary>
         /// <seealso cref="MediatR.INotification" />
-        public class Command : INotification
+        public class Command : MediatR.INotification
         {
         }
 
@@ -43,12 +43,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Math
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var number = AnsiConsole.Ask<int>("What is the number?");
-                var primeSequence = await _mediator.Send(new GetPrimeSequence.Command() { Number = number });
-                foreach (int i in primeSequence)
+                var number = AnsiConsole.Ask<int>("What is the max number?");
+                var fibonacciSequence = await _mediator.Send(new GetFibonacciSequence.Command() { MaxNumber = number });
+                foreach (int i in fibonacciSequence)
                 {
-                    AnsiConsole.MarkupLine($"[green]{i} is prime[/]");
-                    await File.AppendAllTextAsync("./output/prime.txt", $"{i}" + Environment.NewLine);
+                    AnsiConsole.MarkupLine($"[green]{i}[/]");
+                    await File.AppendAllTextAsync("./output/fibonacci.txt", $"{i}" + Environment.NewLine);
                 }
             }
         }

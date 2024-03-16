@@ -62,7 +62,6 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
 
                     returnToMenu = AnsiConsole.Confirm("Return to main menu?");
                 }
-                
             }
         }
     }

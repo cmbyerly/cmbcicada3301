@@ -1,25 +1,24 @@
 ﻿using MediatR;
 
-namespace LiberPrimusAnalysisTool.Application.Queries
+namespace LiberPrimusAnalysisTool.Application.Queries.Math
 {
     /// <summary>
-    /// Indexes the liber primus pages into the database.
+    /// Get Fibonacci Sequence
     /// </summary>
-    public class GetIsPrime
+    public class GetFibonacciSequence
     {
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="IRequest" />
-        public class Command : IRequest<bool>
+        public class Command : IRequest<IEnumerable<int>>
         {
-            public int Number { get; set; }
+            public int MaxNumber { get; set; }
         }
 
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Command, bool>
+        public class Handler : IRequestHandler<Command, IEnumerable<int>>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
@@ -36,23 +35,27 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             /// <returns>
             /// Response from the request
             /// </returns>
-            public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<int>> Handle(Command request, CancellationToken cancellationToken)
             {
-                if (request.Number <= 1) return false;
-                if (request.Number == 2) return true;
-                if (request.Number % 2 == 0) return false;
+                List<int> result = new List<int>();
 
-                var boundary = (int)System.Math.Floor(System.Math.Sqrt(request.Number));
+                int a = 0;
+                int b = 1;
+                int c = 0;
 
-                for (int i = 3; i <= boundary; i += 2)
+                while (c <= request.MaxNumber)
                 {
-                    if (request.Number % i == 0)
+                    c = a + b;
+                    a = b;
+                    b = c;
+
+                    if (c <= request.MaxNumber)
                     {
-                        return false;
+                        result.Add(c);
                     }
                 }
 
-                return true;
+                return result;
             }
         }
     }

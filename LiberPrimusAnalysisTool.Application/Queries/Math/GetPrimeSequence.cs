@@ -10,8 +10,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="MediatR.IRequest" />
-        public class Command : MediatR.IRequest<IEnumerable<int>>
+        /// <seealso cref="IRequest" />
+        public class Command : IRequest<IEnumerable<int>>
         {
             public int Number { get; set; }
         }

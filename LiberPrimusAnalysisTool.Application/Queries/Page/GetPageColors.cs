@@ -13,8 +13,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="MediatR.IRequest" />
-        public class Command : MediatR.IRequest<IEnumerable<LiberColor>>
+        /// <seealso cref="IRequest" />
+        public class Command : IRequest<IEnumerable<LiberColor>>
         {
             /// <summary>
             /// Gets or sets the page identifier.

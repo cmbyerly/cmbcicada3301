@@ -51,6 +51,7 @@ namespace LiberPrimusAnalysisTool
                         "3: RGB -> Text",
                         "4: Check if number is prime",
                         "5: Output prime sequence",
+                        "6: Output fibonacci sequence",
                         "99: Exit Program",
                     }));
 
@@ -79,6 +80,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "5":
                         _mediator.Publish(new OutputPrimeSequence.Command()).Wait();
+                        break;
+
+                    case "6":
+                        _mediator.Publish(new OutputFibonacciSequence.Command()).Wait();
                         break;
 
                     case "99":

@@ -1,7 +1,6 @@
 ﻿using ImageMagick;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Queries

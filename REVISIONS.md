@@ -29,7 +29,6 @@
 
 # TODO
 ## Menu
-- Get Fibonacci sequence through X number.
 - Get totient value for number
 - Get totient sequence for a given number.
 - Print page information and output to directory.
