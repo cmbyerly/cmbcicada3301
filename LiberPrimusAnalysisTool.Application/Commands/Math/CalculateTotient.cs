@@ -1,5 +1,4 @@
-﻿using LiberPrimusAnalysisTool.Application.Queries;
-using LiberPrimusAnalysisTool.Application.Queries.Math;
+﻿using LiberPrimusAnalysisTool.Application.Queries.Math;
 using MediatR;
 using Spectre.Console;
 
@@ -55,6 +54,15 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
 
                     AnsiConsole.MarkupLine($"[green]Phi({number}) = {totient.Phi}[/]");
                     AnsiConsole.MarkupLine($"[green]Sequence: {string.Join($"{Environment.NewLine}", totient.Sequence)}[/]");
+
+                    await File.AppendAllTextAsync("./output/totient.txt", $"Number: {totient.Number}" + Environment.NewLine);
+                    await File.AppendAllTextAsync("./output/totient.txt", $"Phi: {totient.Phi}" + Environment.NewLine);
+                    await File.AppendAllTextAsync("./output/totient.txt", "Sequence: " + Environment.NewLine);
+                    await File.AppendAllTextAsync("./output/totient.txt", string.Empty + Environment.NewLine);
+                    foreach (var item in totient.Sequence)
+                    {
+                        await File.AppendAllTextAsync("./output/totient.txt", $"{item}" + Environment.NewLine);
+                    }
 
                     returnToMenu = AnsiConsole.Confirm("Return to main menu?");
                 }

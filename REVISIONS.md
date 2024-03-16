@@ -29,9 +29,6 @@
 
 # TODO
 ## Menu
-- Get totient value for number
-- Get totient sequence for a given number.
-- Print page information and output to directory.
 - Do winnowing -> algo passthrough
 
 ## Algos

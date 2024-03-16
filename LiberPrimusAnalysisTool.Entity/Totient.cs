@@ -36,6 +36,5 @@
         /// The sequence.
         /// </value>
         public List<int> Sequence { get; set; }
-
     }
 }
