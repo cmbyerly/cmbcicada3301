@@ -1,6 +1,5 @@
-﻿using LiberPrimusAnalysisTool.Application.Queries;
+﻿using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Utility.Character;
-using LiberPrimusAnalysisTool.Utility.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -50,9 +49,8 @@ namespace LiberPrimusAnalysisTool
                     // Mediatr
                     services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPages).Assembly));
 
-                    // Quick and dirty services
+                    // Quick and dirty character
                     services.AddSingleton<ICharacterRepo, CharacterRepo>();
-                    services.AddSingleton<ILoggingUtility, LoggingUtility>();
 
                     // The application singleton
                     services.AddSingleton<App>();

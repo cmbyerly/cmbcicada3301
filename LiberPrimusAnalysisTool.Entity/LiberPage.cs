@@ -62,6 +62,14 @@
         public int Width { get; set; }
 
         /// <summary>
+        /// Gets or sets the pixel count.
+        /// </summary>
+        /// <value>
+        /// The pixel count.
+        /// </value>
+        public int PixelCount { get; set; }
+
+        /// <summary>
         /// Gets or sets the colors.
         /// </summary>
         /// <value>

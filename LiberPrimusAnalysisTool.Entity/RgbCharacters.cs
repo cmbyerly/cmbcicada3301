@@ -35,7 +35,8 @@
         /// <value>
         /// The r.
         /// </value>
-        public string R { 
+        public string R
+        {
             get
             {
                 return string.Join("", _r);

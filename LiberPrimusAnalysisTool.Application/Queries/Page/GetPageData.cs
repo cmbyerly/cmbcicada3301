@@ -1,8 +1,8 @@
 ﻿using ImageMagick;
 using LiberPrimusAnalysisTool.Entity;
-using LiberPrimusAnalysisTool.Utility.Logging;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Queries
 {
@@ -32,18 +32,10 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         public class Handler : IRequestHandler<Command, LiberPage>
         {
             /// <summary>
-            /// The logging utility
+            /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
-            private readonly ILoggingUtility _loggingUtility;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Handler"/> class.
-            /// </summary>
-            /// <param name="loggingUtility">The logging utility.</param>
-            /// <param name="configuration">The configuration.</param>
-            public Handler(ILoggingUtility loggingUtility, IConfiguration configuration)
+            public Handler()
             {
-                _loggingUtility = loggingUtility;
             }
 
             /// <summary>
@@ -59,7 +51,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                 LiberPage page;
                 var files = Directory.EnumerateFiles("./liber-primus__images--full").ToList();
 
-                await _loggingUtility.Log($"Processing {request.PageId}");
+                AnsiConsole.WriteLine($"Getting page info for {request.PageId}");
                 var file = files.Where(x => x.Contains(request.PageId)).First();
                 using (var imageFromFile = new MagickImage(file))
                 {
@@ -70,7 +62,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                         PageSig = imageFromFile.Signature,
                         TotalColors = imageFromFile.TotalColors,
                         Height = imageFromFile.Height,
-                        Width = imageFromFile.Width
+                        Width = imageFromFile.Width,
+                        PixelCount = imageFromFile.GetPixels().Count()
                     };
                 }
 

@@ -1,10 +1,9 @@
 ﻿using ImageMagick;
 using LiberPrimusAnalysisTool.Entity;
-using LiberPrimusAnalysisTool.Utility.Logging;
 using MediatR;
-using Microsoft.Extensions.Configuration;
+using Spectre.Console;
 
-namespace LiberPrimusAnalysisTool.Application.Queries
+namespace LiberPrimusAnalysisTool.Application.Queries.Page
 {
     /// <summary>
     /// Indexes the liber primus pages into the database.
@@ -14,8 +13,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="MediatR.IRequest" />
-        public class Command : MediatR.IRequest<IEnumerable<LiberPage>>
+        /// <seealso cref="IRequest" />
+        public class Command : IRequest<IEnumerable<LiberPage>>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="Command"/> class.
@@ -41,18 +40,10 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         public class Handler : IRequestHandler<Command, IEnumerable<LiberPage>>
         {
             /// <summary>
-            /// The logging utility
+            /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
-            private readonly ILoggingUtility _loggingUtility;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Handler"/> class.
-            /// </summary>
-            /// <param name="loggingUtility">The logging utility.</param>
-            /// <param name="configuration">The configuration.</param>
-            public Handler(ILoggingUtility loggingUtility, IConfiguration configuration)
+            public Handler()
             {
-                _loggingUtility = loggingUtility;
             }
 
             /// <summary>
@@ -76,7 +67,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
 
                 foreach (var pageId in pageIds)
                 {
-                    await _loggingUtility.Log($"Processing {pageId}");
+                    AnsiConsole.WriteLine($"Getting page info for {pageId}");
                     var file = files.Where(x => x.Contains(pageId)).First();
 
                     if (request.IncludeImageData)
@@ -90,7 +81,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                                 PageSig = imageFromFile.Signature,
                                 TotalColors = imageFromFile.TotalColors,
                                 Height = imageFromFile.Height,
-                                Width = imageFromFile.Width
+                                Width = imageFromFile.Width,
+                                PixelCount = imageFromFile.GetPixels().Count()
                             };
 
                             pages.Add(page);

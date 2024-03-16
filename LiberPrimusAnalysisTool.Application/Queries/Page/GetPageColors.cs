@@ -1,10 +1,9 @@
 ﻿using ImageMagick;
 using LiberPrimusAnalysisTool.Entity;
-using LiberPrimusAnalysisTool.Utility.Logging;
 using MediatR;
-using Nest;
+using Spectre.Console;
 
-namespace LiberPrimusAnalysisTool.Application.Queries
+namespace LiberPrimusAnalysisTool.Application.Queries.Page
 {
     /// <summary>
     /// Index Colors
@@ -32,16 +31,6 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         public class Handler : IRequestHandler<Command, IEnumerable<LiberColor>>
         {
             /// <summary>
-            /// The elastic client
-            /// </summary>
-            private readonly ElasticClient _elasticClient;
-
-            /// <summary>
-            /// The logging utility
-            /// </summary>
-            private readonly ILoggingUtility _loggingUtility;
-
-            /// <summary>
             /// The mediator
             /// </summary>
             private readonly IMediator _mediator;
@@ -49,11 +38,9 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
-            /// <param name="loggingUtility">The logging utility.</param>
             /// <param name="mediator">The mediator.</param>
-            public Handler(ILoggingUtility loggingUtility, IMediator mediator)
+            public Handler(IMediator mediator)
             {
-                _loggingUtility = loggingUtility;
                 _mediator = mediator;
             }
 
@@ -68,7 +55,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
 
                 var page = await _mediator.Send(new GetPageData.Command { PageId = request.PageId });
 
-                await _loggingUtility.Log($"Getting colors for {page.FileName}");
+                AnsiConsole.WriteLine($"Getting colors for {page.FileName}");
 
                 using (var imageFromFile = new MagickImage(page.FileName))
                 {
@@ -82,7 +69,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                             LiberColorHex = color
                         };
 
-                        await _loggingUtility.Log($"Processing: {page} - Getting: {liberColor}");
+                        AnsiConsole.WriteLine($"Processing: {page} - Getting: {liberColor}");
                     }
                 }
 

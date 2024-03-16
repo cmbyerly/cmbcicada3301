@@ -1,15 +1,12 @@
 ﻿using ImageMagick;
-using LiberPrimusAnalysisTool.Application.Queries;
+using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using LiberPrimusAnalysisTool.Utility.Character;
-using LiberPrimusAnalysisTool.Utility.Logging;
 using MediatR;
-using Microsoft.Extensions.Configuration;
-using Nest;
 using Spectre.Console;
 using System.Drawing;
 
-namespace LiberPrimusAnalysisTool.Application.Commands
+namespace LiberPrimusAnalysisTool.Application.Commands.Image
 {
     /// <summary>
     /// ColorReport
@@ -19,7 +16,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="MediatR.IRequest" />
+        /// <seealso cref="IRequest" />
         public class Command : INotification
         {
         }
@@ -27,18 +24,13 @@ namespace LiberPrimusAnalysisTool.Application.Commands
         /// <summary>
         ///Handler
         /// </summary>
-        /// <seealso cref="MediatR.IRequestHandler&lt;LiberPrimusAnalysisTool.Analyzers.ColorReport.Command&gt;" />
-        public class Handler : INotificationHandler<RgbIndex.Command>
+        /// <seealso cref="IRequestHandler&lt;LiberPrimusAnalysisTool.Analyzers.ColorReport.Command&gt;" />
+        public class Handler : INotificationHandler<Command>
         {
             /// <summary>
             /// The character repo
             /// </summary>
             private readonly ICharacterRepo _characterRepo;
-
-            /// <summary>
-            /// The logging utility
-            /// </summary>
-            private readonly ILoggingUtility _loggingUtility;
 
             /// <summary>
             /// The mediator
@@ -49,12 +41,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands
             /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
             /// <param name="characterRepo">The character repo.</param>
-            /// <param name="loggingUtility">The logging utility.</param>
             /// <param name="mediator">The mediator.</param>
-            public Handler(ICharacterRepo characterRepo, ILoggingUtility loggingUtility, IMediator mediator)
+            public Handler(ICharacterRepo characterRepo, IMediator mediator)
             {
                 _characterRepo = characterRepo;
-                _loggingUtility = loggingUtility;
                 _mediator = mediator;
             }
 
@@ -78,16 +68,16 @@ namespace LiberPrimusAnalysisTool.Application.Commands
 
                 var files = await _mediator.Send(new GetPages.Command(false));
 
-                foreach (var file in files)
+                Parallel.ForEach(files, file =>
                 {
-                    await _loggingUtility.Log($"Processing {file}");
+                    AnsiConsole.WriteLine($"Processing {file}");
                     var rgbIndex = new RgbCharacters(file.PageName);
 
                     using (var imageFromFile = new MagickImage(file.FileName))
                     {
                         var pixels = imageFromFile.GetPixels();
 
-                        await _loggingUtility.Log($"Document: {file} - RGB Breakdown");
+                        AnsiConsole.WriteLine($"Document: {file} - RGB Breakdown");
                         foreach (Pixel pixel in pixels)
                         {
                             System.Drawing.Color color = ColorTranslator.FromHtml(pixel.ToColor().ToHexString().ToUpper());
@@ -100,12 +90,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands
                         AnsiConsole.WriteLine($"Green Text: {rgbIndex.G}");
                         AnsiConsole.WriteLine($"Blue Text: {rgbIndex.B}");
 
-                        await _loggingUtility.Log($"Writing: ./output/RgbIndex_{file.PageName}.txt");
+                        AnsiConsole.WriteLine($"Writing: ./output/RgbIndex_{file.PageName}.txt");
                         File.AppendAllText($"./output/RgbIndex_{file.PageName}.txt", "Red Text:" + rgbIndex.R + Environment.NewLine + Environment.NewLine);
                         File.AppendAllText($"./output/RgbIndex_{file.PageName}.txt", "Green Text: " + rgbIndex.G + Environment.NewLine + Environment.NewLine);
                         File.AppendAllText($"./output/RgbIndex_{file.PageName}.txt", "Blue Text: " + rgbIndex.B + Environment.NewLine + Environment.NewLine);
                     }
-                };
+                });
             }
         }
     }

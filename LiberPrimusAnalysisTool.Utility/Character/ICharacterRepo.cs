@@ -32,5 +32,12 @@
         /// <param name="dec">The decimal.</param>
         /// <returns></returns>
         string GetASCIICharFromDec(int dec, bool includeControlCharacters);
+
+        /// <summary>
+        /// Gets the character from gematria value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        string GetCharacterFromGematriaValue(int value);
     }
 }

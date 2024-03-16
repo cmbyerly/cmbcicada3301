@@ -1,4 +1,5 @@
-﻿using LiberPrimusAnalysisTool.Application.Commands;
+﻿using LiberPrimusAnalysisTool.Application.Commands.Directory;
+using LiberPrimusAnalysisTool.Application.Commands.Image;
 using MediatR;
 using Spectre.Console;
 
@@ -29,13 +30,13 @@ namespace LiberPrimusAnalysisTool
         /// <param name="args">The arguments.</param>
         public void Run(string[] args)
         {
+            _mediator.Publish(new CheckForOutputDirectory.Command()).Wait();
+
             var dontExit = true;
 
             while (dontExit)
             {
                 Console.Clear();
-                AnsiConsole.MarkupLine("[red]THE ELASTIC STACK MUST BE RUNNING!!![/]");
-                AnsiConsole.MarkupLine(string.Empty);
                 AnsiConsole.MarkupLine("[green]Running Liber Primus Analysis Tool[/]");
 
                 var selecttion = AnsiConsole.Prompt(
@@ -44,14 +45,10 @@ namespace LiberPrimusAnalysisTool
                     .PageSize(10)
                     .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
                     .AddChoices(new[] {
-                        "0: Exit Program",
-                        "1: Color Count Line (Kibana - Index: colorcounttext)",
-                        "2: Color Counts in File (Kibana - Index: colorbreakdowntext)",
-                        "3: Color Report (Kibana - Index: colorreport)",
-                        "4: Reverse Bytes (output folder)",
-                        "5: Index Pages (Kibana - Index: pageindex)",
-                        "6: RBG To Chars (output folder)",
-                        "9999: All Tests",
+                        "1: Flush output directory",
+                        "2: Reverse bytes",
+                        "3: RGB -> Text",
+                        "99: Exit Program",
                     }));
 
                 var choice = selecttion.Split(":")[0];
@@ -61,39 +58,20 @@ namespace LiberPrimusAnalysisTool
 
                 switch (choice.Trim())
                 {
-                    case "0":
-                        dontExit = false;
-                        break;
-
                     case "1":
-                        _mediator.Publish(new ColorCountText.Command()).Wait();
+                        _mediator.Publish(new FlushOutputDirectory.Command()).Wait();
                         break;
 
                     case "2":
-                        _mediator.Publish(new ColorBreakDownText.Command()).Wait();
-                        break;
-
-                    case "3":
-                        _mediator.Publish(new ColorReport.Command()).Wait();
-                        break;
-
-                    case "4":
                         _mediator.Publish(new ReverseBytes.Command()).Wait();
                         break;
 
-                    case "5":
-                        _mediator.Publish(new IndexPages.Command()).Wait();
-                        break;
-
-                    case "6":
+                    case "3":
                         _mediator.Publish(new RgbIndex.Command()).Wait();
                         break;
 
-                    case "9999":
-                        _mediator.Publish(new IndexPages.Command()).Wait();
-                        _mediator.Publish(new ColorCountText.Command()).Wait();
-                        _mediator.Publish(new ColorBreakDownText.Command()).Wait();
-                        _mediator.Publish(new ColorReport.Command()).Wait();
+                    case "99":
+                        dontExit = false;
                         break;
 
                     default:

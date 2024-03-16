@@ -1,11 +1,9 @@
 ﻿using LiberPrimusAnalysisTool.Utility.Character;
-using LiberPrimusAnalysisTool.Utility.Logging;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Spectre.Console;
 using System.Text;
 
-namespace LiberPrimusAnalysisTool.Application.Commands
+namespace LiberPrimusAnalysisTool.Application.Commands.Image
 {
     /// <summary>
     /// ReverseBytes - Reverses the bytes of an image and compares the bytes
@@ -15,7 +13,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="MediatR.IRequest" />
+        /// <seealso cref="IRequest" />
         public class Command : INotification
         {
         }
@@ -31,18 +29,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands
             private readonly ICharacterRepo _characterRepo;
 
             /// <summary>
-            /// The logging utility
-            /// </summary>
-            private readonly ILoggingUtility _loggingUtility;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Handler"/> class.
+            /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
             /// <param name="characterRepo">The character repo.</param>
-            public Handler(ICharacterRepo characterRepo, ILoggingUtility loggingUtility, IConfiguration configuration)
+            public Handler(ICharacterRepo characterRepo)
             {
                 _characterRepo = characterRepo;
-                _loggingUtility = loggingUtility;
             }
 
             /// <summary>
@@ -65,22 +57,22 @@ namespace LiberPrimusAnalysisTool.Application.Commands
                     .MoreChoicesText("[grey](Move up and down to reveal more images)[/]")
                     .AddChoices(choices.ToArray()));
 
-                var file = Directory.EnumerateFiles("./liber-primus__images--full").ToList().Where(x => x.Contains(selecttion)).First();
+                var file = System.IO.Directory.EnumerateFiles("./liber-primus__images--full").ToList().Where(x => x.Contains(selecttion)).First();
 
-                await _loggingUtility.Log($"Processing {file}");
+                AnsiConsole.WriteLine($"Processing {file}");
 
                 var byteArray = File.ReadAllBytes(file);
                 var reversedByteArray = byteArray.Reverse().ToArray();
 
                 StringBuilder reverseBuilder = new StringBuilder();
 
-                await _loggingUtility.Log($"Reversed byte array for {file}");
+                AnsiConsole.WriteLine($"Reversed byte array for {file}");
 
                 File.WriteAllBytes($"./output/{selecttion}-reversed.jpg", reversedByteArray);
 
-                await _loggingUtility.Log($"Saved {selecttion}-reversed.jpg");
+                AnsiConsole.WriteLine($"Saved {selecttion}-reversed.jpg");
 
-                await _loggingUtility.Log("Comparing Bytes");
+                AnsiConsole.WriteLine("Comparing Bytes");
 
                 for (int i = 0; i < byteArray.Length; i++)
                 {
@@ -89,7 +81,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands
                         var reversedBin = Convert.ToString(Convert.ToInt32(reversedByteArray[i].ToString()), 2).PadLeft(7, '0');
                         var character = _characterRepo.GetASCIICharFromBin(reversedBin);
                         reverseBuilder.Append(character);
-                        await _loggingUtility.Log($"Byte {i} is different - rev value is {reversedByteArray[i].ToString()}");
+                        AnsiConsole.WriteLine($"Byte {i} is different - rev value is {reversedByteArray[i]}");
                         AnsiConsole.MarkupLine($"[lime]ASCII Character is {character}.[/]");
                     }
                 }
