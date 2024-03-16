@@ -27,9 +27,4 @@
     <ProjectReference Include="..\LiberPrimusAnalysisTool.Entity\LiberPrimusAnalysisTool.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\Math\" />
-    <Folder Include="Queries\Math\" />
-  </ItemGroup>
-
 </Project>

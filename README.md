@@ -18,3 +18,7 @@ I have written a C# program to do this with ImageMagick to generate the files wi
 # Color Counts
 - Looping through the files and getting the count of a certain color and then it will change color, get the number, etc.
 - The output will be in the kibana instance that runs in Docker (at least on my box.)
+- This amounted to nothing...?
+
+# Winnowing
+- It is a technique where there was chafe put in the image.  You pull certain pixels and run them through the image algorithms for processing.

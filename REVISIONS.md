@@ -29,8 +29,7 @@
 
 # TODO
 ## Menu
-- Check if number is prime
-- Get prime sequence through x number
+- Get Fibonacci sequence through X number.
 - Get totient value for number
 - Get totient sequence for a given number.
 - Print page information and output to directory.

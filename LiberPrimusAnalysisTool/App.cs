@@ -1,5 +1,6 @@
 ﻿using LiberPrimusAnalysisTool.Application.Commands.Directory;
 using LiberPrimusAnalysisTool.Application.Commands.Image;
+using LiberPrimusAnalysisTool.Application.Commands.Math;
 using MediatR;
 using Spectre.Console;
 
@@ -48,6 +49,8 @@ namespace LiberPrimusAnalysisTool
                         "1: Flush output directory",
                         "2: Reverse bytes",
                         "3: RGB -> Text",
+                        "4: Check if number is prime",
+                        "5: Output prime sequence",
                         "99: Exit Program",
                     }));
 
@@ -68,6 +71,14 @@ namespace LiberPrimusAnalysisTool
 
                     case "3":
                         _mediator.Publish(new RgbIndex.Command()).Wait();
+                        break;
+
+                    case "4":
+                        _mediator.Publish(new CheckIfNumberIsPrime.Command()).Wait();
+                        break;
+
+                    case "5":
+                        _mediator.Publish(new OutputPrimeSequence.Command()).Wait();
                         break;
 
                     case "99":
