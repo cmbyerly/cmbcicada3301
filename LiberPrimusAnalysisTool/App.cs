@@ -52,6 +52,7 @@ namespace LiberPrimusAnalysisTool
                         "4: Check if number is prime",
                         "5: Output prime sequence",
                         "6: Output fibonacci sequence",
+                        "7: Calculate Totient",
                         "99: Exit Program",
                     }));
 
@@ -84,6 +85,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "6":
                         _mediator.Publish(new OutputFibonacciSequence.Command()).Wait();
+                        break;
+
+                    case "7":
+                        _mediator.Publish(new CalculateTotient.Command()).Wait();
                         break;
 
                     case "99":

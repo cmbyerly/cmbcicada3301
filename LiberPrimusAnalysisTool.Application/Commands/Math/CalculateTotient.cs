@@ -1,19 +1,20 @@
-﻿using LiberPrimusAnalysisTool.Application.Queries.Math;
+﻿using LiberPrimusAnalysisTool.Application.Queries;
+using LiberPrimusAnalysisTool.Application.Queries.Math;
 using MediatR;
 using Spectre.Console;
 
-namespace LiberPrimusAnalysisTool.Application.Commands.Math
+namespace LiberPrimusAnalysisTool.Application.Commands.Directory
 {
     /// <summary>
-    /// Output Fibonacci Sequence
+    /// Calculate Totient
     /// </summary>
-    public class OutputFibonacciSequence
+    public class CalculateTotient
     {
         /// <summary>
         /// Command
         /// </summary>
-        /// <seealso cref="MediatR.INotification" />
-        public class Command : MediatR.INotification
+        /// <seealso cref="MediatR.IRequest" />
+        public class Command : INotification
         {
         }
 
@@ -43,12 +44,19 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Math
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var number = AnsiConsole.Ask<int>("What is the max number?");
-                var fibonacciSequence = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = number });
-                foreach (int i in fibonacciSequence)
+                bool returnToMenu = false;
+
+                while (!returnToMenu)
                 {
-                    AnsiConsole.MarkupLine($"[green]{i}[/]");
-                    await File.AppendAllTextAsync("./output/fibonacci.txt", $"{i}" + Environment.NewLine);
+                    var number = AnsiConsole.Ask<int>("What is the number?");
+
+                    AnsiConsole.MarkupLine($"Calculating Totient for {number}");
+                    var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = number });
+
+                    AnsiConsole.MarkupLine($"[green]Phi({number}) = {totient.Phi}[/]");
+                    AnsiConsole.MarkupLine($"[green]Sequence: {string.Join($"{Environment.NewLine}", totient.Sequence)}[/]");
+
+                    returnToMenu = AnsiConsole.Confirm("Return to main menu?");
                 }
             }
         }

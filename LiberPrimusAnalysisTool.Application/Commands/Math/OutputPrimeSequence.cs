@@ -44,7 +44,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Math
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var number = AnsiConsole.Ask<int>("What is the number?");
-                var primeSequence = await _mediator.Send(new GetPrimeSequence.Command() { Number = number });
+                var primeSequence = await _mediator.Send(new GetPrimeSequence.Query() { Number = number });
                 foreach (int i in primeSequence)
                 {
                     AnsiConsole.MarkupLine($"[green]{i} is prime[/]");

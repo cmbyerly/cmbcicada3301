@@ -11,7 +11,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// Command
         /// </summary>
         /// <seealso cref="IRequest" />
-        public class Command : IRequest<bool>
+        public class Query : IRequest<bool>
         {
             public int Number { get; set; }
         }
@@ -19,7 +19,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Command, bool>
+        public class Handler : IRequestHandler<Query, bool>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
@@ -36,7 +36,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             /// <returns>
             /// Response from the request
             /// </returns>
-            public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(Query request, CancellationToken cancellationToken)
             {
                 if (request.Number <= 1) return false;
                 if (request.Number == 2) return true;

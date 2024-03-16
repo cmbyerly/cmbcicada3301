@@ -66,7 +66,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                 var includeControlCharacters = selecttion == "Yes";
 
-                var files = await _mediator.Send(new GetPages.Command(false));
+                var files = await _mediator.Send(new GetPages.Query(false));
 
                 Parallel.ForEach(files, file =>
                 {

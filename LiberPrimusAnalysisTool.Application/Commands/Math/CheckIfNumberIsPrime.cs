@@ -49,7 +49,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 {
                     var number = AnsiConsole.Ask<int>("What is the number?");
 
-                    var isPrime = await _mediator.Send(new GetIsPrime.Command() { Number = number });
+                    var isPrime = await _mediator.Send(new GetIsPrime.Query() { Number = number });
 
                     if (isPrime)
                     {

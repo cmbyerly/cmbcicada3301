@@ -14,7 +14,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// Command
         /// </summary>
         /// <seealso cref="MediatR.IRequest" />
-        public class Command : MediatR.IRequest<LiberPage>
+        public class Query : MediatR.IRequest<LiberPage>
         {
             /// <summary>
             /// Gets or sets the page identifier.
@@ -28,7 +28,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Command, LiberPage>
+        public class Handler : IRequestHandler<Query, LiberPage>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
@@ -45,7 +45,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             /// <returns>
             /// Response from the request
             /// </returns>
-            public async Task<LiberPage> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<LiberPage> Handle(Query request, CancellationToken cancellationToken)
             {
                 LiberPage page;
                 var files = Directory.EnumerateFiles("./liber-primus__images--full").ToList();

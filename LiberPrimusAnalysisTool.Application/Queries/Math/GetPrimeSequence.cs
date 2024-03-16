@@ -11,7 +11,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// Command
         /// </summary>
         /// <seealso cref="IRequest" />
-        public class Command : IRequest<IEnumerable<int>>
+        public class Query : IRequest<IEnumerable<int>>
         {
             public int Number { get; set; }
         }
@@ -19,7 +19,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Command, IEnumerable<int>>
+        public class Handler : IRequestHandler<Query, IEnumerable<int>>
         {
             private readonly IMediator _mediator;
 
@@ -39,13 +39,13 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             /// <returns>
             /// Response from the request
             /// </returns>
-            public async Task<IEnumerable<int>> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<int>> Handle(Query request, CancellationToken cancellationToken)
             {
                 List<int> result = new List<int>();
 
                 for (int i = 0; i <= request.Number; i++)
                 {
-                    var isPrime = await _mediator.Send(new GetIsPrime.Command() { Number = i });
+                    var isPrime = await _mediator.Send(new GetIsPrime.Query() { Number = i });
 
                     if (isPrime)
                     {

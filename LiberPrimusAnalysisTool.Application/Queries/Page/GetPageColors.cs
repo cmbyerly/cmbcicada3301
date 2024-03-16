@@ -14,7 +14,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
         /// Command
         /// </summary>
         /// <seealso cref="IRequest" />
-        public class Command : IRequest<IEnumerable<LiberColor>>
+        public class Query : IRequest<IEnumerable<LiberColor>>
         {
             /// <summary>
             /// Gets or sets the page identifier.
@@ -28,7 +28,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Command, IEnumerable<LiberColor>>
+        public class Handler : IRequestHandler<Query, IEnumerable<LiberColor>>
         {
             /// <summary>
             /// The mediator
@@ -49,11 +49,11 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
             /// </summary>
             /// <param name="request">The request</param>
             /// <param name="cancellationToken">Cancellation token</param>
-            public async Task<IEnumerable<LiberColor>> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<LiberColor>> Handle(Query request, CancellationToken cancellationToken)
             {
                 List<LiberColor> colors = new List<LiberColor>();
 
-                var page = await _mediator.Send(new GetPageData.Command { PageId = request.PageId });
+                var page = await _mediator.Send(new GetPageData.Query { PageId = request.PageId });
 
                 AnsiConsole.WriteLine($"Getting colors for {page.FileName}");
 

@@ -14,13 +14,13 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
         /// Command
         /// </summary>
         /// <seealso cref="IRequest" />
-        public class Command : IRequest<IEnumerable<LiberPage>>
+        public class Query : IRequest<IEnumerable<LiberPage>>
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="Command"/> class.
+            /// Initializes a new instance of the <see cref="Query"/> class.
             /// </summary>
             /// <param name="includeImageData">if set to <c>true</c> [include image data].</param>
-            public Command(bool includeImageData)
+            public Query(bool includeImageData)
             {
                 IncludeImageData = includeImageData;
             }
@@ -37,7 +37,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Command, IEnumerable<LiberPage>>
+        public class Handler : IRequestHandler<Query, IEnumerable<LiberPage>>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
@@ -54,7 +54,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
             /// <returns>
             /// Response from the request
             /// </returns>
-            public async Task<IEnumerable<LiberPage>> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<LiberPage>> Handle(Query request, CancellationToken cancellationToken)
             {
                 List<LiberPage> pages = new List<LiberPage>();
                 var files = Directory.EnumerateFiles("./liber-primus__images--full").ToList();
