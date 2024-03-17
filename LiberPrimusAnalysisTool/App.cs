@@ -54,6 +54,7 @@ namespace LiberPrimusAnalysisTool
                         "6: Output fibonacci sequence",
                         "7: Calculate Totient",
                         "8: Output Page Information",
+                        "9: Winnow Page(s)",
                         "99: Exit Program",
                     }));
 
@@ -94,6 +95,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "8":
                         _mediator.Publish(new OutputPageInformation.Command()).Wait();
+                        break;
+
+                    case "9":
+                        _mediator.Publish(new WinnowPages.Command()).Wait();
                         break;
 
                     case "99":

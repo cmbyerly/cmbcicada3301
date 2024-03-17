@@ -29,7 +29,7 @@
 
 # TODO
 ## Menu
-- Do winnowing -> algo passthrough
+- Looking for more ideas
 
 ## Algos
 - LSB Algorithms (x and y) (7-bit, 8-bit) (gt0 and all)
@@ -37,3 +37,4 @@
 - Winnowing algo (totient?, fibonacci, prime)
 - Shedding circumference algo / w LSB (see above)
 - BPCS?
+- Byte output
