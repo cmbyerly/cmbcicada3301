@@ -134,17 +134,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         AnsiConsole.WriteLine($"Sequencing {page.PageName}");
                         using (var imageFromFile = new MagickImage(page.FileName))
                         {
-                            var pixels = imageFromFile.GetPixels();
+                            var pixels = imageFromFile.GetPixels().Select(x => ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()));
                             List<System.Drawing.Color> tmpPixelList = new List<System.Drawing.Color>();
-
-                            foreach (var item in sequence)
-                            {
-                                System.Drawing.Color color = ColorTranslator.FromHtml(pixels.ElementAt(item).ToColor().ToHexString().ToUpper());
-                                AnsiConsole.WriteLine($"Sequencing {page.PageName} Pixel {item}");
-                                tmpPixelList.Add(color);
-                            }
-
-                            pixelData.Add(new Tuple<LiberPage, List<System.Drawing.Color>>(page, tmpPixelList));
+                            pixelData.Add(new Tuple<LiberPage, List<System.Drawing.Color>>(page, pixels.ToList()));
+                            AnsiConsole.WriteLine($"Sequenced {page.PageName}");
                         }
                     });
 
