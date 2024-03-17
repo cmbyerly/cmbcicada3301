@@ -82,20 +82,20 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     }
 
                     // Copy the images to a new directory and set colors.
-                    foreach(var page in liberPages)
+                    Parallel.ForEach(liberPages, async page =>
                     {
                         var pageColors = await _mediator.Send(new GetPageColors.Query() { PageId = page.PageName });
 
-                        foreach(var color in pageColors)
+                        foreach (var color in pageColors)
                         {
                             File.Copy(page.FileName, $"./output/{page.PageName}-{color.LiberColorHashless}.jpg", true);
                             AnsiConsole.WriteLine($"Isolating color {color.LiberColorHex} on {page.PageName}-{color.LiberColorHashless}.jpg");
                             using (var image = new MagickImage($"./output/{page.PageName}-{color.LiberColorHashless}.jpg"))
                             {
                                 var pixels = image.GetPixels();
-                                foreach(var pixel in pixels)
+                                foreach (var pixel in pixels)
                                 {
-                                    if (pixel.ToColor().ToHexString() != color.LiberColorHex)
+                                    if (pixel.ToColor().ToHexString() == color.LiberColorHex)
                                     {
                                         pixel.SetChannel(0, 191);
                                         pixel.SetChannel(1, 64);
@@ -107,7 +107,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                 image.Write($"./output/{page.PageName}-{color.LiberColorHashless}.jpg");
                             }
                         }
-                    }
+                    });
 
                     returnToMenu = AnsiConsole.Confirm("Return to main menu?");
                 }
