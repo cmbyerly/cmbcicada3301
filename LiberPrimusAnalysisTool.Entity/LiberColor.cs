@@ -21,6 +21,20 @@
         public string LiberColorHex { get; set; }
 
         /// <summary>
+        /// Gets the liber color hashless.
+        /// </summary>
+        /// <value>
+        /// The liber color hashless.
+        /// </value>
+        public string LiberColorHashless
+        {
+            get
+            {
+                return LiberColorHex.Replace("#", string.Empty);
+            }
+        }
+
+        /// <summary>
         /// Converts to string.
         /// </summary>
         /// <returns>

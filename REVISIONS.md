@@ -29,12 +29,11 @@
 
 # TODO
 ## Menu
-- Looking for more ideas
+- Reintroduce the color counts to be safe.
 
 ## Algos
 - LSB Algorithms (x and y) (7-bit, 8-bit) (gt0 and all)
 - Color isolation algo
-- Winnowing algo (totient?, fibonacci, prime, cicada sequence)
 - Shedding circumference algo / w LSB (see above)
 - BPCS?
 - Byte output

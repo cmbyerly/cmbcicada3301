@@ -55,6 +55,7 @@ namespace LiberPrimusAnalysisTool
                         "7: Calculate Totient",
                         "8: Output Page Information",
                         "9: Winnow Page(s)",
+                        "10: Isolate Color(s)",
                         "99: Exit Program",
                     }));
 
@@ -99,6 +100,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "9":
                         _mediator.Publish(new WinnowPages.Command()).Wait();
+                        break;
+
+                    case "10":
+                        _mediator.Publish(new ColorIsolation.Command()).Wait();
                         break;
 
                     case "99":

@@ -10,7 +10,6 @@
         /// </summary>
         public LiberPage()
         {
-            Colors = new List<LiberColor>();
         }
 
         /// <summary>
@@ -68,14 +67,6 @@
         /// The pixel count.
         /// </value>
         public int PixelCount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the colors.
-        /// </summary>
-        /// <value>
-        /// The colors.
-        /// </value>
-        public List<LiberColor> Colors { get; set; }
 
         /// <summary>
         /// Converts to string.

@@ -69,6 +69,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
                             LiberColorHex = color
                         };
 
+                        colors.Add(liberColor);
+
                         AnsiConsole.WriteLine($"Processing: {page} - Getting: {liberColor}");
                     }
                 }
