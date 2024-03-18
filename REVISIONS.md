@@ -32,7 +32,6 @@
 - Reintroduce the color counts to be safe.
 
 ## Algos
-- Color isolation algo
 - Shedding circumference algo / w LSB (see above)
 - BPCS?
 - Byte output
