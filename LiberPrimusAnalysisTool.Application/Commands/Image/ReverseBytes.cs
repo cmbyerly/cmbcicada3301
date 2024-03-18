@@ -79,7 +79,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     if (byteArray[i] != reversedByteArray[i])
                     {
                         var reversedBin = Convert.ToString(Convert.ToInt32(reversedByteArray[i].ToString()), 2).PadLeft(7, '0');
-                        var character = _characterRepo.GetASCIICharFromBin(reversedBin);
+                        var character = _characterRepo.GetASCIICharFromBin(reversedBin, false);
                         reverseBuilder.Append(character);
                         AnsiConsole.WriteLine($"Byte {i} is different - rev value is {reversedByteArray[i]}");
                         AnsiConsole.MarkupLine($"[lime]ASCII Character is {character}.[/]");
