@@ -184,6 +184,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                                 }
                                 catch(Exception e)
                                 {
+                                    characterForFile = string.Empty;
                                     AnsiConsole.WriteLine($"Error: {e.Message}");
                                 }
                                 break;
