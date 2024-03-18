@@ -1,4 +1,4 @@
-﻿namespace LiberPrimusAnalysisTool.Utility.Character
+﻿ namespace LiberPrimusAnalysisTool.Utility.Character
 {
     /// <summary>
     /// ICharacterRepo
@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="bin">The bin.</param>
         /// <returns></returns>
-        string GetANSICharFromBin(string bin);
+        string GetANSICharFromBin(string bin, bool includeControlCharacters);
 
         /// <summary>
         /// Gets the ANSI character from decimal.
@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="bin">The bin.</param>
         /// <returns></returns>
-        string GetASCIICharFromBin(string bin);
+        string GetASCIICharFromBin(string bin, bool includeControlCharacters);
 
         /// <summary>
         /// Gets the ASCII character from decimal.

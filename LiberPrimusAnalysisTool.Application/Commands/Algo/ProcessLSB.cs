@@ -14,12 +14,31 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
         public class Command : INotification
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="Command"/> class.
+            /// </summary>
+            /// <param name="pixelData">The pixel data.</param>
+            /// <param name="method">The method.</param>
+            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method)
+            {
+                PixelData = pixelData;
+                Method = method;
+            }
+
+            /// <summary>
             /// Gets or sets the pixel data.
             /// </summary>
             /// <value>
             /// The pixel data.
             /// </value>
             public List<Tuple<LiberPage, List<System.Drawing.Color>>> PixelData { get; set; }
+
+            /// <summary>
+            /// Gets or sets the method.
+            /// </summary>
+            /// <value>
+            /// The method.
+            /// </value>
+            public string Method { get; set; }
         }
 
         /// <summary>
@@ -170,11 +189,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                         switch (iAsciiProcessing)
                         {
                             case 7:
-                                characterForFile = _characterRepo.GetASCIICharFromBin(charBin);
+                                characterForFile = _characterRepo.GetASCIICharFromBin(charBin, includeControlCharacters);
                                 break;
 
                             case 8:
-                                characterForFile = _characterRepo.GetANSICharFromBin(charBin);
+                                characterForFile = _characterRepo.GetANSICharFromBin(charBin, includeControlCharacters);
                                 break;
 
                             case 9:
@@ -198,7 +217,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     }
 
                     AnsiConsole.WriteLine($"Outputting file for {data.Item1.PageName}");
-                    File.WriteAllText($"./output/{data.Item1.PageName}-LSB-{orderOfColors}-{iAsciiProcessing}-{iBitsOfSig}.txt", stringForFile.ToString());
+                    File.WriteAllText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{orderOfColors}-{iAsciiProcessing}-{iBitsOfSig}.txt", stringForFile.ToString());
                 });
             }
         }

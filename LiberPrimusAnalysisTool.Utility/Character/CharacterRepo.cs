@@ -413,12 +413,18 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// Gets the ANSI character from bin.
         /// </summary>
         /// <param name="bin">The bin.</param>
+        /// <param name="includeControlCharacters"></param>
         /// <returns></returns>
-        public string GetANSICharFromBin(string bin)
+        public string GetANSICharFromBin(string bin, bool includeControlCharacters)
         {
             if (_asciiAnsiItems.Any(x => x.Item4 == bin && x.Item1 == "ANSI"))
             {
-                return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+                var value = _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ANSI").Select(x => x.Item2).FirstOrDefault();
+                if (value != null && value.StartsWith("<") && value.EndsWith(">") && !includeControlCharacters)
+                {
+                    return string.Empty;
+                }
+                return value;
             }
             else
             {
@@ -445,12 +451,18 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// Gets the ASCII character from bin.
         /// </summary>
         /// <param name="bin">The bin.</param>
+        /// <param name="includeControlCharacters"></param>
         /// <returns></returns>
-        public string GetASCIICharFromBin(string bin)
+        public string GetASCIICharFromBin(string bin, bool includeControlCharacters)
         {
             if (_asciiAnsiItems.Any(x => x.Item4 == bin && x.Item1 == "ASCII"))
             {
-                return _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+                var value = _asciiAnsiItems.Where(x => x.Item4 == bin && x.Item1 == "ASCII").Select(x => x.Item2).FirstOrDefault();
+                if (value != null && value.StartsWith("<") && value.EndsWith(">") && !includeControlCharacters)
+                {
+                    return string.Empty;
+                }
+                return value;
             }
             else
             {

@@ -81,6 +81,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     }
 
                     // Now we need to select the sequence to use
+                    var seqtext = string.Empty;
                     var sequenceSelection = AnsiConsole.Prompt(
                             new SelectionPrompt<string>()
                             .Title("[green]Please select sequence to use[/]:")
@@ -100,6 +101,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     switch (choice)
                     {
                         case "0":
+                            seqtext = "Natural";
                             for (int i = 0; i <= liberPages[0].PixelCount; i++)
                             {
                                 sequence.Add(i);
@@ -107,16 +109,19 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             break;
 
                         case "1":
+                            seqtext = "Prime";
                             var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPages[0].PixelCount });
                             sequence = tmpPrimeList.ToList();
                             break;
 
                         case "2":
+                            seqtext = "Fib";
                             var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPages[0].PixelCount });
                             sequence = tmpFibList.ToList();
                             break;
 
                         case "3":
+                            seqtext = "Totient";
                             var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPages[0].PixelCount });
                             sequence = totient.Sequence;
                             break;
@@ -157,11 +162,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     switch (choice)
                     {
                         case "1":
-                            await _mediator.Publish(new ProcessRGB.Command() { PixelData = pixelData });
+                            await _mediator.Publish(new ProcessRGB.Command(pixelData, seqtext));
                             break;
 
                         case "2":
-                            await _mediator.Publish(new ProcessLSB.Command() { PixelData = pixelData });
+                            await _mediator.Publish(new ProcessLSB.Command(pixelData, seqtext));
                             break;
 
                         default:

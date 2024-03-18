@@ -13,12 +13,31 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
         public class Command : INotification
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="Command"/> class.
+            /// </summary>
+            /// <param name="pixelData">The pixel data.</param>
+            /// <param name="method">The method.</param>
+            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method)
+            {
+                PixelData = pixelData;
+                Method = method;
+            }
+
+            /// <summary>
             /// Gets or sets the pixel data.
             /// </summary>
             /// <value>
             /// The pixel data.
             /// </value>
             public List<Tuple<LiberPage, List<System.Drawing.Color>>> PixelData { get; set; }
+
+            /// <summary>
+            /// Gets or sets the method.
+            /// </summary>
+            /// <value>
+            /// The method.
+            /// </value>
+            public string Method { get; set; }
         }
 
         /// <summary>
@@ -85,9 +104,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     AnsiConsole.WriteLine($"Blue Text: {rgbIndex.B}");
 
                     AnsiConsole.WriteLine($"Writing: ./output/{data.Item1.PageName}-RGB.txt");
-                    File.AppendAllText($"./output/{data.Item1.PageName}-RGB-red.txt", rgbIndex.R);
-                    File.AppendAllText($"./output/{data.Item1.PageName}-RGB-green.txt", rgbIndex.G);
-                    File.AppendAllText($"./output/{data.Item1.PageName}-RGB-blue.txt", rgbIndex.B);
+                    File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-red.txt", rgbIndex.R);
+                    File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-green.txt", rgbIndex.G);
+                    File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-blue.txt", rgbIndex.B);
                 });
             }
         }
