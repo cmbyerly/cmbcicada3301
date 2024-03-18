@@ -1,9 +1,7 @@
-﻿using ImageMagick;
-using LiberPrimusAnalysisTool.Entity;
+﻿using LiberPrimusAnalysisTool.Entity;
 using LiberPrimusAnalysisTool.Utility.Character;
 using MediatR;
 using Spectre.Console;
-using System.Drawing;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Algo
 {
@@ -75,7 +73,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
 
                     AnsiConsole.WriteLine($"Document: {data.Item1.PageName} - RGB Breakdown");
                     foreach (var pixel in data.Item2)
-                    {;
+                    {
+                        ;
                         rgbIndex.AddR(_characterRepo.GetASCIICharFromDec(pixel.R, includeControlCharacters));
                         rgbIndex.AddG(_characterRepo.GetASCIICharFromDec(pixel.G, includeControlCharacters));
                         rgbIndex.AddB(_characterRepo.GetASCIICharFromDec(pixel.B, includeControlCharacters));

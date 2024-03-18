@@ -5,7 +5,6 @@ using LiberPrimusAnalysisTool.Application.Queries.Math;
 using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
-using SixLabors.ImageSharp.PixelFormats;
 using Spectre.Console;
 using System.Drawing;
 
@@ -150,6 +149,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             .AddChoices(new[]
                             {
                                 "1: RGB",
+                                "2: LSB",
                             }));
 
                     choice = imageProcessingSelection.Split(":")[0];
@@ -158,6 +158,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     {
                         case "1":
                             await _mediator.Publish(new ProcessRGB.Command() { PixelData = pixelData });
+                            break;
+
+                        case "2":
+                            await _mediator.Publish(new ProcessLSB.Command() { PixelData = pixelData });
                             break;
 
                         default:

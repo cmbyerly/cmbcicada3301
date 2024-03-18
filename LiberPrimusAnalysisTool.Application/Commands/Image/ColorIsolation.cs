@@ -1,13 +1,9 @@
 ﻿using ImageMagick;
-using LiberPrimusAnalysisTool.Application.Commands.Algo;
 using LiberPrimusAnalysisTool.Application.Queries;
-using LiberPrimusAnalysisTool.Application.Queries.Math;
 using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
-using SixLabors.ImageSharp.PixelFormats;
 using Spectre.Console;
-using System.Drawing;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Image
 {
