@@ -76,6 +76,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                             {
                                 "7: ASCII",
                                 "8: ANSI",
+                                "9: Gemetria Primus"
                             }));
 
                 var iAsciiProcessing = Convert.ToInt32(asciiProcessing.Split(":")[0]);
@@ -174,6 +175,17 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
 
                             case 8:
                                 characterForFile = _characterRepo.GetANSICharFromBin(charBin);
+                                break;
+
+                            case 9:
+                                try
+                                {
+                                    characterForFile = _characterRepo.GetCharacterFromGematriaValue(Convert.ToInt32(charBin, 2));
+                                }
+                                catch(Exception e)
+                                {
+                                    AnsiConsole.WriteLine($"Error: {e.Message}");
+                                }
                                 break;
 
                             default:
