@@ -177,8 +177,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                                 break;
 
                             default:
+                                characterForFile = string.Empty;
                                 break;
                         }
+
+                        stringForFile.Append(characterForFile);
                     }
 
                     AnsiConsole.WriteLine($"Outputting file for {data.Item1.PageName}");
