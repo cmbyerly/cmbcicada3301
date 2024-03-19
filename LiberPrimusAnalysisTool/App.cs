@@ -46,6 +46,7 @@ namespace LiberPrimusAnalysisTool
                     .PageSize(10)
                     .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
                     .AddChoices(new[] {
+                        "0: Initialize Database (DO THIS FIRST)",
                         "1: Flush output directory",
                         "2: Reverse bytes",
                         "3: RGB -> Text",
@@ -53,7 +54,6 @@ namespace LiberPrimusAnalysisTool
                         "5: Output prime sequence",
                         "6: Output fibonacci sequence",
                         "7: Calculate Totient",
-                        "8: Initialize Database",
                         "9: Winnow Page(s)",
                         "10: Isolate Color(s)",
                         "99: Exit Program",
@@ -94,7 +94,7 @@ namespace LiberPrimusAnalysisTool
                         _mediator.Publish(new CalculateTotient.Command()).Wait();
                         break;
 
-                    case "8":
+                    case "0":
                         _mediator.Publish(new OutputPageInformation.Command()).Wait();
                         break;
 

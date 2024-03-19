@@ -54,50 +54,30 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             {
                 var pages = await _mediator.Send(new GetPages.Query(false));
 
-                foreach (var tpage in pages)
+                foreach(var tpage in pages)
                 {
                     var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));
-
-                    AnsiConsole.WriteLine($"Page: {page.PageName}");
-                    AnsiConsole.WriteLine($"Image: {page.FileName}");
-                    AnsiConsole.WriteLine($"Pixel Count: {page.PixelCount}");
-                    AnsiConsole.WriteLine($"Total Colors: {page.TotalColors}");
-                    AnsiConsole.WriteLine($"Width: {page.Width}");
-                    AnsiConsole.WriteLine($"Height: {page.Height}");
-                    AnsiConsole.WriteLine($"Signature: {page.PageSig}");
-                    AnsiConsole.WriteLine();
-
-                    File.AppendAllText("./output/pageinfo.txt", $"Page: {page.PageName}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", $"Image: {page.FileName}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", $"Pixel Count: {page.PixelCount}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", $"Total Colors: {page.TotalColors}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", $"Width: {page.Width}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", $"Height: {page.Height}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", $"Signature: {page.PageSig}" + Environment.NewLine);
-                    File.AppendAllText("./output/pageinfo.txt", string.Empty + Environment.NewLine);
 
                     var pageEntry = _liberContext.LiberPages.FirstOrDefault(x => x.PageName == page.PageName);
                     if (pageEntry == null)
                     {
                         AnsiConsole.WriteLine($"Indexing: {page.PageName}");
-                        _liberContext.Add(page);
-                        _liberContext.SaveChanges();
+                        await _liberContext.AddAsync(page);
+                        await _liberContext.SaveChangesAsync();
                     }
 
-                    var counter = 0;
+                    long counter = 0;
                     foreach (var pixel in page.Pixels)
                     {
-                        var pixelEntry = _liberContext.Pixels.FirstOrDefault(x => x.Position == counter && x.PageName == page.PageName);
-                        if (pixelEntry == null)
-                        {
-                            AnsiConsole.WriteLine($"Writing pixel for: {page.PageName} - {counter}");
-                            pixel.Position = counter;
-                            _liberContext.Add(pixel);
-                            _liberContext.SaveChanges();
-                        }
+                        pixel.Position = counter;
                         counter++;
                     }
-                }
+
+                    await _liberContext.AddRangeAsync(page.Pixels.ToArray());
+                    await _liberContext.SaveChangesAsync();
+
+                    AnsiConsole.WriteLine($"Writing pixel for: {page.PageName} - {counter}");
+                };
             }
         }
     }
