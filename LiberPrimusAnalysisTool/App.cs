@@ -53,7 +53,7 @@ namespace LiberPrimusAnalysisTool
                         "5: Output prime sequence",
                         "6: Output fibonacci sequence",
                         "7: Calculate Totient",
-                        "8: Output Page Information",
+                        "8: Initialize Database",
                         "9: Winnow Page(s)",
                         "10: Isolate Color(s)",
                         "99: Exit Program",

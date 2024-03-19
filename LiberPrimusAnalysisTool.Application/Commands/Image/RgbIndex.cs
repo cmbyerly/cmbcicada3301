@@ -78,7 +78,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         var pixels = imageFromFile.GetPixels();
 
                         AnsiConsole.WriteLine($"Document: {file} - RGB Breakdown");
-                        foreach (Pixel pixel in pixels)
+                        foreach (ImageMagick.Pixel pixel in pixels)
                         {
                             System.Drawing.Color color = ColorTranslator.FromHtml(pixel.ToColor().ToHexString().ToUpper());
                             rgbIndex.AddR(_characterRepo.GetASCIICharFromDec(color.R, includeControlCharacters));

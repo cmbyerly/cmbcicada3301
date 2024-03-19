@@ -2,6 +2,7 @@
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
 using Spectre.Console;
+using System.Drawing;
 
 namespace LiberPrimusAnalysisTool.Application.Queries
 {
@@ -17,12 +18,31 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         public class Query : MediatR.IRequest<LiberPage>
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="Query"/> class.
+            /// </summary>
+            /// <param name="pageId">The page identifier.</param>
+            /// <param name="includePixels">if set to <c>true</c> [include pixels].</param>
+            public Query(string pageId, bool includePixels)
+            {
+                PageId = pageId;
+                IncludePixels = includePixels;
+            }
+
+            /// <summary>
             /// Gets or sets the page identifier.
             /// </summary>
             /// <value>
             /// The page identifier.
             /// </value>
             public string PageId { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [include pixels].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [include pixels]; otherwise, <c>false</c>.
+            /// </value>
+            public bool IncludePixels { get; set; }
         }
 
         /// <summary>
@@ -64,6 +84,18 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                         Width = imageFromFile.Width,
                         PixelCount = imageFromFile.GetPixels().Count()
                     };
+
+                    if (request.IncludePixels)
+                    {
+                        page.Pixels = imageFromFile.GetPixels().Select(x => new Entity.Pixel(
+                            x.X, 
+                            x.Y,
+                            ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).R,
+                            ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).G,
+                            ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).B,
+                            x.ToColor().ToHexString(),
+                            page.PageName)).ToList();
+                    }
                 }
 
                 return page;

@@ -1,4 +1,7 @@
-﻿namespace LiberPrimusAnalysisTool.Entity
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LiberPrimusAnalysisTool.Entity
 {
     /// <summary>
     /// The page from the liber primus
@@ -10,7 +13,17 @@
         /// </summary>
         public LiberPage()
         {
+            Pixels = new List<Pixel>();
         }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [Key]
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the file.
@@ -18,6 +31,8 @@
         /// <value>
         /// The name of the file.
         /// </value>
+        [Required]
+        [Column("FILE_NAME")]
         public string FileName { get; set; }
 
         /// <summary>
@@ -26,6 +41,8 @@
         /// <value>
         /// The name of the page.
         /// </value>
+        [Required]
+        [Column("PAGE_NAME")]
         public string PageName { get; set; }
 
         /// <summary>
@@ -34,6 +51,8 @@
         /// <value>
         /// The page sig.
         /// </value>
+        [Required]
+        [Column("PAGE_SIG")]
         public string PageSig { get; set; }
 
         /// <summary>
@@ -42,6 +61,8 @@
         /// <value>
         /// The total colors.
         /// </value>
+        [Required]
+        [Column("TOTAL_COLORS")]
         public int TotalColors { get; set; }
 
         /// <summary>
@@ -50,6 +71,8 @@
         /// <value>
         /// The height.
         /// </value>
+        [Required]
+        [Column("HEIGHT")]
         public int Height { get; set; }
 
         /// <summary>
@@ -58,6 +81,8 @@
         /// <value>
         /// The width.
         /// </value>
+        [Required]
+        [Column("WIDTH")]
         public int Width { get; set; }
 
         /// <summary>
@@ -66,7 +91,18 @@
         /// <value>
         /// The pixel count.
         /// </value>
+        [Required]
+        [Column("PIXEL_COUNT")]
         public int PixelCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pixels.
+        /// </summary>
+        /// <value>
+        /// The pixels.
+        /// </value>
+        [NotMapped]
+        public List<Pixel> Pixels { get; set; }
 
         /// <summary>
         /// Converts to string.

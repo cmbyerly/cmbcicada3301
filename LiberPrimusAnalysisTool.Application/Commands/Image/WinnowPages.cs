@@ -75,7 +75,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                         foreach (var selection in pageSelection)
                         {
-                            var tmpPage = await _mediator.Send(new GetPageData.Query() { PageId = selection });
+                            var tmpPage = await _mediator.Send(new GetPageData.Query(selection, false));
                             liberPages.Add(tmpPage);
                         }
                     }

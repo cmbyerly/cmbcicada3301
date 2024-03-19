@@ -1,4 +1,6 @@
-﻿using LiberPrimusAnalysisTool.Application.Queries.Page;
+﻿using LiberPrimusAnalysisTool.Application.Queries;
+using LiberPrimusAnalysisTool.Application.Queries.Page;
+using LiberPrimusAnalysisTool.Database;
 using MediatR;
 using Spectre.Console;
 
@@ -28,12 +30,19 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             private readonly IMediator _mediator;
 
             /// <summary>
+            /// The liber context
+            /// </summary>
+            private readonly LiberContext _liberContext;
+
+            /// <summary>
             /// Initializes a new instance of the <see cref="Handler"/> class.
             /// </summary>
             /// <param name="mediator">The mediator.</param>
             public Handler(IMediator mediator)
             {
                 _mediator = mediator;
+                _liberContext = new LiberContext();
+                _liberContext.Database.EnsureCreated();
             }
 
             /// <summary>
@@ -43,10 +52,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var pages = await _mediator.Send(new GetPages.Query(true));
+                var pages = await _mediator.Send(new GetPages.Query(false));
 
-                foreach (var page in pages)
+                foreach (var tpage in pages)
                 {
+                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));
+
                     AnsiConsole.WriteLine($"Page: {page.PageName}");
                     AnsiConsole.WriteLine($"Image: {page.FileName}");
                     AnsiConsole.WriteLine($"Pixel Count: {page.PixelCount}");
@@ -64,6 +75,28 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     File.AppendAllText("./output/pageinfo.txt", $"Height: {page.Height}" + Environment.NewLine);
                     File.AppendAllText("./output/pageinfo.txt", $"Signature: {page.PageSig}" + Environment.NewLine);
                     File.AppendAllText("./output/pageinfo.txt", string.Empty + Environment.NewLine);
+
+                    var pageEntry = _liberContext.LiberPages.FirstOrDefault(x => x.PageName == page.PageName);
+                    if (pageEntry == null)
+                    {
+                        AnsiConsole.WriteLine($"Indexing: {page.PageName}");
+                        _liberContext.Add(page);
+                        _liberContext.SaveChanges();
+                    }
+
+                    var counter = 0;
+                    foreach (var pixel in page.Pixels)
+                    {
+                        var pixelEntry = _liberContext.Pixels.FirstOrDefault(x => x.Position == counter && x.PageName == page.PageName);
+                        if (pixelEntry == null)
+                        {
+                            AnsiConsole.WriteLine($"Writing pixel for: {page.PageName} - {counter}");
+                            pixel.Position = counter;
+                            _liberContext.Add(pixel);
+                            _liberContext.SaveChanges();
+                        }
+                        counter++;
+                    }
                 }
             }
         }
