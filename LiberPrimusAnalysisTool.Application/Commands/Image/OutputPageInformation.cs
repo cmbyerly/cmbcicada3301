@@ -58,6 +58,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                 long counter = 0;
                 foreach (var tpage in pages)
                 {
+                    if (File.Exists($"./output/output.{tpage.PageName}.sql"))
+                    {
+                        continue;
+                    }
+
                     var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));    
                     var pageEntry = _liberContext.LiberPages.FirstOrDefault(x => x.PageName == page.PageName);
                     if (pageEntry == null)
@@ -96,9 +101,16 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     if (x.EndsWith(".sql"))
                     {
                         AnsiConsole.WriteLine(x);
-                        foreach (var line in File.ReadAllLines(x))
+                        using(var file = System.IO.File.OpenText(x))
                         {
-                            _liberContext.Database.ExecuteSqlRaw(line);
+                            string line;
+                            while((line = file.ReadLine()) != null)
+                            {
+                                _liberContext.Database.ExecuteSqlRaw(line);
+                            }
+
+                            file.Dispose();
+                            file.Close();
                         }
                     }
                 });
