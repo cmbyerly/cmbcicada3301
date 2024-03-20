@@ -75,7 +75,18 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     }
 
                     AnsiConsole.WriteLine($"Writing pixel for: {page.PageName} - {counter}");
-                    await File.AppendAllLinesAsync($"./output/output.{tpage.PageName}.sql", output);
+
+                    using(StreamWriter file = System.IO.File.CreateText($"./output/output.{tpage.PageName}.sql"))
+                    {
+                        foreach (var line in output)
+                        {
+                            file.WriteLine(line);
+                        }
+
+                        file.Flush();
+                        file.Dispose();
+                    }
+                    
                     output.Clear();
                     counter = 0;
                 };
