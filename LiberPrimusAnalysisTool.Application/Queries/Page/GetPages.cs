@@ -73,6 +73,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
                     if (request.IncludeImageData)
                     {
                         using (var imageFromFile = new MagickImage(file))
+                        using (var pixels = imageFromFile.GetPixels())
                         {
                             var page = new LiberPage
                             {
@@ -82,11 +83,14 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
                                 TotalColors = imageFromFile.TotalColors,
                                 Height = imageFromFile.Height,
                                 Width = imageFromFile.Width,
-                                PixelCount = imageFromFile.GetPixels().Count()
+                                PixelCount = pixels.Count()
                             };
 
                             pages.Add(page);
+                            pixels.Dispose();
                         }
+
+                        GC.Collect();
                     }
                     else
                     {

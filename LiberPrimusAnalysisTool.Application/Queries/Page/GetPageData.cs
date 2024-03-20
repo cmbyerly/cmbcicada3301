@@ -73,6 +73,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                 AnsiConsole.WriteLine($"Getting page info for {request.PageId}");
                 var file = files.Where(x => x.Contains(request.PageId)).First();
                 using (var imageFromFile = new MagickImage(file))
+                using (var pixels = imageFromFile.GetPixels())
                 {
                     page = new LiberPage
                     {
@@ -82,13 +83,13 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                         TotalColors = imageFromFile.TotalColors,
                         Height = imageFromFile.Height,
                         Width = imageFromFile.Width,
-                        PixelCount = imageFromFile.GetPixels().Count()
+                        PixelCount = pixels.Count()
                     };
 
                     if (request.IncludePixels)
                     {
-                        page.Pixels = imageFromFile.GetPixels().Select(x => new Entity.Pixel(
-                            x.X, 
+                        page.Pixels = pixels.Select(x => new Entity.Pixel(
+                            x.X,
                             x.Y,
                             ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).R,
                             ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).G,
@@ -96,7 +97,11 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                             x.ToColor().ToHexString(),
                             page.PageName)).ToList();
                     }
+
+                    pixels.Dispose();
                 }
+
+                GC.Collect();
 
                 return page;
             }

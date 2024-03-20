@@ -87,8 +87,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             File.Copy(page.FileName, $"./output/{page.PageName}-{color.LiberColorHashless}.jpg", true);
                             AnsiConsole.WriteLine($"Isolating color {color.LiberColorHex} on {page.PageName}-{color.LiberColorHashless}.jpg");
                             using (var image = new MagickImage($"./output/{page.PageName}-{color.LiberColorHashless}.jpg"))
+                            using (var pixels = image.GetPixels())
                             {
-                                var pixels = image.GetPixels();
                                 foreach (var pixel in pixels)
                                 {
                                     if (pixel.ToColor().ToHexString() == color.LiberColorHex)
@@ -101,6 +101,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                 }
 
                                 image.Write($"./output/{page.PageName}-{color.LiberColorHashless}.jpg");
+                                pixels.Dispose();
                             }
                         }
                     });

@@ -2,6 +2,7 @@
 using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Image
@@ -53,11 +54,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var pages = await _mediator.Send(new GetPages.Query(false));
-
-                foreach(var tpage in pages)
+                List<string> output = new List<string>();
+                long counter = 0;
+                foreach (var tpage in pages)
                 {
-                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));
-
+                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));    
                     var pageEntry = _liberContext.LiberPages.FirstOrDefault(x => x.PageName == page.PageName);
                     if (pageEntry == null)
                     {
@@ -66,18 +67,30 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         await _liberContext.SaveChangesAsync();
                     }
 
-                    long counter = 0;
                     foreach (var pixel in page.Pixels)
                     {
                         pixel.Position = counter;
                         counter++;
+                        output.Add($"INSERT INTO TB_LIBER_PIXEL (POSITION, X, Y, R, G, B, HEX, PAGE_NAME) VALUES ({counter}, {pixel.X}, {pixel.Y}, {pixel.R}, {pixel.G}, {pixel.B}, '{pixel.Hex}', '{tpage.PageName}');");
                     }
 
-                    await _liberContext.AddRangeAsync(page.Pixels.ToArray());
-                    await _liberContext.SaveChangesAsync();
-
                     AnsiConsole.WriteLine($"Writing pixel for: {page.PageName} - {counter}");
+                    await File.AppendAllLinesAsync($"./output/output.{tpage.PageName}.sql", output);
+                    output.Clear();
+                    counter = 0;
                 };
+
+                System.IO.Directory.EnumerateFiles("./output").ToList().ForEach(x =>
+                {
+                    if (x.EndsWith(".sql"))
+                    {
+                        AnsiConsole.WriteLine(x);
+                        foreach (var line in File.ReadAllLines(x))
+                        {
+                            _liberContext.Database.ExecuteSqlRaw(line);
+                        }
+                    }
+                });
             }
         }
     }

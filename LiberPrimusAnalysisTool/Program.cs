@@ -1,4 +1,5 @@
-﻿using LiberPrimusAnalysisTool.Application.Queries.Page;
+﻿using ImageMagick;
+using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Utility.Character;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,9 @@ namespace LiberPrimusAnalysisTool
         /// <param name="args">The arguments.</param>
         private static void Main(string[] args)
         {
+            //ResourceLimits.LimitMemory(new Percentage(10));
+            MagickNET.SetTempDirectory("./output");
+
             // create hosting object and DI layer
             using IHost host = CreateHostBuilder(args).Build();
 

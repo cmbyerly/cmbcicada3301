@@ -58,8 +58,8 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
                 AnsiConsole.WriteLine($"Getting colors for {page.FileName}");
 
                 using (var imageFromFile = new MagickImage(page.FileName))
+                using (var pixels = imageFromFile.GetPixels())
                 {
-                    var pixels = imageFromFile.GetPixels();
                     var pixColors = pixels.Select(x => x.ToColor().ToHexString()).Distinct().ToList();
 
                     foreach (var color in pixColors)
@@ -72,8 +72,11 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
                         colors.Add(liberColor);
 
                         AnsiConsole.WriteLine($"Processing: {page} - Getting: {liberColor}");
+                        pixels.Dispose();
                     }
                 }
+
+                GC.Collect();
 
                 return colors;
             }
