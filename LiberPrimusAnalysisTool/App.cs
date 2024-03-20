@@ -46,7 +46,7 @@ namespace LiberPrimusAnalysisTool
                     .PageSize(10)
                     .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
                     .AddChoices(new[] {
-                        "0: Initialize Database (DO THIS FIRST)",
+                        "0: Initialize Database and generate CSV (DO THIS FIRST)",
                         "1: Flush output directory",
                         "2: Reverse bytes",
                         "3: RGB -> Text",

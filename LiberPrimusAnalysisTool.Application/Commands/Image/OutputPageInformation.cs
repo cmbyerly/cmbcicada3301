@@ -2,7 +2,6 @@
 using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Database;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Image
@@ -54,11 +53,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var pages = await _mediator.Send(new GetPages.Query(false));
-                List<string> output = new List<string>();
+                List<string> csv = new List<string>();
                 long counter = 0;
+                long id = 1;
                 foreach (var tpage in pages)
                 {
-                    if (File.Exists($"./output/output.{tpage.PageName}.sql"))
+                    if (File.Exists($"./output/TB_LIBER_PIXEL.{tpage.PageName}.csv"))
                     {
                         continue;
                     }
@@ -75,15 +75,20 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     foreach (var pixel in page.Pixels)
                     {
                         pixel.Position = counter;
+                        
+                        csv.Add($"{id}, {counter},{pixel.X},{pixel.Y},{pixel.R},{pixel.G},{pixel.B},{pixel.Hex},{tpage.PageName}");
+
                         counter++;
-                        output.Add($"INSERT INTO TB_LIBER_PIXEL (POSITION, X, Y, R, G, B, HEX, PAGE_NAME) VALUES ({counter}, {pixel.X}, {pixel.Y}, {pixel.R}, {pixel.G}, {pixel.B}, '{pixel.Hex}', '{tpage.PageName}');");
+                        id++;
                     }
 
-                    AnsiConsole.WriteLine($"Writing pixel for: {page.PageName} - {counter}");
+                    counter = 0;
 
-                    using(StreamWriter file = System.IO.File.CreateText($"./output/output.{tpage.PageName}.sql"))
+                    using (StreamWriter file = System.IO.File.CreateText($"./output/TB_LIBER_PIXEL.{tpage.PageName}.csv"))
                     {
-                        foreach (var line in output)
+                        file.WriteLine("Id,POSITION,X,Y,R,G,B,HEX,PAGE_NAME");
+
+                        foreach (var line in csv)
                         {
                             file.WriteLine(line);
                         }
@@ -91,29 +96,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         file.Flush();
                         file.Dispose();
                     }
-                    
-                    output.Clear();
-                    counter = 0;
+
+                    csv.Clear();
                 };
 
-                System.IO.Directory.EnumerateFiles("./output").ToList().ForEach(x =>
-                {
-                    if (x.EndsWith(".sql"))
-                    {
-                        AnsiConsole.WriteLine(x);
-                        using(var file = System.IO.File.OpenText(x))
-                        {
-                            string line;
-                            while((line = file.ReadLine()) != null)
-                            {
-                                _liberContext.Database.ExecuteSqlRaw(line);
-                            }
-
-                            file.Close();
-                            file.Dispose();
-                        }
-                    }
-                });
             }
         }
     }
