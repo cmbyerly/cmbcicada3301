@@ -109,8 +109,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                 _liberContext.Database.ExecuteSqlRaw(line);
                             }
 
-                            file.Dispose();
                             file.Close();
+                            file.Dispose();
                         }
                     }
                 });
