@@ -94,6 +94,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     var includeControlCharacters = selecttion == "Yes";
 
+                    // Getting the page data.
                     foreach (var selection in pageSelection)
                     {
                         var tmpPage = await _mediator.Send(new GetPageData.Query(selection, true));
