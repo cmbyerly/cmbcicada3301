@@ -1,12 +1,10 @@
-﻿using ImageMagick;
-using LiberPrimusAnalysisTool.Application.Commands.Algo;
+﻿using LiberPrimusAnalysisTool.Application.Commands.Algo;
 using LiberPrimusAnalysisTool.Application.Queries;
 using LiberPrimusAnalysisTool.Application.Queries.Math;
 using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
 using Spectre.Console;
-using System.Drawing;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Image
 {
@@ -75,7 +73,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                         foreach (var selection in pageSelection)
                         {
-                            var tmpPage = await _mediator.Send(new GetPageData.Query(selection, false));
+                            var tmpPage = await _mediator.Send(new GetPageData.Query(selection, true));
                             liberPages.Add(tmpPage);
                         }
                     }
@@ -130,25 +128,18 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                         // Getting the pixels from the sequence
                         AnsiConsole.WriteLine($"Getting pixels from sequence {seqtext}");
-                        List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData = new List<Tuple<LiberPage, List<System.Drawing.Color>>>();
+                        List<Tuple<LiberPage, List<Entity.Pixel>>> pixelData = new List<Tuple<LiberPage, List<Entity.Pixel>>>();
                         Parallel.ForEach(liberPages, page =>
                         {
                             AnsiConsole.WriteLine($"Sequencing {page.PageName}");
-                            using (var imageFromFile = new MagickImage(page.FileName))
-                            using (var pixels = imageFromFile.GetPixels())
+                            List<Entity.Pixel> tmpPixelList = new List<Entity.Pixel>();
+                            foreach (var seq in sequence)
                             {
-                                List<System.Drawing.Color> tmpPixelList = new List<System.Drawing.Color>();
-                                foreach (var seq in sequence)
-                                {
-                                    var pixelColor = ColorTranslator.FromHtml(pixels.ElementAt(seq).ToColor().ToHexString().ToUpper());
-                                    tmpPixelList.Add(pixelColor);
-                                }
-                                pixelData.Add(new Tuple<LiberPage, List<System.Drawing.Color>>(page, tmpPixelList));
-
-                                AnsiConsole.WriteLine($"Sequenced {page.PageName}");
-
-                                pixels.Dispose();
+                                tmpPixelList.Add(page.Pixels.ElementAt(seq));
                             }
+                            pixelData.Add(new Tuple<LiberPage, List<Entity.Pixel>>(page, tmpPixelList));
+
+                            AnsiConsole.WriteLine($"Sequenced {page.PageName}");
                         });
 
                         GC.Collect();

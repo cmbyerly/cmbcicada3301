@@ -63,7 +63,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         continue;
                     }
 
-                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));    
+                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));
                     var pageEntry = _liberContext.LiberPages.FirstOrDefault(x => x.PageName == page.PageName);
                     if (pageEntry == null)
                     {
@@ -75,7 +75,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     foreach (var pixel in page.Pixels)
                     {
                         pixel.Position = counter;
-                        
+
                         csv.Add($"{id}, {counter},{pixel.X},{pixel.Y},{pixel.R},{pixel.G},{pixel.B},{pixel.Hex},{tpage.PageName}");
 
                         counter++;
@@ -99,7 +99,6 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     csv.Clear();
                 };
-
             }
         }
     }

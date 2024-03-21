@@ -18,7 +18,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// <param name="pixelData">The pixel data.</param>
             /// <param name="method">The method.</param>
             /// <param name="includeControlCharacters">if set to <c>true</c> [include control characters].</param>
-            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method, bool includeControlCharacters)
+            public Command(List<Tuple<LiberPage, List<Entity.Pixel>>> pixelData, string method, bool includeControlCharacters)
             {
                 PixelData = pixelData;
                 Method = method;
@@ -31,7 +31,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// <value>
             /// The pixel data.
             /// </value>
-            public List<Tuple<LiberPage, List<System.Drawing.Color>>> PixelData { get; set; }
+            public List<Tuple<LiberPage, List<Entity.Pixel>>> PixelData { get; set; }
 
             /// <summary>
             /// Gets or sets the method.

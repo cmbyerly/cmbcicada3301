@@ -22,7 +22,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// <param name="asciiProcessing">The ASCII processing.</param>
             /// <param name="bitsOfSig">The bits of sig.</param>
             /// <param name="colorOrder">The color order.</param>
-            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method, bool includeControlCharacters, int asciiProcessing, int bitsOfSig, string colorOrder)
+            public Command(List<Tuple<LiberPage, List<Entity.Pixel>>> pixelData, string method, bool includeControlCharacters, int asciiProcessing, int bitsOfSig, string colorOrder)
             {
                 PixelData = pixelData;
                 Method = method;
@@ -38,7 +38,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// <value>
             /// The pixel data.
             /// </value>
-            public List<Tuple<LiberPage, List<System.Drawing.Color>>> PixelData { get; set; }
+            public List<Tuple<LiberPage, List<Entity.Pixel>>> PixelData { get; set; }
 
             /// <summary>
             /// Gets or sets the method.
@@ -144,7 +144,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                                     bits.Append(bBits.Substring(8 - request.BitsOfSig, request.BitsOfSig));
                                     break;
                             }
-                        }   
+                        }
                     }
 
                     AnsiConsole.WriteLine($"Building bytes for bits for {data.Item1.PageName}");
@@ -183,7 +183,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                                 {
                                     characterForFile = _characterRepo.GetCharacterFromGematriaValue(Convert.ToInt32(charBin, 2));
                                 }
-                                catch(Exception e)
+                                catch (Exception e)
                                 {
                                     characterForFile = string.Empty;
                                     AnsiConsole.WriteLine($"Error: {e.Message}");

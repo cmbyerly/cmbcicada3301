@@ -1,4 +1,4 @@
-﻿ namespace LiberPrimusAnalysisTool.Utility.Character
+﻿namespace LiberPrimusAnalysisTool.Utility.Character
 {
     /// <summary>
     /// ICharacterRepo

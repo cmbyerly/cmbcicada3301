@@ -2,6 +2,7 @@
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
 using Spectre.Console;
+using System.Drawing;
 
 namespace LiberPrimusAnalysisTool.Application.Queries.Page
 {
@@ -85,6 +86,15 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
                                 Width = imageFromFile.Width,
                                 PixelCount = pixels.Count()
                             };
+
+                            page.Pixels = pixels.Select(x => new Entity.Pixel(
+                                x.X,
+                                x.Y,
+                                ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).R,
+                                ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).G,
+                                ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).B,
+                                x.ToColor().ToHexString(),
+                                page.PageName)).ToList();
 
                             pages.Add(page);
                             pixels.Dispose();
