@@ -80,97 +80,104 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         }
                     }
 
-                    // Now we need to select the sequence to use
-                    var seqtext = string.Empty;
-                    var sequenceSelection = AnsiConsole.Prompt(
-                            new SelectionPrompt<string>()
-                            .Title("[green]Please select sequence to use[/]:")
-                            .PageSize(10)
-                            .MoreChoicesText("[grey](Move up and down to reveal more sequences)[/]")
-                            .AddChoices(new[]
-                            {
-                                "0: All Pixels (Natural Sequence)",
-                                "1: Winnow by Prime",
-                                "2: Winnow by Fibonacci",
-                                "3: Winnow by Totient",
-                            }));
+                    var selecttion = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .Title("[green]Include control characters?[/]?")
+                    .PageSize(10)
+                    .AddChoices(new[] {
+                        "Yes",
+                        "No"
+                    }));
 
-                    var choice = sequenceSelection.Split(":")[0];
+                    var includeControlCharacters = selecttion == "Yes";
 
-                    List<int> sequence = new List<int>();
-                    switch (choice)
+                    string seqtext = string.Empty;
+
+                    for (int i = 1; i <= 3; i++)
                     {
-                        case "0":
-                            seqtext = "Natural";
-                            for (int i = 0; i <= liberPages[0].PixelCount; i++)
-                            {
-                                sequence.Add(i);
-                            }
-                            break;
-
-                        case "1":
-                            seqtext = "Prime";
-                            var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPages[0].PixelCount });
-                            sequence = tmpPrimeList.ToList();
-                            break;
-
-                        case "2":
-                            seqtext = "Fib";
-                            var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPages[0].PixelCount });
-                            sequence = tmpFibList.ToList();
-                            break;
-
-                        case "3":
-                            seqtext = "Totient";
-                            var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPages[0].PixelCount });
-                            sequence = totient.Sequence;
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                    // Getting the pixels from the sequence
-                    AnsiConsole.WriteLine("Getting pixels from sequence");
-                    List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData = new List<Tuple<LiberPage, List<System.Drawing.Color>>>();
-                    Parallel.ForEach(liberPages, page =>
-                    {
-                        AnsiConsole.WriteLine($"Sequencing {page.PageName}");
-                        using (var imageFromFile = new MagickImage(page.FileName))
+                        List<int> sequence = new List<int>();
+                        switch (i)
                         {
-                            var pixels = imageFromFile.GetPixels().Select(x => ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()));
-                            List<System.Drawing.Color> tmpPixelList = new List<System.Drawing.Color>();
-                            pixelData.Add(new Tuple<LiberPage, List<System.Drawing.Color>>(page, pixels.ToList()));
-                            AnsiConsole.WriteLine($"Sequenced {page.PageName}");
+                            case 0:
+                                seqtext = "Natural";
+                                for (int n = 0; n <= liberPages[0].PixelCount; n++)
+                                {
+                                    sequence.Add(n);
+                                }
+                                break;
+
+                            case 1:
+                                seqtext = "Prime";
+                                var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPages[0].PixelCount });
+                                sequence = tmpPrimeList.ToList();
+                                break;
+
+                            case 2:
+                                seqtext = "Fib";
+                                var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPages[0].PixelCount });
+                                sequence = tmpFibList.ToList();
+                                break;
+
+                            case 3:
+                                seqtext = "Totient";
+                                var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPages[0].PixelCount });
+                                sequence = totient.Sequence;
+                                break;
+
+                            default:
+                                break;
                         }
-                    });
 
-                    // Now we need to select the image processing algorithm
-                    var imageProcessingSelection = AnsiConsole.Prompt(
-                            new SelectionPrompt<string>()
-                            .Title("[green]Please select image processing algorithm[/]:")
-                            .PageSize(10)
-                            .MoreChoicesText("[grey](Move up and down to reveal more algorithms)[/]")
-                            .AddChoices(new[]
+                        // Getting the pixels from the sequence
+                        AnsiConsole.WriteLine($"Getting pixels from sequence {seqtext}");
+                        List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData = new List<Tuple<LiberPage, List<System.Drawing.Color>>>();
+                        Parallel.ForEach(liberPages, page =>
+                        {
+                            AnsiConsole.WriteLine($"Sequencing {page.PageName}");
+                            using (var imageFromFile = new MagickImage(page.FileName))
+                            using (var pixels = imageFromFile.GetPixels())
                             {
-                                "1: RGB",
-                                "2: LSB",
-                            }));
+                                List<System.Drawing.Color> tmpPixelList = new List<System.Drawing.Color>();
+                                foreach (var seq in sequence)
+                                {
+                                    var pixelColor = ColorTranslator.FromHtml(pixels.ElementAt(seq).ToColor().ToHexString().ToUpper());
+                                    tmpPixelList.Add(pixelColor);
+                                }
+                                pixelData.Add(new Tuple<LiberPage, List<System.Drawing.Color>>(page, tmpPixelList));
 
-                    choice = imageProcessingSelection.Split(":")[0];
+                                AnsiConsole.WriteLine($"Sequenced {page.PageName}");
 
-                    switch (choice)
-                    {
-                        case "1":
-                            await _mediator.Publish(new ProcessRGB.Command(pixelData, seqtext));
-                            break;
+                                pixels.Dispose();
+                            }
+                        });
 
-                        case "2":
-                            await _mediator.Publish(new ProcessLSB.Command(pixelData, seqtext));
-                            break;
+                        GC.Collect();
 
-                        default:
-                            break;
+                        for (int p = 0; p <= 2; p++)
+                        {
+                            switch (p)
+                            {
+                                case 1:
+                                    await _mediator.Publish(new ProcessRGB.Command(pixelData, seqtext, includeControlCharacters));
+                                    break;
+
+                                case 2:
+                                    foreach (var asciiProcessing in new List<int>() { 7, 8, 9 })
+                                    {
+                                        foreach (var bitsOfSig in new List<int>() { 1, 2, 3, 4, 5, 6, 7 })
+                                        {
+                                            foreach (var colorOrder in new List<string>() { "RGB", "RBG", "GBR", "GRB", "BRG", "BGR" })
+                                            {
+                                                await _mediator.Publish(new ProcessLSB.Command(pixelData, seqtext, includeControlCharacters, asciiProcessing, bitsOfSig, colorOrder));
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
                     }
 
                     returnToMenu = AnsiConsole.Confirm("Return to main menu?");

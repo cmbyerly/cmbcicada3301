@@ -13,14 +13,16 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
         public class Command : INotification
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="Command"/> class.
+            /// Initializes a new instance of the <see cref="Command" /> class.
             /// </summary>
             /// <param name="pixelData">The pixel data.</param>
             /// <param name="method">The method.</param>
-            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method)
+            /// <param name="includeControlCharacters">if set to <c>true</c> [include control characters].</param>
+            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method, bool includeControlCharacters)
             {
                 PixelData = pixelData;
                 Method = method;
+                IncludeControlCharacters = includeControlCharacters;
             }
 
             /// <summary>
@@ -38,6 +40,14 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// The method.
             /// </value>
             public string Method { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [include control characters].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [include control characters]; otherwise, <c>false</c>.
+            /// </value>
+            public bool IncludeControlCharacters { get; set; }
         }
 
         /// <summary>
@@ -74,17 +84,6 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var selecttion = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                    .Title("[green]Include control characters?[/]?")
-                    .PageSize(10)
-                    .AddChoices(new[] {
-                        "Yes",
-                        "No"
-                    }));
-
-                var includeControlCharacters = selecttion == "Yes";
-
                 Parallel.ForEach(request.PixelData, data =>
                 {
                     AnsiConsole.WriteLine($"Processing {data.Item1.PageName}");
@@ -94,9 +93,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     foreach (var pixel in data.Item2)
                     {
                         ;
-                        rgbIndex.AddR(_characterRepo.GetASCIICharFromDec(pixel.R, includeControlCharacters));
-                        rgbIndex.AddG(_characterRepo.GetASCIICharFromDec(pixel.G, includeControlCharacters));
-                        rgbIndex.AddB(_characterRepo.GetASCIICharFromDec(pixel.B, includeControlCharacters));
+                        rgbIndex.AddR(_characterRepo.GetASCIICharFromDec(pixel.R, request.IncludeControlCharacters));
+                        rgbIndex.AddG(_characterRepo.GetASCIICharFromDec(pixel.G, request.IncludeControlCharacters));
+                        rgbIndex.AddB(_characterRepo.GetASCIICharFromDec(pixel.B, request.IncludeControlCharacters));
                     }
 
                     AnsiConsole.WriteLine($"Red Text: {rgbIndex.R}");

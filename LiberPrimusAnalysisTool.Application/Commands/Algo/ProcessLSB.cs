@@ -14,14 +14,22 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
         public class Command : INotification
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="Command"/> class.
+            /// Initializes a new instance of the <see cref="Command" /> class.
             /// </summary>
             /// <param name="pixelData">The pixel data.</param>
             /// <param name="method">The method.</param>
-            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method)
+            /// <param name="includeControlCharacters">if set to <c>true</c> [include control characters].</param>
+            /// <param name="asciiProcessing">The ASCII processing.</param>
+            /// <param name="bitsOfSig">The bits of sig.</param>
+            /// <param name="colorOrder">The color order.</param>
+            public Command(List<Tuple<LiberPage, List<System.Drawing.Color>>> pixelData, string method, bool includeControlCharacters, int asciiProcessing, int bitsOfSig, string colorOrder)
             {
                 PixelData = pixelData;
                 Method = method;
+                IncludeControlCharacters = includeControlCharacters;
+                AsciiProcessing = asciiProcessing;
+                BitsOfSig = bitsOfSig;
+                ColorOrder = colorOrder;
             }
 
             /// <summary>
@@ -39,6 +47,38 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// The method.
             /// </value>
             public string Method { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [include control characters].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [include control characters]; otherwise, <c>false</c>.
+            /// </value>
+            public bool IncludeControlCharacters { get; set; }
+
+            /// <summary>
+            /// Gets or sets the ASCII processing.
+            /// </summary>
+            /// <value>
+            /// The ASCII processing.
+            /// </value>
+            public int AsciiProcessing { get; set; }
+
+            /// <summary>
+            /// Gets or sets the bits of sig.
+            /// </summary>
+            /// <value>
+            /// The bits of sig.
+            /// </value>
+            public int BitsOfSig { get; set; }
+
+            /// <summary>
+            /// Gets or sets the color order.
+            /// </summary>
+            /// <value>
+            /// The color order.
+            /// </value>
+            public string ColorOrder { get; set; }
         }
 
         /// <summary>
@@ -75,70 +115,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var selecttion = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                    .Title("[green]Include control characters?[/]?")
-                    .PageSize(10)
-                    .AddChoices(new[] {
-                        "Yes",
-                        "No"
-                    }));
-
-                var includeControlCharacters = selecttion == "Yes";
-
-                var asciiProcessing = AnsiConsole.Prompt(
-                            new SelectionPrompt<string>()
-                            .Title("[green]7-bit or 8-bit Character set[/]:")
-                            .PageSize(10)
-                            .MoreChoicesText("[grey](Move up and down to reveal more algorithms)[/]")
-                            .AddChoices(new[]
-                            {
-                                "7: ASCII",
-                                "8: ANSI",
-                                "9: Gemetria Primus"
-                            }));
-
-                var iAsciiProcessing = Convert.ToInt32(asciiProcessing.Split(":")[0]);
-
-                var orderOfColors = AnsiConsole.Prompt(
-                            new SelectionPrompt<string>()
-                            .Title("[green]Order of Colors[/]:")
-                            .PageSize(10)
-                            .MoreChoicesText("[grey](Move up and down to reveal more algorithms)[/]")
-                            .AddChoices(new[]
-                            {
-                                "RGB",
-                                "RBG",
-                                "GBR",
-                                "GRB",
-                                "BRG",
-                                "BGR",
-                            }));
-
-                var bitsOfSig = AnsiConsole.Prompt(
-                            new SelectionPrompt<string>()
-                            .Title("[green]Bits to gather[/]:")
-                            .PageSize(10)
-                            .MoreChoicesText("[grey](Move up and down to reveal more algorithms)[/]")
-                            .AddChoices(new[]
-                            {
-                                "1",
-                                "2",
-                                "3",
-                                "4",
-                                "5",
-                                "6",
-                                "7",
-                            }));
-
-                int iBitsOfSig = Convert.ToInt32(bitsOfSig);
-
                 Parallel.ForEach(request.PixelData, data =>
                 {
                     AnsiConsole.WriteLine($"Getting bits from {data.Item1.PageName}");
                     StringBuilder bits = new StringBuilder();
 
-                    char[] orderProcessing = new char[3] { orderOfColors[0], orderOfColors[1], orderOfColors[2] };
+                    char[] orderProcessing = new char[3] { request.ColorOrder[0], request.ColorOrder[1], request.ColorOrder[2] };
 
                     foreach (var pixel in data.Item2)
                     {
@@ -151,15 +133,15 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                             switch (order)
                             {
                                 case 'R':
-                                    bits.Append(rBits.Substring(8 - iBitsOfSig, iBitsOfSig));
+                                    bits.Append(rBits.Substring(8 - request.BitsOfSig, request.BitsOfSig));
                                     break;
 
                                 case 'G':
-                                    bits.Append(gBits.Substring(8 - iBitsOfSig, iBitsOfSig));
+                                    bits.Append(gBits.Substring(8 - request.BitsOfSig, request.BitsOfSig));
                                     break;
 
                                 case 'B':
-                                    bits.Append(bBits.Substring(8 - iBitsOfSig, iBitsOfSig));
+                                    bits.Append(bBits.Substring(8 - request.BitsOfSig, request.BitsOfSig));
                                     break;
                             }
                         }   
@@ -171,7 +153,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     foreach (var character in bits.ToString())
                     {
                         ascii.Append(character);
-                        if (ascii.Length >= iAsciiProcessing)
+                        if (ascii.Length >= request.AsciiProcessing)
                         {
                             charBinList.Add(ascii.ToString());
                             ascii.Clear();
@@ -179,21 +161,21 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     }
 
                     AnsiConsole.WriteLine($"Filtering bytes too short {data.Item1.PageName}");
-                    charBinList = charBinList.Where(x => x.Length == iAsciiProcessing).ToList();
+                    charBinList = charBinList.Where(x => x.Length == request.AsciiProcessing).ToList();
 
                     AnsiConsole.WriteLine($"Building character string for {data.Item1.PageName}");
                     StringBuilder stringForFile = new StringBuilder();
                     string characterForFile;
                     foreach (var charBin in charBinList)
                     {
-                        switch (iAsciiProcessing)
+                        switch (request.AsciiProcessing)
                         {
                             case 7:
-                                characterForFile = _characterRepo.GetASCIICharFromBin(charBin, includeControlCharacters);
+                                characterForFile = _characterRepo.GetASCIICharFromBin(charBin, request.IncludeControlCharacters);
                                 break;
 
                             case 8:
-                                characterForFile = _characterRepo.GetANSICharFromBin(charBin, includeControlCharacters);
+                                characterForFile = _characterRepo.GetANSICharFromBin(charBin, request.IncludeControlCharacters);
                                 break;
 
                             case 9:
@@ -217,7 +199,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     }
 
                     AnsiConsole.WriteLine($"Outputting file for {data.Item1.PageName}");
-                    File.WriteAllText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{orderOfColors}-{iAsciiProcessing}-{iBitsOfSig}.txt", stringForFile.ToString());
+                    File.WriteAllText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.AsciiProcessing}-{request.BitsOfSig}.txt", stringForFile.ToString());
                 });
             }
         }
