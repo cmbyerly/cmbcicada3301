@@ -110,7 +110,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         {
                             case 0:
                                 seqtext = "Natural";
-                                for (int n = 0; n <= liberPages[0].PixelCount; n++)
+                                for (int n = 0; n < liberPages[0].PixelCount; n++)
                                 {
                                     sequence.Add(n);
                                 }
