@@ -1,7 +1,6 @@
 ﻿using LiberPrimusAnalysisTool.Application.Commands.Algo;
 using LiberPrimusAnalysisTool.Application.Queries;
 using LiberPrimusAnalysisTool.Application.Queries.Math;
-using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
 using Spectre.Console;
@@ -53,30 +52,36 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                 {
                     // Getting the pages we want to winnow
                     List<LiberPage> liberPages = new List<LiberPage>();
-                    var winnowAllPages = AnsiConsole.Confirm("Winnow all pages?");
 
-                    if (winnowAllPages)
-                    {
-                        var tmpPages = await _mediator.Send(new GetPages.Query(true));
-                        liberPages = tmpPages.ToList();
-                    }
-                    else
-                    {
-                        var pageList = await _mediator.Send(new GetPages.Query(false));
+                    var groupSelection = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .Title("[green]Please select page group to run[/]:")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more groups)[/]")
+                    .AddChoices(new[] {
+                        "00",
+                        "01",
+                        "02",
+                        "03,04",
+                        "05",
+                        "06,07,08,09",
+                        "10,11,12,13",
+                        "14,15,16",
+                        "17,18,19",
+                        "20,21,22,23,24",
+                        "25,26,27,28,29,30,31",
+                        "32,33,34,35,36,37,38",
+                        "39",
+                        "40",
+                        "41,42,43",
+                        "44,45,46,47,48,49",
+                        "50,51,52,53,54,55,56",
+                        "57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72",
+                        "73",
+                        "74",
+                    }));
 
-                        var pageSelection = AnsiConsole.Prompt(
-                                                new MultiSelectionPrompt<string>()
-                                                .Title("[green]Please select pages to winnow[/]:")
-                                                .PageSize(10)
-                                                .MoreChoicesText("[grey](Move up and down to reveal more pages)[/]")
-                                                .AddChoices(pageList.Select(x => x.PageName).ToList()));
-
-                        foreach (var selection in pageSelection)
-                        {
-                            var tmpPage = await _mediator.Send(new GetPageData.Query(selection, true));
-                            liberPages.Add(tmpPage);
-                        }
-                    }
+                    var pageSelection = groupSelection.Split(",");
 
                     var selecttion = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
@@ -89,9 +94,15 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     var includeControlCharacters = selecttion == "Yes";
 
+                    foreach (var selection in pageSelection)
+                    {
+                        var tmpPage = await _mediator.Send(new GetPageData.Query(selection, true));
+                        liberPages.Add(tmpPage);
+                    }
+
                     string seqtext = string.Empty;
 
-                    for (int i = 1; i <= 3; i++)
+                    for (int i = 0; i <= 3; i++)
                     {
                         List<int> sequence = new List<int>();
                         switch (i)
