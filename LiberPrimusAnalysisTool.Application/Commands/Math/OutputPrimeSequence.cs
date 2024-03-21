@@ -43,7 +43,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Math
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var number = AnsiConsole.Ask<int>("What is the number?");
+                var number = AnsiConsole.Ask<int>("What is the max number?");
                 var primeSequence = await _mediator.Send(new GetPrimeSequence.Query() { Number = number });
                 foreach (int i in primeSequence)
                 {
