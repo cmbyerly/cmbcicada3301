@@ -83,21 +83,13 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     var pageSelection = groupSelection.Split(",");
 
-                    var selecttion = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                    .Title("[green]Include control characters?[/]?")
-                    .PageSize(10)
-                    .AddChoices(new[] {
-                        "Yes",
-                        "No"
-                    }));
-
-                    var includeControlCharacters = selecttion == "Yes";
+                    var includeControlCharacters = AnsiConsole.Confirm("Include control characters?");
+                    var invertPixels = AnsiConsole.Confirm("Invert Pixels?");
 
                     // Getting the page data.
                     foreach (var selection in pageSelection)
                     {
-                        var tmpPage = await _mediator.Send(new GetPageData.Query(selection, true));
+                        var tmpPage = await _mediator.Send(new GetPageData.Query(selection, true, invertPixels));
                         liberPages.Add(tmpPage);
                     }
 

@@ -38,7 +38,8 @@ namespace LiberPrimusAnalysisTool
             while (dontExit)
             {
                 Console.Clear();
-                AnsiConsole.MarkupLine("[green]Running Liber Primus Analysis Tool[/]");
+                AnsiConsole.Write(new FigletText("Liber Primus Analysis Tool").Centered().Color(Color.Green));
+                Task.Delay(5000).Wait();
 
                 var selecttion = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
@@ -46,7 +47,7 @@ namespace LiberPrimusAnalysisTool
                     .PageSize(10)
                     .MoreChoicesText("[grey](Move up and down to reveal more tests)[/]")
                     .AddChoices(new[] {
-                        //"0: Initialize Database and generate CSV (DO THIS FIRST)",
+                        "0: Initialize Database (DO THIS FIRST)",
                         "1: Flush output directory",
                         "2: Reverse bytes",
                         "3: RGB -> Text",
@@ -94,9 +95,9 @@ namespace LiberPrimusAnalysisTool
                         _mediator.Publish(new CalculateTotient.Command()).Wait();
                         break;
 
-                    //case "0":
-                    //    _mediator.Publish(new OutputPageInformation.Command()).Wait();
-                    //    break;
+                    case "0":
+                        _mediator.Publish(new OutputPageInformation.Command()).Wait();
+                        break;
 
                     case "9":
                         _mediator.Publish(new WinnowPages.Command()).Wait();

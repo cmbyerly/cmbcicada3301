@@ -55,16 +55,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var selecttion = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                    .Title("[green]Include control characters?[/]?")
-                    .PageSize(10)
-                    .AddChoices(new[] {
-                        "Yes",
-                        "No"
-                    }));
+                var invertPixels = AnsiConsole.Confirm("Invert Pixels?");
 
-                var includeControlCharacters = selecttion == "Yes";
+                var includeControlCharacters = AnsiConsole.Confirm("Include control characters?");
 
                 var files = await _mediator.Send(new GetPages.Query(false));
 

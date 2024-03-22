@@ -70,10 +70,6 @@ namespace LiberPrimusAnalysisTool.Database
             modelBuilder.Entity<LiberPage>()
                 .ToTable("TB_LIBER_PAGE")
                 .HasKey(i => i.Id);
-
-            modelBuilder.Entity<Pixel>()
-                .ToTable("TB_LIBER_PIXEL")
-                .HasKey(i => i.Id);
         }
     }
 }

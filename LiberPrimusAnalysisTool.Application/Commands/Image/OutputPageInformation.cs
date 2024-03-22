@@ -63,38 +63,13 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         continue;
                     }
 
-                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, true));
+                    var page = await _mediator.Send(new GetPageData.Query(tpage.PageName, false, false));
                     var pageEntry = _liberContext.LiberPages.FirstOrDefault(x => x.PageName == page.PageName);
                     if (pageEntry == null)
                     {
                         AnsiConsole.WriteLine($"Indexing: {page.PageName}");
                         await _liberContext.AddAsync(page);
                         await _liberContext.SaveChangesAsync();
-                    }
-
-                    foreach (var pixel in page.Pixels)
-                    {
-                        pixel.Position = counter;
-
-                        csv.Add($"{id}, {counter},{pixel.X},{pixel.Y},{pixel.R},{pixel.G},{pixel.B},{pixel.Hex},{tpage.PageName}");
-
-                        counter++;
-                        id++;
-                    }
-
-                    counter = 0;
-
-                    using (StreamWriter file = System.IO.File.CreateText($"./output/TB_LIBER_PIXEL.{tpage.PageName}.csv"))
-                    {
-                        file.WriteLine("Id,POSITION,X,Y,R,G,B,HEX,PAGE_NAME");
-
-                        foreach (var line in csv)
-                        {
-                            file.WriteLine(line);
-                        }
-
-                        file.Flush();
-                        file.Dispose();
                     }
 
                     csv.Clear();

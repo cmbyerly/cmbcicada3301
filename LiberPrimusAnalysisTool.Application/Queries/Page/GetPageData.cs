@@ -18,14 +18,16 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         public class Query : MediatR.IRequest<LiberPage>
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="Query"/> class.
+            /// Initializes a new instance of the <see cref="Query" /> class.
             /// </summary>
             /// <param name="pageId">The page identifier.</param>
             /// <param name="includePixels">if set to <c>true</c> [include pixels].</param>
-            public Query(string pageId, bool includePixels)
+            /// <param name="invertPixels">if set to <c>true</c> [invert pixels].</param>
+            public Query(string pageId, bool includePixels, bool invertPixels)
             {
                 PageId = pageId;
                 IncludePixels = includePixels;
+                InvertPixels = invertPixels;
             }
 
             /// <summary>
@@ -43,6 +45,14 @@ namespace LiberPrimusAnalysisTool.Application.Queries
             ///   <c>true</c> if [include pixels]; otherwise, <c>false</c>.
             /// </value>
             public bool IncludePixels { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value indicating whether [invert pixels].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [invert pixels]; otherwise, <c>false</c>.
+            /// </value>
+            public bool InvertPixels { get; set; }
         }
 
         /// <summary>
@@ -96,6 +106,11 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                             ColorTranslator.FromHtml(x.ToColor().ToHexString().ToUpper()).B,
                             x.ToColor().ToHexString(),
                             page.PageName)).ToList();
+
+                        if (request.InvertPixels)
+                        {
+                            page.Pixels.Reverse();
+                        }
                     }
 
                     pixels.Dispose();

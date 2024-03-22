@@ -53,7 +53,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
             {
                 List<LiberColor> colors = new List<LiberColor>();
 
-                var page = await _mediator.Send(new GetPageData.Query(request.PageId, false));
+                var page = await _mediator.Send(new GetPageData.Query(request.PageId, false, false));
 
                 AnsiConsole.WriteLine($"Getting colors for {page.FileName}");
 

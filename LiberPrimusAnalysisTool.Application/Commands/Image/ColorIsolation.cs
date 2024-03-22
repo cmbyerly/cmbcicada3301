@@ -54,6 +54,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     List<LiberPage> liberPages = new List<LiberPage>();
                     var winnowAllPages = AnsiConsole.Confirm("Isolate colors on all pages?");
 
+                    var invertPixels = AnsiConsole.Confirm("Invert Pixels?");
+
                     if (winnowAllPages)
                     {
                         var tmpPages = await _mediator.Send(new GetPages.Query(true));
@@ -72,7 +74,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                         foreach (var selection in pageSelection)
                         {
-                            var tmpPage = await _mediator.Send(new GetPageData.Query(selection, false));
+                            var tmpPage = await _mediator.Send(new GetPageData.Query(selection, false, invertPixels));
                             liberPages.Add(tmpPage);
                         }
                     }

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace LiberPrimusAnalysisTool.Entity
+﻿namespace LiberPrimusAnalysisTool.Entity
 {
     /// <summary>
     /// Pixel
@@ -37,22 +34,11 @@ namespace LiberPrimusAnalysisTool.Entity
         }
 
         /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        [Key]
-        public long Id { get; set; }
-
-        /// <summary>
         /// Gets or sets the position.
         /// </summary>
         /// <value>
         /// The position.
         /// </value>
-        [Required]
-        [Column("POSITION")]
         public long Position { get; set; }
 
         /// <summary>
@@ -61,8 +47,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The x.
         /// </value>
-        [Required]
-        [Column("X")]
         public int X { get; set; }
 
         /// <summary>
@@ -71,8 +55,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The y.
         /// </value>
-        [Required]
-        [Column("Y")]
         public int Y { get; set; }
 
         /// <summary>
@@ -81,8 +63,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The r.
         /// </value>
-        [Required]
-        [Column("R")]
         public int R { get; set; }
 
         /// <summary>
@@ -91,8 +71,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The g.
         /// </value>
-        [Required]
-        [Column("G")]
         public int G { get; set; }
 
         /// <summary>
@@ -101,8 +79,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The b.
         /// </value>
-        [Required]
-        [Column("B")]
         public int B { get; set; }
 
         /// <summary>
@@ -111,8 +87,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The hexadecimal.
         /// </value>
-        [Required]
-        [Column("HEX")]
         public string Hex { get; set; }
 
         /// <summary>
@@ -121,8 +95,6 @@ namespace LiberPrimusAnalysisTool.Entity
         /// <value>
         /// The page identifier.
         /// </value>
-        [Required]
-        [Column("PAGE_NAME")]
         public string PageName { get; set; }
     }
 }
