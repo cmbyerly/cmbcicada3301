@@ -54,7 +54,7 @@ namespace LiberPrimusAnalysisTool
                         "5: Output prime sequence",
                         "6: Output fibonacci sequence",
                         "7: Calculate Totient",
-                        "9: Winnow Page(s)",
+                        "9: Winnow Page(s) (Non-GCT Pixel)",
                         "10: Isolate Color(s)",
                         "99: Exit Program",
                     }));

@@ -83,8 +83,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     var pageSelection = groupSelection.Split(",");
 
-                    var includeControlCharacters = AnsiConsole.Confirm("Include control characters?");
-                    var invertPixels = AnsiConsole.Confirm("Invert Pixels?");
+                    var includeControlCharacters = AnsiConsole.Confirm("Include control characters?", false);
+                    var invertPixels = AnsiConsole.Confirm("Reverse Pixels?", false);
 
                     // Getting the page data.
                     foreach (var selection in pageSelection)
