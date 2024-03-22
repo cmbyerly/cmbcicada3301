@@ -19,7 +19,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Math
             /// <value>
             /// The number.
             /// </value>
-            public int Number { get; set; }
+            public long Number { get; set; }
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Math
                 totient.Number = request.Number;
                 var n = request.Number;
 
-                for (int i = 1; i <= n; i++)
+                for (long i = 1; i <= n; i++)
                 {
                     if (GCD(i, n) == 1)
                     {
@@ -60,7 +60,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Math
             /// <param name="a">a.</param>
             /// <param name="b">The b.</param>
             /// <returns></returns>
-            private int GCD(int a, int b)
+            private long GCD(long a, long b)
             {
                 while (b != 0)
                 {

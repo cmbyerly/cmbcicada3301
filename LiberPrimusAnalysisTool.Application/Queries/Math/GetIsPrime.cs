@@ -3,7 +3,7 @@
 namespace LiberPrimusAnalysisTool.Application.Queries
 {
     /// <summary>
-    /// Indexes the liber primus pages into the database.
+    /// Indexes the liber primus pages longo the database.
     /// </summary>
     public class GetIsPrime
     {
@@ -13,7 +13,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries
         /// <seealso cref="IRequest" />
         public class Query : IRequest<bool>
         {
-            public int Number { get; set; }
+            public long Number { get; set; }
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace LiberPrimusAnalysisTool.Application.Queries
                 if (request.Number == 2) return true;
                 if (request.Number % 2 == 0) return false;
 
-                var boundary = (int)System.Math.Floor(System.Math.Sqrt(request.Number));
+                var boundary = (long)System.Math.Floor(System.Math.Sqrt(request.Number));
 
-                for (int i = 3; i <= boundary; i += 2)
+                for (long i = 3; i <= boundary; i += 2)
                 {
                     if (request.Number % i == 0)
                     {

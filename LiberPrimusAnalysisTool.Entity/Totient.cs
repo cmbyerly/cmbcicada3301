@@ -10,7 +10,7 @@
         /// </summary>
         public Totient()
         {
-            Sequence = new List<int>();
+            Sequence = new List<long>();
         }
 
         /// <summary>
@@ -19,7 +19,7 @@
         /// <value>
         /// The number.
         /// </value>
-        public int Number { get; set; }
+        public long Number { get; set; }
 
         /// <summary>
         /// Gets or sets the phi.
@@ -27,7 +27,7 @@
         /// <value>
         /// The phi.
         /// </value>
-        public int Phi { get; set; }
+        public long Phi { get; set; }
 
         /// <summary>
         /// Gets or sets the sequence.
@@ -35,6 +35,6 @@
         /// <value>
         /// The sequence.
         /// </value>
-        public List<int> Sequence { get; set; }
+        public List<long> Sequence { get; set; }
     }
 }

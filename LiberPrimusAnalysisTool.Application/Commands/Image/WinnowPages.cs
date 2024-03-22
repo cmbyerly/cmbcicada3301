@@ -97,7 +97,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     for (int i = 0; i <= 3; i++)
                     {
-                        List<int> sequence = new List<int>();
+                        List<long> sequence = new List<long>();
                         switch (i)
                         {
                             case 0:
@@ -139,7 +139,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             List<Entity.Pixel> tmpPixelList = new List<Entity.Pixel>();
                             foreach (var seq in sequence)
                             {
-                                tmpPixelList.Add(page.Pixels.ElementAt(seq));
+                                tmpPixelList.Add(page.Pixels.ElementAt((int)seq));
                             }
                             pixelData.Add(new Tuple<LiberPage, List<Entity.Pixel>>(page, tmpPixelList));
 

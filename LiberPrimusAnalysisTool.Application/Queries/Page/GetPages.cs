@@ -68,7 +68,7 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Page
 
                 foreach (var pageId in pageIds)
                 {
-                    AnsiConsole.WriteLine($"Getting page info for {pageId}");
+                    AnsiConsole.WriteLine($"Page Listing: {pageId}");
                     var file = files.Where(x => x.Contains(pageId)).First();
 
                     if (request.IncludeImageData)

@@ -10,15 +10,15 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Math
         /// <summary>
         /// Command
         /// </summary>
-        public class Query : IRequest<IEnumerable<int>>
+        public class Query : IRequest<IEnumerable<long>>
         {
-            public int MaxNumber { get; set; }
+            public long MaxNumber { get; set; }
         }
 
         /// <summary>
         /// Handler
         /// </summary>
-        public class Handler : IRequestHandler<Query, IEnumerable<int>>
+        public class Handler : IRequestHandler<Query, IEnumerable<long>>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="Handler" /> class.
@@ -35,13 +35,13 @@ namespace LiberPrimusAnalysisTool.Application.Queries.Math
             /// <returns>
             /// Response from the request
             /// </returns>
-            public async Task<IEnumerable<int>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<long>> Handle(Query request, CancellationToken cancellationToken)
             {
-                List<int> result = new List<int>();
+                List<long> result = new List<long>();
 
-                int a = 0;
-                int b = 1;
-                int c = 0;
+                long a = 0;
+                long b = 1;
+                long c = 0;
 
                 while (c <= request.MaxNumber)
                 {
