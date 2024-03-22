@@ -18,14 +18,6 @@ namespace LiberPrimusAnalysisTool.Database
         public DbSet<LiberPage> LiberPages { get; set; }
 
         /// <summary>
-        /// Gets or sets the pixels.
-        /// </summary>
-        /// <value>
-        /// The pixels.
-        /// </value>
-        public DbSet<Pixel> Pixels { get; set; }
-
-        /// <summary>
         /// Override this method to configure the database (and other options) to be used for this context.
         /// This method is called for each instance of the context that is created.
         /// The base implementation does nothing.

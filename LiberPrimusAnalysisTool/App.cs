@@ -39,7 +39,6 @@ namespace LiberPrimusAnalysisTool
             {
                 Console.Clear();
                 AnsiConsole.Write(new FigletText("Liber Primus Analysis Tool").Centered().Color(Color.Green));
-                Task.Delay(5000).Wait();
 
                 var selecttion = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
