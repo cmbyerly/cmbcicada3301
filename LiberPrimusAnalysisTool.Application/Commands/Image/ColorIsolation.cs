@@ -52,9 +52,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                 {
                     // Getting the pages we want
                     List<LiberPage> liberPages = new List<LiberPage>();
-                    var winnowAllPages = AnsiConsole.Confirm("Isolate colors on all pages?");
+                    var winnowAllPages = AnsiConsole.Confirm("Isolate colors on all pages?", false);
 
-                    var invertPixels = AnsiConsole.Confirm("Invert Pixels?");
+                    var invertPixels = AnsiConsole.Confirm("Invert Pixels?", false);
 
                     if (winnowAllPages)
                     {
