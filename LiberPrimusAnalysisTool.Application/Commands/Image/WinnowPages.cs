@@ -1,4 +1,4 @@
-﻿using LiberPrimusAnalysisTool.Application.Commands.Algo;
+﻿using LiberPrimusAnalysisTool.Application.Commands.PixelProcessing;
 using LiberPrimusAnalysisTool.Application.Queries;
 using LiberPrimusAnalysisTool.Application.Queries.Math;
 using LiberPrimusAnalysisTool.Entity;
@@ -102,7 +102,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         switch (i)
                         {
                             case 0:
-                                seqtext = invertPixels? "ReversedPix-Natural" : "Natural";
+                                seqtext = invertPixels ? "ReversedPix-Natural" : "Natural";
                                 for (int n = 0; n < liberPages[0].PixelCount; n++)
                                 {
                                     sequence.Add(n);

@@ -4,7 +4,7 @@ using MediatR;
 using Spectre.Console;
 using System.Text;
 
-namespace LiberPrimusAnalysisTool.Application.Commands.Algo
+namespace LiberPrimusAnalysisTool.Application.Commands.PixelProcessing
 {
     public class ProcessToBytes
     {

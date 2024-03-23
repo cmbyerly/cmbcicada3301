@@ -3,7 +3,7 @@ using LiberPrimusAnalysisTool.Utility.Character;
 using MediatR;
 using Spectre.Console;
 
-namespace LiberPrimusAnalysisTool.Application.Commands.Algo
+namespace LiberPrimusAnalysisTool.Application.Commands.PixelProcessing
 {
     public class ProcessRGB
     {/// <summary>
