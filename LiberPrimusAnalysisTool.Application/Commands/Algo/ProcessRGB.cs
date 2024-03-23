@@ -86,10 +86,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             {
                 Parallel.ForEach(request.PixelData, data =>
                 {
-                    AnsiConsole.WriteLine($"Processing {data.Item1.PageName}");
+                    AnsiConsole.WriteLine($"ProcessRGB: Processing {data.Item1.PageName}");
                     var rgbIndex = new RgbCharacters(data.Item1.PageName);
 
-                    AnsiConsole.WriteLine($"Document: {data.Item1.PageName} - RGB Breakdown");
+                    AnsiConsole.WriteLine($"ProcessRGB: Document: {data.Item1.PageName} - RGB Breakdown");
                     foreach (var pixel in data.Item2)
                     {
                         ;
@@ -98,11 +98,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                         rgbIndex.AddB(_characterRepo.GetASCIICharFromDec(pixel.B, request.IncludeControlCharacters));
                     }
 
-                    AnsiConsole.WriteLine($"Red Text: {rgbIndex.R}");
-                    AnsiConsole.WriteLine($"Green Text: {rgbIndex.G}");
-                    AnsiConsole.WriteLine($"Blue Text: {rgbIndex.B}");
+                    AnsiConsole.WriteLine($"ProcessRGB: Red Text: {rgbIndex.R}");
+                    AnsiConsole.WriteLine($"ProcessRGB: Green Text: {rgbIndex.G}");
+                    AnsiConsole.WriteLine($"ProcessRGB: Blue Text: {rgbIndex.B}");
 
-                    AnsiConsole.WriteLine($"Writing: ./output/{data.Item1.PageName}-RGB.txt");
+                    AnsiConsole.WriteLine($"ProcessRGB: Writing: ./output/{data.Item1.PageName}-RGB.txt");
                     File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-red.txt", rgbIndex.R);
                     File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-green.txt", rgbIndex.G);
                     File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-blue.txt", rgbIndex.B);

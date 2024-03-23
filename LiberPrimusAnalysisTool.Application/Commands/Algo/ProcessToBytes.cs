@@ -6,11 +6,12 @@ using System.Text;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Algo
 {
-    public class ProcessLSB
-    {/// <summary>
-     /// Command
-     /// </summary>
-     /// <seealso cref="IRequest" />
+    public class ProcessToBytes
+    {
+        /// <summary>
+        /// Command
+        /// </summary>
+        /// <seealso cref="IRequest" />
         public class Command : INotification
         {
             /// <summary>
@@ -18,16 +19,12 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// </summary>
             /// <param name="pixelData">The pixel data.</param>
             /// <param name="method">The method.</param>
-            /// <param name="includeControlCharacters">if set to <c>true</c> [include control characters].</param>
-            /// <param name="asciiProcessing">The ASCII processing.</param>
             /// <param name="bitsOfSig">The bits of sig.</param>
             /// <param name="colorOrder">The color order.</param>
-            public Command(List<Tuple<LiberPage, List<Entity.Pixel>>> pixelData, string method, bool includeControlCharacters, int asciiProcessing, int bitsOfSig, string colorOrder)
+            public Command(List<Tuple<LiberPage, List<Entity.Pixel>>> pixelData, string method, int bitsOfSig, string colorOrder)
             {
                 PixelData = pixelData;
                 Method = method;
-                IncludeControlCharacters = includeControlCharacters;
-                AsciiProcessing = asciiProcessing;
                 BitsOfSig = bitsOfSig;
                 ColorOrder = colorOrder;
             }
@@ -47,22 +44,6 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             /// The method.
             /// </value>
             public string Method { get; set; }
-
-            /// <summary>
-            /// Gets or sets a value indicating whether [include control characters].
-            /// </summary>
-            /// <value>
-            ///   <c>true</c> if [include control characters]; otherwise, <c>false</c>.
-            /// </value>
-            public bool IncludeControlCharacters { get; set; }
-
-            /// <summary>
-            /// Gets or sets the ASCII processing.
-            /// </summary>
-            /// <value>
-            /// The ASCII processing.
-            /// </value>
-            public int AsciiProcessing { get; set; }
 
             /// <summary>
             /// Gets or sets the bits of sig.
@@ -117,7 +98,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
             {
                 Parallel.ForEach(request.PixelData, data =>
                 {
-                    AnsiConsole.WriteLine($"ProcessLSB: Getting bits from {data.Item1.PageName}");
+                    AnsiConsole.WriteLine($"ProcessToBytes: Getting bits from {data.Item1.PageName}");
                     List<char> bits = new List<char>();
 
                     char[] orderProcessing = new char[3] { request.ColorOrder[0], request.ColorOrder[1], request.ColorOrder[2] };
@@ -159,59 +140,21 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                         }
                     }
 
-                    AnsiConsole.WriteLine($"ProcessLSB: Building bytes for bits for {data.Item1.PageName}");
-                    List<string> charBinList = new List<string>();
+                    AnsiConsole.WriteLine($"ProcessToBytes: Building bytes for bits for {data.Item1.PageName}");
+                    List<byte> bytes = new List<byte>();
                     StringBuilder ascii = new StringBuilder();
                     foreach (var character in bits)
                     {
                         ascii.Append(character);
-                        if (ascii.Length >= request.AsciiProcessing)
+                        if (ascii.Length >= 8)
                         {
-                            charBinList.Add(ascii.ToString());
+                            bytes.Add(Convert.ToByte(ascii.ToString(), 2));
                             ascii.Clear();
                         }
                     }
 
-                    AnsiConsole.WriteLine($"ProcessLSB: Filtering out nibbles for {data.Item1.PageName}");
-                    charBinList = charBinList.Where(x => x.Length == request.AsciiProcessing).ToList();
-
-                    AnsiConsole.WriteLine($"ProcessLSB: Building character string for {data.Item1.PageName}");
-                    StringBuilder stringForFile = new StringBuilder();
-                    string characterForFile;
-                    foreach (var charBin in charBinList)
-                    {
-                        switch (request.AsciiProcessing)
-                        {
-                            case 7:
-                                characterForFile = _characterRepo.GetASCIICharFromBin(charBin, request.IncludeControlCharacters);
-                                break;
-
-                            case 8:
-                                characterForFile = _characterRepo.GetANSICharFromBin(charBin, request.IncludeControlCharacters);
-                                break;
-
-                            case 9:
-                                try
-                                {
-                                    characterForFile = _characterRepo.GetCharacterFromGematriaValue(Convert.ToInt32(charBin, 2));
-                                }
-                                catch (Exception e)
-                                {
-                                    characterForFile = string.Empty;
-                                    AnsiConsole.WriteLine($"Error: {e.Message}");
-                                }
-                                break;
-
-                            default:
-                                characterForFile = string.Empty;
-                                break;
-                        }
-
-                        stringForFile.Append(characterForFile);
-                    }
-
-                    AnsiConsole.WriteLine($"ProcessLSB: Outputting file for {data.Item1.PageName}");
-                    File.WriteAllText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.AsciiProcessing}-{request.BitsOfSig}.txt", stringForFile.ToString());
+                    AnsiConsole.WriteLine($"ProcessToBytes: Outputting bin file for {data.Item1.PageName}");
+                    File.WriteAllBytes($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.BitsOfSig}.bin", bytes.ToArray());
                 });
             }
         }

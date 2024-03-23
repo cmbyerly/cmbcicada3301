@@ -148,7 +148,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                         GC.Collect();
 
-                        for (int p = 0; p <= 2; p++)
+                        for (int p = 0; p <= 3; p++)
                         {
                             switch (p)
                             {
@@ -165,6 +165,16 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                             {
                                                 await _mediator.Publish(new ProcessLSB.Command(pixelData, seqtext, includeControlCharacters, asciiProcessing, bitsOfSig, colorOrder));
                                             }
+                                        }
+                                    }
+                                    break;
+
+                                case 3:
+                                    foreach (var bitsOfSig in new List<int>() { 1, 2, 3, 4, 5, 6, 7 })
+                                    {
+                                        foreach (var colorOrder in new List<string>() { "RGB", "RBG", "GBR", "GRB", "BRG", "BGR" })
+                                        {
+                                            await _mediator.Publish(new ProcessToBytes.Command(pixelData, seqtext, bitsOfSig, colorOrder));
                                         }
                                     }
                                     break;
