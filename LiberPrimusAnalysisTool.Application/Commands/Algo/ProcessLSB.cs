@@ -176,42 +176,43 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     charBinList = charBinList.Where(x => x.Length == request.AsciiProcessing).ToList();
 
                     AnsiConsole.WriteLine($"ProcessLSB: Building character string for {data.Item1.PageName}");
-                    StringBuilder stringForFile = new StringBuilder();
-                    string characterForFile;
-                    foreach (var charBin in charBinList)
+                    AnsiConsole.WriteLine($"ProcessLSB: Outputting file for {data.Item1.PageName}");
+                    using (var file = File.CreateText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.AsciiProcessing}-{request.BitsOfSig}.txt"))
                     {
-                        switch (request.AsciiProcessing)
+                        foreach (var charBin in charBinList)
                         {
-                            case 7:
-                                characterForFile = _characterRepo.GetASCIICharFromBin(charBin, request.IncludeControlCharacters);
-                                break;
+                            switch (request.AsciiProcessing)
+                            {
+                                case 7:
+                                    file.Write(_characterRepo.GetASCIICharFromBin(charBin, request.IncludeControlCharacters));
+                                    break;
 
-                            case 8:
-                                characterForFile = _characterRepo.GetANSICharFromBin(charBin, request.IncludeControlCharacters);
-                                break;
+                                case 8:
+                                    file.Write(_characterRepo.GetANSICharFromBin(charBin, request.IncludeControlCharacters));
+                                    break;
 
-                            case 9:
-                                try
-                                {
-                                    characterForFile = _characterRepo.GetCharacterFromGematriaValue(Convert.ToInt32(charBin, 2));
-                                }
-                                catch (Exception e)
-                                {
-                                    characterForFile = string.Empty;
-                                    AnsiConsole.WriteLine($"Error: {e.Message}");
-                                }
-                                break;
+                                case 9:
+                                    try
+                                    {
+                                        file.Write(_characterRepo.GetCharacterFromGematriaValue(Convert.ToInt32(charBin, 2)));
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        file.Write(string.Empty);
+                                        AnsiConsole.WriteLine($"Error: {e.Message}");
+                                    }
+                                    break;
 
-                            default:
-                                characterForFile = string.Empty;
-                                break;
+                                default:
+                                    file.Write(string.Empty);
+                                    break;
+                            }
                         }
 
-                        stringForFile.Append(characterForFile);
+                        file.Flush();
+                        file.Close();
+                        file.Dispose();
                     }
-
-                    AnsiConsole.WriteLine($"ProcessLSB: Outputting file for {data.Item1.PageName}");
-                    File.WriteAllText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.AsciiProcessing}-{request.BitsOfSig}.txt", stringForFile.ToString());
                 });
             }
         }

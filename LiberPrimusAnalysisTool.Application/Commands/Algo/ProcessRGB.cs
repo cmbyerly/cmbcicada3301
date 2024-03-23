@@ -92,7 +92,6 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     AnsiConsole.WriteLine($"ProcessRGB: Document: {data.Item1.PageName} - RGB Breakdown");
                     foreach (var pixel in data.Item2)
                     {
-                        ;
                         rgbIndex.AddR(_characterRepo.GetASCIICharFromDec(pixel.R, request.IncludeControlCharacters));
                         rgbIndex.AddG(_characterRepo.GetASCIICharFromDec(pixel.G, request.IncludeControlCharacters));
                         rgbIndex.AddB(_characterRepo.GetASCIICharFromDec(pixel.B, request.IncludeControlCharacters));
