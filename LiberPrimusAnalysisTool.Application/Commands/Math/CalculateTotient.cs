@@ -55,10 +55,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                     AnsiConsole.MarkupLine($"[green]Phi({number}) = {totient.Phi}[/]");
                     AnsiConsole.MarkupLine($"[green]Sequence: {string.Join($"{Environment.NewLine}", totient.Sequence)}[/]");
 
-                    await File.AppendAllTextAsync("./output/totient.txt", $"Number: {totient.Number}" + Environment.NewLine);
-                    await File.AppendAllTextAsync("./output/totient.txt", $"Phi: {totient.Phi}" + Environment.NewLine);
-                    await File.AppendAllTextAsync("./output/totient.txt", "Sequence: " + Environment.NewLine);
-                    await File.AppendAllTextAsync("./output/totient.txt", string.Empty + Environment.NewLine);
+                    await File.AppendAllTextAsync($"./output/math/totient-{number}.txt", $"Number: {totient.Number}" + Environment.NewLine);
+                    await File.AppendAllTextAsync($"./output/math/totient-{number}.txt", $"Phi: {totient.Phi}" + Environment.NewLine);
+                    await File.AppendAllTextAsync($"./output/math/totient-{number}.txt", "Sequence: " + Environment.NewLine);
+                    await File.AppendAllTextAsync($"./output/math/totient-{number}.txt", string.Empty + Environment.NewLine);
                     foreach (var item in totient.Sequence)
                     {
                         await File.AppendAllTextAsync($"./output/math/totient-{number}.txt", $"{item}" + Environment.NewLine);

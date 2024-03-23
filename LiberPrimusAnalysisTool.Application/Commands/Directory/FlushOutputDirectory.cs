@@ -33,6 +33,21 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 {
                     System.IO.Directory.EnumerateFiles("output").ToList().ForEach(f => File.Delete(f));
                 }
+
+                if (System.IO.Directory.Exists("./output/imagep"))
+                {
+                    System.IO.Directory.EnumerateFiles("./output/imagep").ToList().ForEach(f => File.Delete(f));
+                }
+
+                if (System.IO.Directory.Exists("./output/bytep"))
+                {
+                    System.IO.Directory.EnumerateFiles("./output/bytep").ToList().ForEach(f => File.Delete(f));
+                }
+
+                if (System.IO.Directory.Exists("./output/math"))
+                {
+                    System.IO.Directory.EnumerateFiles("./output/math").ToList().ForEach(f => File.Delete(f));
+                }
             }
         }
     }
