@@ -33,6 +33,21 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 {
                     System.IO.Directory.CreateDirectory("output");
                 }
+
+                if (!System.IO.Directory.Exists("./output/imagep"))
+                {
+                    System.IO.Directory.CreateDirectory("./output/imagep");
+                }
+
+                if (!System.IO.Directory.Exists("./output/bytep"))
+                {
+                    System.IO.Directory.CreateDirectory("./output/bytep");
+                }
+
+                if (!System.IO.Directory.Exists("./output/math"))
+                {
+                    System.IO.Directory.CreateDirectory("./output/math");
+                }
             }
         }
     }

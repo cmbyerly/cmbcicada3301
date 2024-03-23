@@ -48,7 +48,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Math
                 foreach (int i in primeSequence)
                 {
                     AnsiConsole.MarkupLine($"[green]{i} is prime[/]");
-                    await File.AppendAllTextAsync("./output/prime.txt", $"{i}" + Environment.NewLine);
+                    await File.AppendAllTextAsync($"./output/math/prime-{number}.txt", $"{i}" + Environment.NewLine);
                 }
             }
         }

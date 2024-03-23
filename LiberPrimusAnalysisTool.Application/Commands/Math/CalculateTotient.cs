@@ -61,7 +61,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                     await File.AppendAllTextAsync("./output/totient.txt", string.Empty + Environment.NewLine);
                     foreach (var item in totient.Sequence)
                     {
-                        await File.AppendAllTextAsync("./output/totient.txt", $"{item}" + Environment.NewLine);
+                        await File.AppendAllTextAsync($"./output/math/totient-{number}.txt", $"{item}" + Environment.NewLine);
                     }
 
                     returnToMenu = AnsiConsole.Confirm("Return to main menu?");

@@ -48,7 +48,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Math
                 foreach (int i in fibonacciSequence)
                 {
                     AnsiConsole.MarkupLine($"[green]{i}[/]");
-                    await File.AppendAllTextAsync("./output/fibonacci.txt", $"{i}" + Environment.NewLine);
+                    await File.AppendAllTextAsync($"./output/math/fibonacci-{number}.txt", $"{i}" + Environment.NewLine);
                 }
             }
         }
