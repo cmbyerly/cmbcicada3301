@@ -83,10 +83,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         AnsiConsole.WriteLine($"Green Text: {rgbIndex.G}");
                         AnsiConsole.WriteLine($"Blue Text: {rgbIndex.B}");
 
-                        AnsiConsole.WriteLine($"Writing: ./output/RgbIndex_{file.PageName}.txt");
-                        File.AppendAllText($"./output/RgbIndex_{file.PageName}.txt", "Red Text:" + rgbIndex.R + Environment.NewLine + Environment.NewLine);
-                        File.AppendAllText($"./output/RgbIndex_{file.PageName}.txt", "Green Text: " + rgbIndex.G + Environment.NewLine + Environment.NewLine);
-                        File.AppendAllText($"./output/RgbIndex_{file.PageName}.txt", "Blue Text: " + rgbIndex.B + Environment.NewLine + Environment.NewLine);
+                        AnsiConsole.WriteLine($"Writing: ./output/imagep/RgbIndex_{file.PageName}.txt");
+                        File.AppendAllText($"./output/imagep/RgbIndex_{file.PageName}.txt", "Red Text:" + rgbIndex.R + Environment.NewLine + Environment.NewLine);
+                        File.AppendAllText($"./output/imagep/RgbIndex_{file.PageName}.txt", "Green Text: " + rgbIndex.G + Environment.NewLine + Environment.NewLine);
+                        File.AppendAllText($"./output/imagep/RgbIndex_{file.PageName}.txt", "Blue Text: " + rgbIndex.B + Environment.NewLine + Environment.NewLine);
                     }
                 });
             }

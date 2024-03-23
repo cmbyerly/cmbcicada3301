@@ -99,7 +99,7 @@ namespace LiberPrimusAnalysisTool
                         break;
 
                     case "9":
-                        _mediator.Publish(new WinnowPages.Command()).Wait();
+                        _mediator.Publish(new PixelWinnowPages.Command()).Wait();
                         break;
 
                     case "10":

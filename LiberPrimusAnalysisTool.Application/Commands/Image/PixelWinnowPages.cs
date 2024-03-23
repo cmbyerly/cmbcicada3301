@@ -10,7 +10,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
     /// <summary>
     /// Winnow Pages
     /// </summary>
-    public class WinnowPages
+    public class PixelWinnowPages
     {
         /// <summary>
         /// Command
