@@ -177,7 +177,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
 
                     AnsiConsole.WriteLine($"ProcessLSB: Building character string for {data.Item1.PageName}");
                     AnsiConsole.WriteLine($"ProcessLSB: Outputting file for {data.Item1.PageName}");
-                    using (var file = File.CreateText($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.AsciiProcessing}-{request.BitsOfSig}.txt"))
+                    using (var file = File.CreateText($"./output/imagep/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.AsciiProcessing}-{request.BitsOfSig}.txt"))
                     {
                         foreach (var charBin in charBinList)
                         {

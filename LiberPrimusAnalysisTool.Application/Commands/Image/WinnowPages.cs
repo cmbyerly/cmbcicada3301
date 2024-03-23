@@ -85,6 +85,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     var includeControlCharacters = AnsiConsole.Confirm("Include control characters?", false);
                     var invertPixels = AnsiConsole.Confirm("Reverse Pixels?", false);
+                    var shiftSequence = AnsiConsole.Confirm("Shift sequence down by one?", false);
 
                     // Getting the page data.
                     foreach (var selection in pageSelection)
@@ -101,7 +102,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         switch (i)
                         {
                             case 0:
-                                seqtext = "Natural";
+                                seqtext = invertPixels? "ReversedPix-Natural" : "Natural";
                                 for (int n = 0; n < liberPages[0].PixelCount; n++)
                                 {
                                     sequence.Add(n);
@@ -109,25 +110,30 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                 break;
 
                             case 1:
-                                seqtext = "Prime";
+                                seqtext = invertPixels ? "ReversedPix-Prime" : "Prime";
                                 var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPages[0].PixelCount });
                                 sequence = tmpPrimeList.ToList();
                                 break;
 
                             case 2:
-                                seqtext = "Fib";
+                                seqtext = invertPixels ? "ReversedPix-Fib" : "Fib";
                                 var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPages[0].PixelCount });
                                 sequence = tmpFibList.ToList();
                                 break;
 
                             case 3:
-                                seqtext = "Totient";
+                                seqtext = invertPixels ? "ReversedPix-Totient" : "Totient";
                                 var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPages[0].PixelCount });
                                 sequence = totient.Sequence;
                                 break;
 
                             default:
                                 break;
+                        }
+
+                        if (shiftSequence)
+                        {
+                            seqtext = "ShiftedSeq-" + seqtext;
                         }
 
                         // Getting the pixels from the sequence
@@ -139,7 +145,14 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             List<Entity.Pixel> tmpPixelList = new List<Entity.Pixel>();
                             foreach (var seq in sequence)
                             {
-                                tmpPixelList.Add(page.Pixels.ElementAt((int)seq));
+                                if (shiftSequence && !seqtext.Contains("Natural"))
+                                {
+                                    tmpPixelList.Add(page.Pixels.ElementAt((int)seq - 1));
+                                }
+                                else
+                                {
+                                    tmpPixelList.Add(page.Pixels.ElementAt((int)seq));
+                                }
                             }
                             pixelData.Add(new Tuple<LiberPage, List<Entity.Pixel>>(page, tmpPixelList));
 

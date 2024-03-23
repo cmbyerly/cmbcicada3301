@@ -154,7 +154,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     }
 
                     AnsiConsole.WriteLine($"ProcessToBytes: Outputting bin file for {data.Item1.PageName}");
-                    File.WriteAllBytes($"./output/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.BitsOfSig}.bin", bytes.ToArray());
+                    File.WriteAllBytes($"./output/imagep/{data.Item1.PageName}-LSB-{request.Method}-{request.ColorOrder}-{request.BitsOfSig}.bin", bytes.ToArray());
                 });
             }
         }

@@ -101,7 +101,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Algo
                     AnsiConsole.WriteLine($"ProcessRGB: Green Text: {rgbIndex.G}");
                     AnsiConsole.WriteLine($"ProcessRGB: Blue Text: {rgbIndex.B}");
 
-                    AnsiConsole.WriteLine($"ProcessRGB: Writing: ./output/{data.Item1.PageName}-RGB.txt");
+                    AnsiConsole.WriteLine($"ProcessRGB: Writing: ./output/imagep/{data.Item1.PageName}-RGB.txt");
                     File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-red.txt", rgbIndex.R);
                     File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-green.txt", rgbIndex.G);
                     File.AppendAllText($"./output/{data.Item1.PageName}-{request.Method}-RGB-blue.txt", rgbIndex.B);
