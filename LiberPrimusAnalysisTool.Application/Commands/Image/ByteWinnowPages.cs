@@ -99,7 +99,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             switch (i)
                             {
                                 case 0:
-                                    seqtext = reverseBytes ? "ReversedPix-Natural" : "Natural";
+                                    seqtext = reverseBytes ? "ReversedBytes-Natural" : "Natural";
                                     for (int n = 0; n < liberPage.Bytes.Count; n++)
                                     {
                                         sequence.Add(n);
@@ -107,19 +107,19 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                     break;
 
                                 case 1:
-                                    seqtext = reverseBytes ? "ReversedPix-Prime" : "Prime";
+                                    seqtext = reverseBytes ? "ReversedBytes-Prime" : "Prime";
                                     var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPage.Bytes.Count });
                                     sequence = tmpPrimeList.ToList();
                                     break;
 
                                 case 2:
-                                    seqtext = reverseBytes ? "ReversedPix-Fib" : "Fib";
+                                    seqtext = reverseBytes ? "ReversedBytes-Fib" : "Fib";
                                     var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPage.Bytes.Count });
                                     sequence = tmpFibList.ToList();
                                     break;
 
                                 case 3:
-                                    seqtext = reverseBytes ? "ReversedPix-Totient" : "Totient";
+                                    seqtext = reverseBytes ? "ReversedBytes-Totient" : "Totient";
                                     var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPage.Bytes.Count });
                                     sequence = totient.Sequence;
                                     break;
