@@ -131,7 +131,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                     {
                         var cval = _characterRepo.GetValueFromString(letter);
                         var tmpword = word.Replace(letter, string.Empty);
-                        currentWordValue += (word.Length - tmpword.Length) * cval;
+                        currentWordValue += ((word.Length - tmpword.Length)/letter.Length) * cval;
                         word = tmpword;
                         break;
                     }
