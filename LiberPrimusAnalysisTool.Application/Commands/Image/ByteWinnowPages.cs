@@ -147,13 +147,20 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                             foreach (var seq in sequence)
                             {
-                                if (shiftSequence && !seqtext.Contains("Natural"))
+                                try
                                 {
-                                    tmpPixelList.Add(fileBytes.ElementAt((int)seq - 1));
+                                    if (shiftSequence && !seqtext.Contains("Natural"))
+                                    {
+                                        tmpPixelList.Add(fileBytes.ElementAt((int)seq - 1));
+                                    }
+                                    else
+                                    {
+                                        tmpPixelList.Add(fileBytes.ElementAt((int)seq));
+                                    }
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    tmpPixelList.Add(fileBytes.ElementAt((int)seq));
+                                    AnsiConsole.WriteLine($"Error: {ex.Message}");
                                 }
                             }
 
