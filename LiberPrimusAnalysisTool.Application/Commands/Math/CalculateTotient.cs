@@ -47,6 +47,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
 
                 while (!returnToMenu)
                 {
+                    Console.Clear();
+                    AnsiConsole.Write(new FigletText("Calculate Totient").Centered().Color(Color.Green));
+
                     var number = AnsiConsole.Ask<int>("What is the number?");
 
                     AnsiConsole.MarkupLine($"Calculating Totient for {number}");

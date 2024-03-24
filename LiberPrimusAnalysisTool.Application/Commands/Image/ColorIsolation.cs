@@ -50,6 +50,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                 while (!returnToMenu)
                 {
+                    Console.Clear();
+                    AnsiConsole.Write(new FigletText("Color Isolation").Centered().Color(Color.Green));
+
                     // Getting the pages we want
                     List<LiberPage> liberPages = new List<LiberPage>();
                     var winnowAllPages = AnsiConsole.Confirm("Isolate colors on all pages?", false);

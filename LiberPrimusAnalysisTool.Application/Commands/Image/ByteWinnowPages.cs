@@ -50,6 +50,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                 while (!returnToMenu)
                 {
+                    Console.Clear();
+                    AnsiConsole.Write(new FigletText("Winnow By Bytes").Centered().Color(Color.Green));
                     var groupSelection = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                     .Title("[green]Please select page group to run[/]:")

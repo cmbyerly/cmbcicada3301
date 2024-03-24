@@ -28,6 +28,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
+                Console.Clear();
+                AnsiConsole.Write(new FigletText("Credits").Centered().Color(Color.Green));
                 AnsiConsole.WriteLine("Words - https://github.com/dwyl/english-words");
                 AnsiConsole.WriteLine("Inspiration for sequence code - https://github.com/TheAlgorithms/C-Sharp");
                 AnsiConsole.Confirm("Press [green]Enter[/] to continue...");

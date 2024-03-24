@@ -44,6 +44,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
+                Console.Clear();
+                AnsiConsole.Write(new FigletText("Reverse Bytes And Compare").Centered().Color(Color.Green));
+
                 List<string> choices = new List<string>();
                 for (int i = 0; i < 74; i++)
                 {

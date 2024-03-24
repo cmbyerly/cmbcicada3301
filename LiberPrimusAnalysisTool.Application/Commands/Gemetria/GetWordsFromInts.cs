@@ -121,6 +121,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                     {
                         currentWordValue += _characterRepo.GetValueFromString(letter);
                         word = word.Replace(letter, string.Empty);
+                        break;
                     }
                 }
 

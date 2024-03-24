@@ -60,6 +60,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
+                Console.Clear();
+                AnsiConsole.Write(new FigletText("Init Database").Centered().Color(Color.Green));
+
                 // initing the pages to the database.
                 var pages = await _mediator.Send(new GetPages.Query(false));
                 List<string> csv = new List<string>();

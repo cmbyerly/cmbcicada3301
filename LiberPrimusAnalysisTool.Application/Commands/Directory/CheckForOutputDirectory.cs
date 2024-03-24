@@ -28,7 +28,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                AnsiConsole.WriteLine("Checking for output directory");
+                Console.Clear();
+                AnsiConsole.Write(new FigletText("Checking output directories").Centered().Color(Color.Green));
                 if (!System.IO.Directory.Exists("output"))
                 {
                     System.IO.Directory.CreateDirectory("output");

@@ -55,6 +55,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             /// <param name="cancellationToken">Cancellation token</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
+                Console.Clear();
+                AnsiConsole.Write(new FigletText("RGB Index").Centered().Color(Spectre.Console.Color.Green));
+
                 var invertPixels = AnsiConsole.Confirm("Invert Pixels?");
 
                 var includeControlCharacters = AnsiConsole.Confirm("Include control characters?");

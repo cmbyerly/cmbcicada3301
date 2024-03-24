@@ -50,6 +50,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                 while (!returnToMenu)
                 {
+                    Console.Clear();
+                    AnsiConsole.Write(new FigletText("Winnow By Pixels").Centered().Color(Color.Green));
+
                     // Getting the pages we want to winnow
                     List<LiberPage> liberPages = new List<LiberPage>();
 
