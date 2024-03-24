@@ -65,11 +65,6 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         string line;
                         while ((line = file.ReadLine()) != null)
                         {
-                            if (line.ToUpper().Contains("Q"))
-                            {
-                                continue;
-                            }
-
                             int lineValue = ScoreDictionaryValue(line.ToUpper(), 0, useSimple);
                             if (lineValue == value)
                             {

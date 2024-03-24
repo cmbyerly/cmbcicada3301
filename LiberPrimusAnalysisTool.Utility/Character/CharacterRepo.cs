@@ -652,6 +652,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
 
                 case "C":
                 case "K":
+                case "Q":
                     retval = 13;
                     break;
 
@@ -764,7 +765,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string[] GetGematriaStrings()
         {
-            return new string[] { "ING", "NG", "OE", "EO", "IO", "IA", "EA", "AE", "F", "V", "U", "TH", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y" };
+            return new string[] { "ING", "NG", "OE", "EO", "IO", "IA", "EA", "AE", "F", "V", "U", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y", "Q" };
         }
 
         /// <summary>
@@ -773,7 +774,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         /// <returns></returns>
         public string[] GetSimpleGematriaStrings()
         {
-            return new string[] { "F", "V", "U", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y" };
+            return new string[] { "F", "V", "U", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y", "Q" };
         }
     }
 }
