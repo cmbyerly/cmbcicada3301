@@ -64,7 +64,7 @@ namespace LiberPrimusAnalysisTool
 
                 var choice = selecttion.Split(":")[0];
 
-                // Echo the fruit back to the terminal
+                // Echo the selection back to the terminal
                 AnsiConsole.WriteLine($"Selected - {selecttion}");
 
                 switch (choice.Trim())
