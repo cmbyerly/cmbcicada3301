@@ -80,7 +80,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         }
                     }
 
-                    File.WriteAllLines("./output/detect_bin_files.txt", lines);
+                    File.AppendAllLines("./output/detect_bin_files.txt", lines);
                 }
             }
         }
