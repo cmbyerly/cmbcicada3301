@@ -64,6 +64,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         if (fileTypeInfo == null)
                         {
                             AnsiConsole.WriteLine("Could not detect file type.");
+                            AnsiConsole.WriteLine("Moving to text file for later processing.");
+                            File.Move(file, $"{file}.txt");
                             continue;
                         }
                         else
