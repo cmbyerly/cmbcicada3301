@@ -65,7 +65,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         {
                             AnsiConsole.WriteLine("Could not detect file type.");
                             AnsiConsole.WriteLine("Moving to text file for later processing.");
-                            File.Move(file, $"{file}.txt");
+                            
                             continue;
                         }
                         else
@@ -79,6 +79,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                             lines.Add("Extension = " + fileTypeInfo.FileType);
                             lines.Add("Mime Type = " + fileTypeInfo.MimeType);
                             lines.Add("");
+
+                            File.Move(file, $"{file}.{fileTypeInfo.FileType}");
                         }
                     }
 
