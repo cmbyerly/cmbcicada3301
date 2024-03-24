@@ -32,6 +32,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 AnsiConsole.Write(new FigletText("Credits").Centered().Color(Color.Green));
                 AnsiConsole.WriteLine("Words - https://github.com/dwyl/english-words");
                 AnsiConsole.WriteLine("Inspiration for sequence code - https://github.com/TheAlgorithms/C-Sharp");
+                AnsiConsole.WriteLine("File detections - https://github.com/ghost1face/FileTypeInterrogator");
                 AnsiConsole.Confirm("Press [green]Enter[/] to continue...");
             }
         }

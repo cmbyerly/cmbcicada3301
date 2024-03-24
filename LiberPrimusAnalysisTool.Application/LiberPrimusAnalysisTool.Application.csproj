@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FileTypeInterrogator\FileTypeInterrogator.csproj" />
     <ProjectReference Include="..\LiberPrimusAnalysisTool.Database\LiberPrimusAnalysisTool.Database.csproj" />
     <ProjectReference Include="..\LiberPrimusAnalysisTool.Entity\LiberPrimusAnalysisTool.Entity.csproj" />
   </ItemGroup>

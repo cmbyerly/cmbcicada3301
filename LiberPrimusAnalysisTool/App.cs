@@ -58,6 +58,7 @@ namespace LiberPrimusAnalysisTool
                         "9: Winnow Page(s) (Non-GCT Pixel)",
                         "10: Isolate Color(s)",
                         "11: Get Words From Ints",
+                        "12: Detect Bin Files",
                         "98: Show Credits",
                         "99: Exit Program",
                     }));
@@ -115,6 +116,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "11":
                         _mediator.Publish(new GetWordFromInts.Command()).Wait();
+                        break;
+
+                    case "12":
+                        _mediator.Publish(new DetectBinFiles.Command()).Wait();
                         break;
 
                     case "98":

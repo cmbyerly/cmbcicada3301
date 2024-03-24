@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiberPrimusAnalysisTool.Uti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiberPrimusAnalysisTool.Application", "..\LiberPrimusAnalysisTool.Application\LiberPrimusAnalysisTool.Application.csproj", "{D0A0FC51-874D-4A3B-862C-4DAB10745ECA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiberPrimusAnalysisTool.Database", "..\LiberPrimusAnalysisTool.Database\LiberPrimusAnalysisTool.Database.csproj", "{79DB162B-E7FC-44B7-BFFC-0BD00E7584B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiberPrimusAnalysisTool.Database", "..\LiberPrimusAnalysisTool.Database\LiberPrimusAnalysisTool.Database.csproj", "{79DB162B-E7FC-44B7-BFFC-0BD00E7584B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileTypeInterrogator", "..\FileTypeInterrogator\FileTypeInterrogator.csproj", "{9A27C40A-BAEE-4E75-9A26-3E6CB56ADC41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{79DB162B-E7FC-44B7-BFFC-0BD00E7584B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79DB162B-E7FC-44B7-BFFC-0BD00E7584B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79DB162B-E7FC-44B7-BFFC-0BD00E7584B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A27C40A-BAEE-4E75-9A26-3E6CB56ADC41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A27C40A-BAEE-4E75-9A26-3E6CB56ADC41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A27C40A-BAEE-4E75-9A26-3E6CB56ADC41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A27C40A-BAEE-4E75-9A26-3E6CB56ADC41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

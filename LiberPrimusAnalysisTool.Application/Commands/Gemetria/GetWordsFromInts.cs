@@ -45,6 +45,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 AnsiConsole.WriteLine("Getting words scoring a certain value.");
+                var useSimple = AnsiConsole.Confirm("Use simple gematria?");
                 var values = AnsiConsole.Ask<string>("Enter comma seperated values (e.g. 1,231,82):");
                 StringBuilder actualValues = new StringBuilder();
                 for (int i = 0; i < values.Length; i++)
@@ -69,7 +70,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                                 continue;
                             }
 
-                            int lineValue = ScoreDictionaryValue(line.ToUpper(), 0);
+                            int lineValue = ScoreDictionaryValue(line.ToUpper(), 0, useSimple);
                             if (lineValue == value)
                             {
                                 AnsiConsole.WriteLine($"{line} has value: {value}");
@@ -108,10 +109,19 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
             /// </summary>
             /// <param name="word">The word.</param>
             /// <param name="wordValue">The word value.</param>
+            /// <param name="useSimple">if set to <c>true</c> [use simple].</param>
             /// <returns></returns>
-            private int ScoreDictionaryValue(string word, int wordValue)
+            private int ScoreDictionaryValue(string word, int wordValue, bool useSimple)
             {
-                string[] cicadaletters = _characterRepo.GetGematriaStrings();
+                string[] cicadaletters;
+                if (useSimple)
+                {
+                    cicadaletters = _characterRepo.GetSimpleGematriaStrings();
+                }
+                else
+                {
+                    cicadaletters = _characterRepo.GetGematriaStrings();
+                }
 
                 int currentWordValue = wordValue;
 
@@ -119,8 +129,10 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 {
                     if (word.Contains(letter))
                     {
-                        currentWordValue += _characterRepo.GetValueFromString(letter);
-                        word = word.Replace(letter, string.Empty);
+                        var cval = _characterRepo.GetValueFromString(letter);
+                        var tmpword = word.Replace(letter, string.Empty);
+                        currentWordValue += (word.Length - tmpword.Length) * cval;
+                        word = tmpword;
                         break;
                     }
                 }
@@ -131,7 +143,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 }
                 else
                 {
-                    return ScoreDictionaryValue(word, currentWordValue);
+                    return ScoreDictionaryValue(word, currentWordValue, useSimple);
                 }
             }
         }

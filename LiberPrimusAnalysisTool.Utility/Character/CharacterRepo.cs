@@ -766,5 +766,14 @@ namespace LiberPrimusAnalysisTool.Utility.Character
         {
             return new string[] { "ING", "NG", "OE", "EO", "IO", "IA", "EA", "AE", "F", "V", "U", "TH", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y" };
         }
+
+        /// <summary>
+        /// Gets the simple gematria strings.
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetSimpleGematriaStrings()
+        {
+            return new string[] { "F", "V", "U", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y" };
+        }
     }
 }

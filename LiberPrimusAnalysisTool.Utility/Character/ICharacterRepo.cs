@@ -52,5 +52,11 @@
         /// </summary>
         /// <returns></returns>
         string[] GetGematriaStrings();
+
+        /// <summary>
+        /// Gets the simple gematria strings.
+        /// </summary>
+        /// <returns></returns>
+        string[] GetSimpleGematriaStrings();
     }
 }
