@@ -580,7 +580,7 @@ namespace LiberPrimusAnalysisTool.Utility.Character
                     break;
 
                 case 79:
-                    retval = "ING";
+                    retval = "NG";
                     break;
 
                 case 83:
@@ -617,6 +617,154 @@ namespace LiberPrimusAnalysisTool.Utility.Character
             }
 
             return retval;
+        }
+
+        /// <summary>
+        /// Gets the value from string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public int GetValueFromString(string value)
+        {
+            int retval;
+            switch (value)
+            {
+                case "F":
+                    retval = 2;
+                    break;
+
+                case "V":
+                case "U":
+                    retval = 3;
+                    break;
+
+                case "TH":
+                    retval = 5;
+                    break;
+
+                case "O":
+                    retval = 7;
+                    break;
+
+                case "R":
+                    retval = 11;
+                    break;
+
+                case "C":
+                case "K":
+                    retval = 13;
+                    break;
+
+                case "G":
+                    retval = 17;
+                    break;
+
+                case "W":
+                    retval = 19;
+                    break;
+
+                case "H":
+                    retval = 23;
+                    break;
+
+                case "N":
+                    retval = 29;
+                    break;
+
+                case "I":
+                    retval = 31;
+                    break;
+
+                case "J":
+                    retval = 37;
+                    break;
+
+                case "EO":
+                    retval = 41;
+                    break;
+
+                case "P":
+                    retval = 43;
+                    break;
+
+                case "X":
+                    retval = 47;
+                    break;
+
+                case "S":
+                case "Z":
+                    retval = 53;
+                    break;
+
+                case "T":
+                    retval = 59;
+                    break;
+
+                case "B":
+                    retval = 61;
+                    break;
+
+                case "E":
+                    retval = 67;
+                    break;
+
+                case "M":
+                    retval = 71;
+                    break;
+
+                case "L":
+                    retval = 73;
+                    break;
+
+                case "ING":
+                case "NG":
+                    retval = 79;
+                    break;
+
+                case "OE":
+                    retval = 83;
+                    break;
+
+                case "D":
+                    retval = 89;
+                    break;
+
+                case "A":
+                    retval = 97;
+                    break;
+
+                case "AE":
+                    retval = 101;
+                    break;
+
+                case "Y":
+                    retval = 103;
+                    break;
+
+                case "IO":
+                case "IA":
+                    retval = 107;
+                    break;
+
+                case "EA":
+                    retval = 109;
+                    break;
+
+                default:
+                    retval = -1;
+                    break;
+            }
+
+            return retval;
+        }
+
+        /// <summary>
+        /// Gets the gematria strings.
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetGematriaStrings()
+        {
+            return new string[] { "ING", "NG", "OE", "EO", "IO", "IA", "EA", "AE", "F", "V", "U", "TH", "O", "R", "C", "K", "G", "W", "H", "N", "I", "J", "P", "X", "S", "Z", "T", "B", "E", "M", "L", "D", "A", "Y" };
         }
     }
 }

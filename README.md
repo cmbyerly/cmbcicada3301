@@ -10,7 +10,6 @@ This will most likely amount to nothing?
 I have written a C# program to do this with ImageMagick to generate the files with the information.
 
 # Required Software
-- Docker (Podman if you want to do the work)
 - Visual Studio or Visual Studio Code
 - .Net Core 8
 - I know a lot of the solvers use Python, but I just prefer C# since I use it most of the time.

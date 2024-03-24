@@ -27,4 +27,10 @@
     <ProjectReference Include="..\LiberPrimusAnalysisTool.Entity\LiberPrimusAnalysisTool.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="words.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

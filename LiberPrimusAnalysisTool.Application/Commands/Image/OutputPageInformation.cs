@@ -1,6 +1,7 @@
 ﻿using LiberPrimusAnalysisTool.Application.Queries;
 using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Database;
+using LiberPrimusAnalysisTool.Utility.Character;
 using MediatR;
 using Spectre.Console;
 
@@ -35,14 +36,21 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             private readonly LiberContext _liberContext;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Handler"/> class.
+            /// The character repo
+            /// </summary>
+            private readonly ICharacterRepo _characterRepo;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Handler" /> class.
             /// </summary>
             /// <param name="mediator">The mediator.</param>
-            public Handler(IMediator mediator)
+            /// <param name="characterRepo">The character repo.</param>
+            public Handler(IMediator mediator, ICharacterRepo characterRepo)
             {
                 _mediator = mediator;
                 _liberContext = new LiberContext();
                 _liberContext.Database.EnsureCreated();
+                _characterRepo = characterRepo;
             }
 
             /// <summary>
@@ -52,6 +60,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
+                // initing the pages to the database.
                 var pages = await _mediator.Send(new GetPages.Query(false));
                 List<string> csv = new List<string>();
                 long counter = 0;

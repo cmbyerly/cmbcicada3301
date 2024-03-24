@@ -54,9 +54,11 @@ namespace LiberPrimusAnalysisTool
                         "5: Output prime sequence",
                         "6: Output fibonacci sequence",
                         "7: Calculate Totient",
+                        "8: Winnow Page(s) (Bytes)",
                         "9: Winnow Page(s) (Non-GCT Pixel)",
                         "10: Isolate Color(s)",
-                        "11: Winnow Page(s) (Bytes)",
+                        "11: Get Words From Ints",
+                        "98: Show Credits",
                         "99: Exit Program",
                     }));
 
@@ -67,6 +69,10 @@ namespace LiberPrimusAnalysisTool
 
                 switch (choice.Trim())
                 {
+                    case "0":
+                        _mediator.Publish(new OutputPageInformation.Command()).Wait();
+                        break;
+
                     case "1":
                         _mediator.Publish(new FlushOutputDirectory.Command()).Wait();
                         break;
@@ -95,8 +101,8 @@ namespace LiberPrimusAnalysisTool
                         _mediator.Publish(new CalculateTotient.Command()).Wait();
                         break;
 
-                    case "0":
-                        _mediator.Publish(new OutputPageInformation.Command()).Wait();
+                    case "8":
+                        _mediator.Publish(new ByteWinnowPages.Command()).Wait();
                         break;
 
                     case "9":
@@ -108,7 +114,11 @@ namespace LiberPrimusAnalysisTool
                         break;
 
                     case "11":
-                        _mediator.Publish(new ByteWinnowPages.Command()).Wait();
+                        _mediator.Publish(new GetWordFromInts.Command()).Wait();
+                        break;
+
+                    case "98":
+                        _mediator.Publish(new ShowCredits.Command()).Wait();
                         break;
 
                     case "99":
