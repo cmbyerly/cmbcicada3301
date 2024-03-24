@@ -31,6 +31,18 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 Console.Clear();
                 AnsiConsole.Write(new FigletText("Detect Bin Files").Centered().Color(Color.Green));
                 var files = System.IO.Directory.GetFiles("./output/bytep/", "*.bin");
+                DetectBinaryFiles(files);
+
+                files = System.IO.Directory.GetFiles("./output/imagep/", "*.bin");
+                DetectBinaryFiles(files);
+            }
+
+            /// <summary>
+            /// Detects the binary files.
+            /// </summary>
+            /// <param name="files">The files.</param>
+            private static void DetectBinaryFiles(string[] files)
+            {
                 List<string> lines = new List<string>();
 
                 if (files.Length == 0)
@@ -68,7 +80,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         }
                     }
 
-                    File.WriteAllLines("./output/bytep/detect_bin_files.txt", lines);
+                    File.WriteAllLines("./output/detect_bin_files.txt", lines);
                 }
             }
         }
