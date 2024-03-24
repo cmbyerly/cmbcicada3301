@@ -56,6 +56,7 @@ namespace LiberPrimusAnalysisTool
                         "7: Calculate Totient",
                         "9: Winnow Page(s) (Non-GCT Pixel)",
                         "10: Isolate Color(s)",
+                        "11: Winnow Page(s) (Bytes)",
                         "99: Exit Program",
                     }));
 
@@ -104,6 +105,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "10":
                         _mediator.Publish(new ColorIsolation.Command()).Wait();
+                        break;
+
+                    case "11":
+                        _mediator.Publish(new ByteWinnowPages.Command()).Wait();
                         break;
 
                     case "99":

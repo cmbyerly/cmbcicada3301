@@ -96,7 +96,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                     string seqtext = string.Empty;
 
-                    for (int i = 0; i <= 3; i++)
+                    for (int i = 1; i <= 3; i++)
                     {
                         List<long> sequence = new List<long>();
                         switch (i)

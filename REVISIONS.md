@@ -31,8 +31,12 @@
 ## Menu
 - Reintroduce the color counts to be safe.
 
-
 ## Algos
 - Shedding circumference algo / w LSB (see above)
 - BPCS?
-- Byte winnowing
+
+## Seqences
+Binomial
+Cake
+Catalan
+Central Polygonal

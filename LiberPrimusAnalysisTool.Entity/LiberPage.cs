@@ -105,6 +105,20 @@ namespace LiberPrimusAnalysisTool.Entity
         public List<Pixel> Pixels { get; set; }
 
         /// <summary>
+        /// Gets or sets the bytes.
+        /// </summary>
+        /// <value>
+        /// The bytes.
+        /// </value>
+        public List<byte> Bytes
+        {
+            get
+            {
+                return File.ReadAllBytes(FileName).ToList();
+            }
+        }
+
+        /// <summary>
         /// Converts to string.
         /// </summary>
         /// <returns>
