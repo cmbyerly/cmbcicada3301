@@ -10,6 +10,7 @@
     <PackageReference Include="Magick.NET-Q16-HDRI-AnyCPU" Version="13.6.0" />
     <PackageReference Include="Magick.NET.Core" Version="13.6.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="morelinq" Version="4.1.0" />
     <PackageReference Include="Spectre.Console" Version="0.48.0" />
     <PackageReference Include="Spectre.Console.Analyzer" Version="0.48.0">
       <PrivateAssets>all</PrivateAssets>

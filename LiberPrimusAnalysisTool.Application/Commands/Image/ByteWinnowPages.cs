@@ -99,11 +99,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                             switch (i)
                             {
                                 case 0:
+                                    long n = -1;
                                     seqtext = reverseBytes ? "ReversedBytes-Natural" : "Natural";
-                                    for (int n = 0; n < liberPage.Bytes.Count; n++)
-                                    {
-                                        sequence.Add(n);
-                                    }
+                                    sequence = liberPage.Bytes.Select(x => { n++; return n; }).ToList();
                                     break;
 
                                 case 1:

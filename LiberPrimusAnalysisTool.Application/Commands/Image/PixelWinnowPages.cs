@@ -105,11 +105,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         switch (i)
                         {
                             case 0:
+                                long n = -1;
                                 seqtext = invertPixels ? "ReversedPix-Natural" : "Natural";
-                                for (int n = 0; n < liberPages[0].PixelCount; n++)
-                                {
-                                    sequence.Add(n);
-                                }
+                                sequence = liberPages[0].Pixels.Select(x => { n++; return n; }).ToList();
                                 break;
 
                             case 1:
