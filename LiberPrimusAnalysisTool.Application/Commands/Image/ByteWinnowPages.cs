@@ -1,6 +1,7 @@
 ﻿using LiberPrimusAnalysisTool.Application.Commands.ByteProcessing;
 using LiberPrimusAnalysisTool.Application.Queries;
 using LiberPrimusAnalysisTool.Application.Queries.Math;
+using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
 using Spectre.Console;
@@ -52,12 +53,22 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                 {
                     Console.Clear();
                     AnsiConsole.Write(new FigletText("Winnow By Bytes").Centered().Color(Color.Green));
-                    var groupSelection = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                    .Title("[green]Please select page group to run[/]:")
-                    .PageSize(10)
-                    .MoreChoicesText("[grey](Move up and down to reveal more groups)[/]")
-                    .AddChoices(new[] {
+
+                    var processAll = AnsiConsole.Confirm("Process all files?");
+                    string groupSelection;
+
+                    if (processAll)
+                    {
+                        groupSelection = string.Join(',', (await _mediator.Send(new GetPages.Query(false))).Select(x => x.PageName));
+                    }
+                    else
+                    {
+                        groupSelection = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                        .Title("[green]Please select page group to run[/]:")
+                        .PageSize(10)
+                        .MoreChoicesText("[grey](Move up and down to reveal more groups)[/]")
+                        .AddChoices(new[] {
                         "00",
                         "01",
                         "02",
@@ -78,7 +89,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                         "57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72",
                         "73",
                         "74",
-                    }));
+                        }));
+                    }
 
                     var pageSelection = groupSelection.Split(",");
 
