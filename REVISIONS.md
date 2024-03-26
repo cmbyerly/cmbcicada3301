@@ -29,11 +29,12 @@
 
 # TODO
 ## Menu
-- Reintroduce the color counts to be safe.
+- Cracker menu
+- Detect words menu
 
-## Algos
+## Add Stuff
 - Shedding circumference algo / w LSB (see above)
-- BPCS?
+- Add
 - Do an english check
 - Vigenere cracker
 - Cesar cracker

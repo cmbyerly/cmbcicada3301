@@ -65,7 +65,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         if (fileTypeInfo == null)
                         {
                             AnsiConsole.WriteLine("Could not detect file type.");
-                            File.Copy(file, $"{file}.JUNK.txt");
+                            File.Copy(file, $"{file}.MLJUNK.txt");
                         }
                         else
                         {
