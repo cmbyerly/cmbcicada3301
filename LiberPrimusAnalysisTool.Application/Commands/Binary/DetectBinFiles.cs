@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FileTypeInterrogator;
+using MediatR;
 using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Directory
@@ -52,7 +53,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 else
                 {
                     AnsiConsole.WriteLine("Bin files found:");
-                    foreach (var file in files)
+                    Parallel.ForEach(files, file =>
                     {
                         AnsiConsole.WriteLine(file);
                         FileTypeInterrogator.IFileTypeInterrogator interrogator = new FileTypeInterrogator.FileTypeInterrogator();
@@ -64,9 +65,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         if (fileTypeInfo == null)
                         {
                             AnsiConsole.WriteLine("Could not detect file type.");
-                            AnsiConsole.WriteLine("Moving to text file for later processing.");
-                            
-                            continue;
+                            File.Copy(file, $"{file}.JUNK.txt");
                         }
                         else
                         {
@@ -80,9 +79,9 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                             lines.Add("Mime Type = " + fileTypeInfo.MimeType);
                             lines.Add("");
 
-                            File.Move(file, $"{file}.{fileTypeInfo.FileType}");
+                            File.Copy(file, $"{file}.CHECKME.{fileTypeInfo.FileType}");
                         }
-                    }
+                    });
 
                     File.AppendAllLines("./output/detect_bin_files.txt", lines);
                 }

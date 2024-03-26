@@ -98,8 +98,11 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     var reverseBytes = AnsiConsole.Confirm("Reverse Bytes?", false);
                     var shiftSequence = AnsiConsole.Confirm("Shift sequence down by one?", false);
 
+                    ParallelOptions parallelOptions = new ParallelOptions();
+                    parallelOptions.MaxDegreeOfParallelism = 8;
+
                     // Getting the page data.
-                    foreach (var selection in pageSelection)
+                    Parallel.ForEach(pageSelection, parallelOptions, async selection =>
                     {
                         var liberPage = await _mediator.Send(new GetPageData.Query(selection, false, false));
 
@@ -206,7 +209,7 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                                 }
                             }
                         }
-                    }
+                    });
 
                     returnToMenu = AnsiConsole.Confirm("Return to main menu?");
                 }

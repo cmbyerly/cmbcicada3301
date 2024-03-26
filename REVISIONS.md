@@ -34,6 +34,12 @@
 ## Algos
 - Shedding circumference algo / w LSB (see above)
 - BPCS?
+- Do an english check
+- Vigenere cracker
+- Cesar cracker
+- Atbash cracker
+- Feistel cracker
+- Hill cracker
 
 ## Seqences
 Binomial
