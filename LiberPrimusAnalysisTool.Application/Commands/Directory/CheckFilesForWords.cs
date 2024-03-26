@@ -2,7 +2,6 @@
 using MediatR;
 using Spectre.Console;
 using System.Text;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Directory
 {
@@ -45,48 +44,82 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
             /// <param name="cancellationToken">The cancellation token.</param>
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                List<string> scoreLines = new List<string>();
-                var files = System.IO.Directory.GetFiles("./output/bytep/", "*.txt").OrderBy(x => x);
+                List<string> englishDictionary = new List<string>();
+                Dictionary<string, int> characterMap = new Dictionary<string, int>();
+                List<Tuple<string, string>> wordMap = new List<Tuple<string, string>>();
 
-                foreach (var pfile in files)
+                var files = System.IO.Directory.GetFiles("./output/bytep/").OrderBy(x => x);
+
+                using (var file = File.OpenText("words.txt"))
+                {
+                    string line;
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        englishDictionary.Add(line);
+                    }
+
+                    file.Close();
+                    file.Dispose();
+                }
+
+                ParallelOptions parallelOptions = new ParallelOptions
+                {
+                    MaxDegreeOfParallelism = 8
+                };
+
+                Parallel.ForEach(files, parallelOptions, pfile =>
                 {
                     AnsiConsole.WriteLine($"Checking {pfile} for words...");
+                    StringBuilder words = new StringBuilder();
 
-                    long score = 0;
-                    using (var file = File.OpenText("words.txt"))
+                    int score = 0;
                     using (var checkfile = File.OpenText(pfile))
                     {
-                        string line;
                         string checkline;
                         while ((checkline = checkfile.ReadLine()) != null)
                         {
-                            while ((line = file.ReadLine()) != null)
+                            foreach (var line in englishDictionary)
                             {
                                 if (checkline.ToUpper().Contains(line.ToUpper()))
                                 {
                                     score++;
+                                    words.Append($"{line} ");
                                 }
+                            }
+
+                            if (score > 0)
+                            {
+                                words.Append(Environment.NewLine);
                             }
                         }
 
-                        file.Close();
                         checkfile.Close();
-                        file.Dispose();
                         checkfile.Dispose();
-                    }   
+                    }
 
                     if (score > 0)
                     {
                         AnsiConsole.WriteLine($"{pfile} - {score}");
-                        scoreLines.Add($"{pfile} - {score}");
+                        wordMap.Add(new Tuple<string, string>(pfile, words.ToString()));
+                        characterMap.Add(pfile, score);
                     }
                     else
                     {
                         AnsiConsole.WriteLine("No words found.");
                     }
-                }
+                });
+
+                var scoreLines = characterMap.OrderByDescending(x => x.Value).Select(x => $"{x.Key} - {x.Value}");
 
                 File.WriteAllLines("output/word_score.txt", scoreLines);
+
+                var sortedScore = characterMap.OrderByDescending(x => x.Value).ToList();
+                foreach (var score in sortedScore)
+                {
+                    var value = wordMap.FirstOrDefault(x => x.Item1 == score.Key);
+                    File.AppendAllText("output/word_readible.txt", $"{value.Item1} - {value.Item2}");
+                    File.AppendAllText("output/word_readible.txt", string.Empty);
+                }
             }
         }
     }

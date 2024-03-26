@@ -14,7 +14,6 @@ namespace FileTypeInterrogator
         /// <param name="definitionsFile">The json object representing the definitions file.</param>
         public CustomFileTypeInterrogator(string definitionsFile) : base(definitionsFile)
         {
-
         }
 
         /// <summary>
@@ -24,7 +23,6 @@ namespace FileTypeInterrogator
         /// <param name="encoding">File encoding.</param>
         public CustomFileTypeInterrogator(string filePath, Encoding encoding) : base(File.ReadAllText(filePath, encoding))
         {
-
         }
 
         /// <summary>
@@ -33,8 +31,6 @@ namespace FileTypeInterrogator
         /// <param name="definitionStream">Definitions stream.</param>
         public CustomFileTypeInterrogator(Stream definitionStream) : base(new StreamReader(definitionStream).ReadToEnd())
         {
-
         }
     }
-
 }

@@ -1,5 +1,4 @@
-﻿using FileTypeInterrogator;
-using MediatR;
+﻿using MediatR;
 using Spectre.Console;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Directory

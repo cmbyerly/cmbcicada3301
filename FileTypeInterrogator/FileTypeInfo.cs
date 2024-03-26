@@ -73,5 +73,4 @@ namespace FileTypeInterrogator
 {string.Join("|", Alias ?? Array.Empty<string>())}";
         }
     }
-
 }

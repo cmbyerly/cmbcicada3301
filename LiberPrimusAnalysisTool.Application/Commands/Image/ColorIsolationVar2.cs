@@ -4,7 +4,6 @@ using LiberPrimusAnalysisTool.Application.Queries.Page;
 using LiberPrimusAnalysisTool.Entity;
 using MediatR;
 using Spectre.Console;
-using MoreLinq;
 
 namespace LiberPrimusAnalysisTool.Application.Commands.Image
 {
