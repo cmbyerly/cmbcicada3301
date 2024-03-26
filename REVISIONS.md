@@ -42,7 +42,7 @@
 - Feistel cracker
 - Hill cracker
 
-## Seqences
+## Sequences
 Binomial
 Cake
 Catalan

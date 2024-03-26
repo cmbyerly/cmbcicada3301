@@ -48,6 +48,8 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                 Dictionary<string, int> characterMap = new Dictionary<string, int>();
                 List<Tuple<string, string>> wordMap = new List<Tuple<string, string>>();
 
+                var isGpStrict = AnsiConsole.Confirm("Use GP strict spellings?");
+
                 var files = System.IO.Directory.GetFiles("./output/bytep/").OrderBy(x => x);
 
                 using (var file = File.OpenText("words.txt"))
@@ -55,19 +57,23 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                     string line;
                     while ((line = file.ReadLine()) != null)
                     {
-                        englishDictionary.Add(line);
+                        if (isGpStrict)
+                        {
+                            englishDictionary.Add(line.ToUpper().Replace("QU", "KW").Replace("Q", "K").Replace("V", "U"));
+                        }
+                        else
+                        {
+                            englishDictionary.Add(line.ToUpper());
+                        }
                     }
 
                     file.Close();
                     file.Dispose();
                 }
 
-                ParallelOptions parallelOptions = new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = 8
-                };
+                englishDictionary = englishDictionary.OrderBy(x => x.Length).ToList();
 
-                Parallel.ForEach(files, parallelOptions, pfile =>
+                Parallel.ForEach(files, pfile =>
                 {
                     AnsiConsole.WriteLine($"Checking {pfile} for words...");
                     StringBuilder words = new StringBuilder();
@@ -78,17 +84,45 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
                         string checkline;
                         while ((checkline = checkfile.ReadLine()) != null)
                         {
+                            List<Tuple<string, int>> wordList = new List<Tuple<string, int>>();
+
                             foreach (var line in englishDictionary)
                             {
-                                if (checkline.ToUpper().Contains(line.ToUpper()))
+                                if (checkline.ToUpper().Contains(line))
                                 {
-                                    score++;
-                                    words.Append($"{line} ");
+                                    int index = 0;
+                                    while (index < checkline.Length)
+                                    {
+                                        var startIndex = checkline.ToUpper().IndexOf(line, index);
+
+                                        if (startIndex >= 0)
+                                        {
+                                            var futureIndex = startIndex + line.Length;
+                                            if (wordList.Any(x => x.Item2 >= startIndex && x.Item2 <= futureIndex))
+                                            {
+                                                var itemsToDelete = wordList.Where(x => x.Item2 >= startIndex && x.Item2 <= futureIndex).ToList();
+                                                foreach (var item in itemsToDelete)
+                                                {
+                                                    wordList.Remove(item);
+                                                    score--;
+                                                }
+                                            }
+
+                                            wordList.Add(new Tuple<string, int>(line, startIndex));
+                                            index = startIndex + line.Length;
+                                            score++;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
                                 }
                             }
 
-                            if (score > 0)
+                            if (wordList.Count > 0)
                             {
+                                words.Append(string.Join(" ", wordList.OrderBy(x => x.Item2).Select(x => x.Item1)));
                                 words.Append(Environment.NewLine);
                             }
                         }
