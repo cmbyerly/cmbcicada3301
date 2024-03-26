@@ -60,6 +60,7 @@ namespace LiberPrimusAnalysisTool
                         "11: Get Words From Ints",
                         "12: Detect Bin Files",
                         "13: Isolate Color(s) (Var 2)",
+                        "14: Detect Words in Files",
                         "98: Show Credits",
                         "99: Exit Program",
                     }));
@@ -125,6 +126,10 @@ namespace LiberPrimusAnalysisTool
 
                     case "13":
                         _mediator.Publish(new ColorIsolationVar2.Command()).Wait();
+                        break;
+
+                    case "14":
+                        _mediator.Publish(new CheckFilesForWords.Command()).Wait();
                         break;
 
                     case "98":
