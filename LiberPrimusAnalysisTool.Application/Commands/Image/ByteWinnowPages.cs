@@ -98,6 +98,20 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
                     var reverseBytes = AnsiConsole.Confirm("Reverse Bytes?", false);
                     var shiftSequence = AnsiConsole.Confirm("Shift sequence down by one?", false);
 
+                    var selecttion = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .Title("[green]Please select sequence to run[/]:")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more sequences)[/]")
+                    .AddChoices(new[] {
+                        "0: Natural",
+                        "1: Prime",
+                        "2: Fibonacci",
+                        "3: Totient",
+                    }));
+
+                    var choice = Convert.ToInt32(selecttion.Split(":")[0]);
+
                     ParallelOptions parallelOptions = new ParallelOptions();
                     parallelOptions.MaxDegreeOfParallelism = 8;
 
@@ -108,105 +122,102 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Image
 
                         string seqtext = string.Empty;
 
-                        for (int i = 0; i <= 3; i++)
+                        List<long> sequence = new List<long>();
+                        switch (choice)
                         {
-                            List<long> sequence = new List<long>();
-                            switch (i)
+                            case 0:
+                                long n = -1;
+                                seqtext = reverseBytes ? "ReversedBytes-Natural" : "Natural";
+                                sequence = liberPage.Bytes.Select(x => { n++; return n; }).ToList();
+                                break;
+
+                            case 1:
+                                seqtext = reverseBytes ? "ReversedBytes-Prime" : "Prime";
+                                var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPage.Bytes.Count });
+                                sequence = tmpPrimeList.ToList();
+                                break;
+
+                            case 2:
+                                seqtext = reverseBytes ? "ReversedBytes-Fib" : "Fib";
+                                var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPage.Bytes.Count });
+                                sequence = tmpFibList.ToList();
+                                break;
+
+                            case 3:
+                                seqtext = reverseBytes ? "ReversedBytes-Totient" : "Totient";
+                                var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPage.Bytes.Count });
+                                sequence = totient.Sequence;
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        if (shiftSequence)
+                        {
+                            seqtext = "ShiftedSeq-" + seqtext;
+                        }
+
+                        // Getting the pixels from the sequence
+                        AnsiConsole.WriteLine($"Getting bytes from sequence {seqtext}");
+
+                        AnsiConsole.WriteLine($"Sequencing {liberPage.PageName}");
+                        List<byte> tmpPixelList = new List<byte>();
+                        List<byte> fileBytes = liberPage.Bytes;
+
+                        if (reverseBytes)
+                        {
+                            fileBytes.Reverse();
+                        }
+
+                        foreach (var seq in sequence)
+                        {
+                            try
+                            {
+                                if (shiftSequence && !seqtext.Contains("Natural"))
+                                {
+                                    tmpPixelList.Add(fileBytes.ElementAt((int)seq - 1));
+                                }
+                                else
+                                {
+                                    tmpPixelList.Add(fileBytes.ElementAt((int)seq));
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                AnsiConsole.WriteLine($"Error: {ex.Message}");
+                            }
+                        }
+
+                        Tuple<LiberPage, List<byte>> pixelData = new Tuple<LiberPage, List<byte>>(liberPage, tmpPixelList);
+
+                        AnsiConsole.WriteLine($"Sequenced {liberPage.PageName}");
+
+                        GC.Collect();
+
+                        for (int p = 0; p <= 1; p++)
+                        {
+                            switch (p)
                             {
                                 case 0:
-                                    long n = -1;
-                                    seqtext = reverseBytes ? "ReversedBytes-Natural" : "Natural";
-                                    sequence = liberPage.Bytes.Select(x => { n++; return n; }).ToList();
+                                    foreach (var asciiProcessing in new List<int>() { 7, 8, 9 })
+                                    {
+                                        foreach (var bitsOfSig in new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 })
+                                        {
+                                            await _mediator.Publish(new ProcessBytesLSB.Command(pixelData, seqtext, includeControlCharacters, asciiProcessing, bitsOfSig));
+                                        }
+                                    }
                                     break;
 
                                 case 1:
-                                    seqtext = reverseBytes ? "ReversedBytes-Prime" : "Prime";
-                                    var tmpPrimeList = await _mediator.Send(new GetPrimeSequence.Query() { Number = liberPage.Bytes.Count });
-                                    sequence = tmpPrimeList.ToList();
-                                    break;
-
-                                case 2:
-                                    seqtext = reverseBytes ? "ReversedBytes-Fib" : "Fib";
-                                    var tmpFibList = await _mediator.Send(new GetFibonacciSequence.Query() { MaxNumber = liberPage.Bytes.Count });
-                                    sequence = tmpFibList.ToList();
-                                    break;
-
-                                case 3:
-                                    seqtext = reverseBytes ? "ReversedBytes-Totient" : "Totient";
-                                    var totient = await _mediator.Send(new GetTotientSequence.Query() { Number = liberPage.Bytes.Count });
-                                    sequence = totient.Sequence;
+                                    foreach (var bitsOfSig in new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 })
+                                    {
+                                        await _mediator.Publish(new ProcessBytesToBytes.Command(pixelData, seqtext, bitsOfSig));
+                                    }
                                     break;
 
                                 default:
                                     break;
-                            }
-
-                            if (shiftSequence)
-                            {
-                                seqtext = "ShiftedSeq-" + seqtext;
-                            }
-
-                            // Getting the pixels from the sequence
-                            AnsiConsole.WriteLine($"Getting bytes from sequence {seqtext}");
-
-                            AnsiConsole.WriteLine($"Sequencing {liberPage.PageName}");
-                            List<byte> tmpPixelList = new List<byte>();
-                            List<byte> fileBytes = liberPage.Bytes;
-
-                            if (reverseBytes)
-                            {
-                                fileBytes.Reverse();
-                            }
-
-                            foreach (var seq in sequence)
-                            {
-                                try
-                                {
-                                    if (shiftSequence && !seqtext.Contains("Natural"))
-                                    {
-                                        tmpPixelList.Add(fileBytes.ElementAt((int)seq - 1));
-                                    }
-                                    else
-                                    {
-                                        tmpPixelList.Add(fileBytes.ElementAt((int)seq));
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    AnsiConsole.WriteLine($"Error: {ex.Message}");
-                                }
-                            }
-
-                            Tuple<LiberPage, List<byte>> pixelData = new Tuple<LiberPage, List<byte>>(liberPage, tmpPixelList);
-
-                            AnsiConsole.WriteLine($"Sequenced {liberPage.PageName}");
-
-                            GC.Collect();
-
-                            for (int p = 0; p <= 1; p++)
-                            {
-                                switch (p)
-                                {
-                                    case 0:
-                                        foreach (var asciiProcessing in new List<int>() { 7, 8, 9 })
-                                        {
-                                            foreach (var bitsOfSig in new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 })
-                                            {
-                                                await _mediator.Publish(new ProcessBytesLSB.Command(pixelData, seqtext, includeControlCharacters, asciiProcessing, bitsOfSig));
-                                            }
-                                        }
-                                        break;
-
-                                    case 1:
-                                        foreach (var bitsOfSig in new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 })
-                                        {
-                                            await _mediator.Publish(new ProcessBytesToBytes.Command(pixelData, seqtext, bitsOfSig));
-                                        }
-                                        break;
-
-                                    default:
-                                        break;
-                                }
                             }
                         }
                     });

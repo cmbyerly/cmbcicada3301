@@ -1,4 +1,5 @@
-﻿using LiberPrimusAnalysisTool.Utility.Character;
+﻿using LiberPrimusAnalysisTool.Entity;
+using LiberPrimusAnalysisTool.Utility.Character;
 using MediatR;
 using Spectre.Console;
 using System.Text;
@@ -45,115 +46,62 @@ namespace LiberPrimusAnalysisTool.Application.Commands.Directory
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 List<string> englishDictionary = new List<string>();
-                Dictionary<string, int> characterMap = new Dictionary<string, int>();
-                List<Tuple<string, string>> wordMap = new List<Tuple<string, string>>();
-
                 var isGpStrict = AnsiConsole.Confirm("Use GP strict spellings?");
+                var allFiles = System.IO.Directory.GetFiles("./output/bytep/").OrderBy(x => x);
 
-                var files = System.IO.Directory.GetFiles("./output/bytep/").OrderBy(x => x);
-
-                using (var file = File.OpenText("words.txt"))
-                {
-                    string line;
-                    while ((line = file.ReadLine()) != null)
+                AnsiConsole.Status()
+                    .AutoRefresh(true)
+                    .Spinner(Spinner.Known.Circle)
+                    .SpinnerStyle(Style.Parse("green bold"))
+                    .Start("Processing files...", ctx =>
                     {
-                        if (isGpStrict)
+                        AnsiConsole.MarkupLine("Reading dictionary...");
+                        ctx.Refresh();
+                        using (var file = File.OpenText("words.txt"))
                         {
-                            englishDictionary.Add(line.ToUpper().Replace("QU", "KW").Replace("Q", "K").Replace("V", "U"));
-                        }
-                        else
-                        {
-                            englishDictionary.Add(line.ToUpper());
-                        }
-                    }
-
-                    file.Close();
-                    file.Dispose();
-                }
-
-                englishDictionary = englishDictionary.OrderBy(x => x.Length).ToList();
-
-                Parallel.ForEach(files, pfile =>
-                {
-                    AnsiConsole.WriteLine($"Checking {pfile} for words...");
-                    StringBuilder words = new StringBuilder();
-
-                    int score = 0;
-                    using (var checkfile = File.OpenText(pfile))
-                    {
-                        string checkline;
-                        while ((checkline = checkfile.ReadLine()) != null)
-                        {
-                            List<Tuple<string, int>> wordList = new List<Tuple<string, int>>();
-
-                            foreach (var line in englishDictionary)
+                            string line;
+                            while ((line = file.ReadLine()) != null)
                             {
-                                if (checkline.ToUpper().Contains(line))
+                                if (isGpStrict)
                                 {
-                                    int index = 0;
-                                    while (index < checkline.Length)
-                                    {
-                                        var startIndex = checkline.ToUpper().IndexOf(line, index);
-
-                                        if (startIndex >= 0)
-                                        {
-                                            var futureIndex = startIndex + line.Length;
-                                            if (wordList.Any(x => x.Item2 >= startIndex && x.Item2 <= futureIndex))
-                                            {
-                                                var itemsToDelete = wordList.Where(x => x.Item2 >= startIndex && x.Item2 <= futureIndex).ToList();
-                                                foreach (var item in itemsToDelete)
-                                                {
-                                                    wordList.Remove(item);
-                                                    score--;
-                                                }
-                                            }
-
-                                            wordList.Add(new Tuple<string, int>(line, startIndex));
-                                            index = startIndex + line.Length;
-                                            score++;
-                                        }
-                                        else
-                                        {
-                                            break;
-                                        }
-                                    }
+                                    englishDictionary.Add(line.ToUpper().Replace("QU", "KW").Replace("Q", "K").Replace("V", "U"));
+                                }
+                                else
+                                {
+                                    englishDictionary.Add(line.ToUpper());
                                 }
                             }
 
-                            if (wordList.Count > 0)
-                            {
-                                words.Append(string.Join(" ", wordList.OrderBy(x => x.Item2).Select(x => x.Item1)));
-                                words.Append(Environment.NewLine);
-                            }
+                            file.Close();
+                            file.Dispose();
                         }
 
-                        checkfile.Close();
-                        checkfile.Dispose();
-                    }
+                        AnsiConsole.MarkupLine("Dictionary read.");
+                        ctx.Refresh();
 
-                    if (score > 0)
-                    {
-                        AnsiConsole.WriteLine($"{pfile} - {score}");
-                        wordMap.Add(new Tuple<string, string>(pfile, words.ToString()));
-                        characterMap.Add(pfile, score);
-                    }
-                    else
-                    {
-                        AnsiConsole.WriteLine("No words found.");
-                    }
-                });
+                        englishDictionary = englishDictionary.OrderBy(x => x.Length).ToList();
 
-                var scoreLines = characterMap.OrderByDescending(x => x.Value).Select(x => $"{x.Key} - {x.Value}");
-
-                File.WriteAllLines("output/word_score.txt", scoreLines);
-
-                var sortedScore = characterMap.OrderByDescending(x => x.Value).ToList();
-                foreach (var score in sortedScore)
-                {
-                    var value = wordMap.FirstOrDefault(x => x.Item1 == score.Key);
-                    File.AppendAllText("output/word_readible.txt", $"{value.Item1} - {value.Item2}");
-                    File.AppendAllText("output/word_readible.txt", string.Empty);
-                }
+                        for (int i = 0; i <= 74; i++)
+                        {
+                            AnsiConsole.MarkupLine($"Processing {i.ToString().PadLeft(2, '0')}...");
+                            ctx.Refresh();
+                            var files = allFiles.Where(x => x.Contains(i.ToString().PadLeft(2, '0'))).OrderBy(x => x).ToList();
+                            var scorelines = files.AsParallel().Select(x => new ScoreLine(x, File.ReadAllLines(x), englishDictionary)).OrderBy(x => x.Score);
+                            File.WriteAllLines($"output/word_score_{i.ToString().PadLeft(2, '0')}.txt", scorelines.Select(x => x.ToString()));
+    
+                            foreach (var score in scorelines)
+                            {
+                                if (score.Score > 0)
+                                {
+                                    File.AppendAllText($"output/word_readible_{i.ToString().PadLeft(2, '0')}.txt", score.FileName);
+                                    File.AppendAllText($"output/word_readible_{i.ToString().PadLeft(2, '0')}.txt", Environment.NewLine);
+                                    File.AppendAllLines($"output/word_readible_{i.ToString().PadLeft(2, '0')}.txt", score.ReadableLines);
+                                    File.AppendAllText($"output/word_readible_{i.ToString().PadLeft(2, '0')}.txt", Environment.NewLine);
+                                    File.AppendAllText($"output/word_readible_{i.ToString().PadLeft(2, '0')}.txt", Environment.NewLine);
+                                }
+                            }
+                        }
+                    });
             }
         }
     }
